@@ -1,0 +1,23 @@
+algorithm:
+P2b objective: read user selected input file line by line and output each line as many times for each @ in that line. (-1)
+
+missing or unnecessary data items (-1)
+P2a data items: 
+
+main program: iFileName, oFileName, dFileName, enterKey.  
+
+getFileName: filetype (input or output), dFileName, valid (true or false if file name is a valid file name), and returns fileName
+P2b data items: P2a variables + lineFromFile, fin, i, nLines, nATs
+
+Only the first simplest expected test case needs the algorithm instructions to be performed while each subsequent test case just needs the purpose, input, and expected results defined.
+
+P2b missing test cases (-1) Besides the 4 required variable prompt test cases and valid filenames, 1 or more @'s, and what if line has no @'s?  What if no lines in the file?
+
+program:
+Please use the identifiers provided/recommended, including functions.  When you don't, we cannot have the same points of reference from the algorithm strategy to discuss.  Treat this project as a user provided algorithm like in the real world where everyone from the technical to the non-technical need to discuss and understand each other.
+
+subprogram getFileName is called twice, passes 2 parameters (dFileName and fileType) and contains everything to get one filename: use one variable prompt with file type and default file name, and file name input validation (-1)
+
+subprogram readFile is called once to read the input file line by line, passes 1 parameter (iFileName) (-1)
+
+subprogram processLine is called for each line read from the input file, passes 1 parameter (lineFromFile) (-1)

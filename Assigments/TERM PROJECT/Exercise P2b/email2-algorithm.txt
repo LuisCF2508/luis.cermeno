@@ -3,7 +3,7 @@ Luis Cermeno-Farro 1837034:
 Course and section: COMSC-110-8076
 
 1. Objective (1 sentence brief description of what this will do): 
-Create a program to identify '@' characters and output the lines containing them for the term project
+Read user selected input file line by line and output each line as many times for each @ in that line.
 
 2. Requirements (any and all requirements organized by input, processing, output, data):
 INPUT (any data items to be input): 
@@ -18,61 +18,71 @@ PROCESSING (list of significant parts of the objective that will become the list
 4. output filenames and pause program execution until user presses enter key
 5. read input file and output lines with @
 
-
 OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
--user introduction: introduction of objective, author, "This program will prompt you for two text file names, an input and an output file. The program will read you input file and then show the lines containing the character '@'.Please type the name of each file correctly including the extension .txt. No other file extension is yet supported.".
--prompt "Enter input filename [Press ENTER for default: " and defaultName " ]: "
--prompt "Enter output filename [Press ENTER for default: " and defaultName " ]: "
+-user introduction: introduction of objective, author, "This program will prompt you for two text file names, an input and an output file. The program will read you input file and then show the lines containing the character '@'.Please filetype the name of each file correctly including the extension .txt. No other file extension is yet supported.".
+-prompt "Enter input filename [Press ENTER for default: " and dFileName " ]: "
+-prompt "Enter output filename [Press ENTER for default: " and dFileName " ]: "
 -inputValidation "Sorry, that is an invalid name. The file name must have the .txt extension. Try again please." 
 
-
-DATA (list of all data items: definition, data type, formatting, or any other specifications):
+DATA (list of all data items: definition, data filetype, formatting, or any other specifications):
 
 -iFileName // (text) :  is the input file name <main>
 -oFileName // (text) :  is the output file name <main>
 -dFileName // (text) : is the default file name <main>
 -enterKey // (text) : just a variable to read the ENTER key at the end of the program. <main>
--type // (text): is either "input" or "output" choice given to the subprogram "getFileName" <getFileName>
--defaultName // (text) : is the default file name given to the subprogram "getFileName" <getFileName>
--userInput // (text) : is the text entered by the user returned to the main program <getFileName>
+
+-filetype // (text): is either "input" or "output" choice given to the subprogram "getFileName" <getFileName>
+-dFileName // (text) : is the default file name given to the subprogram "getFileName" <getFileName>
 -valid // (boolean) : is true when the input is already processed by validation function <getFileName>
--inputName // (text): is the text entered by the user given to the subprogram "validateInput" <validateInput>
--isValid // (boolean) : is true when the input is valid, returned to the getFileName subprogram <validateInput>
--n // (integer) is the number of characters of the text input  <validateInput>
+-fileName // (text) : is the text entered by the user returned to the main program <getFileName>
+
 -iFileName // (text): is the name of the input file given to the subprogram "readFile" <readFile>
--readLine //(text) is a line read from the input file <readFile>
--i //(integer) is a counter used to process the line read a look for '@' <readFile>
+-nLines // (integer) number of lines of the file <readFile>
+-lineFromFile //(text) is a line read from the input file <readFile>
+-nATs // (integer) number of '@' character found in each line, returned to readFile subprogram <readFile>
+-i //(integer) is a counter used to output i number of times lineFromFile <readFile>
+
+-lineFromFile //(text) each line in the text file, is given to the subprogram <processLine>
+-i //(integer) is a counter used to each character of the line <processLine>
+-nATs // (integer) number of '@' character found in each line, returned to readFile subprogram <processLine>
 
 
 3. Algorithm instructions (recipe)
 
---->algorithm for subprogram "validateInput" : checks for valid input
-2010 set isValid to false
-2015 set n to length of inputName
-2020 if n < 5 OR (character "n-1" of inputName is different from 't') OR (character "n-2" of inputName is different from 'x') OR (character "n-3" of inputName is different from 't') OR (character "n-4" of inputName is different from '.') then output "Sorry, that is an invalid name. The file name must have the .txt extension. Try again please.", otherwise set isValid to true
-2025 return from subprogram "validateInput" with isValid value 
-
 -->algorithm for subprogram "getFileName" : prompts for input for either input or output file names, also checks for default input
-1010 set userInput = "No name"
-1015 if type = "input" then output "Enter input filename [Press ENTER for default: " and defaultName " ]: " , otherwise if type = "input" then output "Enter output filename [Press ENTER for default: " and defaultName " ]: "
-1020 input userInput
-1025 if length of userInput is 0 then userInput = defaultName and skip to line 1040, otherwise set valid = isValid from subprogram validateInput (give the value of userInput as inputName)
-1030 if valid = true the skip to line 1040
-1035 go back to line 1015
-1040 return from subprogram "getFileName" with userInput value
+1010 set fileName = "No name"
+1015 if filetype = "input" then output "Enter input filename [Press ENTER for default: " and dFileName " ]: " , otherwise if filetype = "input" then output "Enter output filename [Press ENTER for default: " and dFileName " ]: "
+1020 input fileName
+1025 if fileName length is 0 then fileName = dFileName and skip to line 1040,
+1030 set valid to false
+1035 if fileName length < 5 OR (character "fileName length-1" of fileName is different from 't') OR (character "fileName length-2" of fileName is different from 'x') OR (character "fileName length-3" of fileName is different from 't') OR (character "fileName length-4" of fileName is different from '.') then output "Sorry, that is an invalid name. The file name must have the .txt extension. Try again please.", otherwise set valid to true
+1040 if valid = true the skip to line 1050
+1045 go back to line 1015
+1050 return to main program the value of fileName
 
 -->algorithm for subprogram "readFile" : reads input file until EOF that calls function processLine for each line read from the input file
-3010 open input file named as the value of iFileName
-3015 if the file contain errors, skip to line 3055
-3020 if end-of-file is reached skip to line 3055
-3025 set readLine = next line of the file
-3030 set i = 0
-3035 if i => length of readLine then skip to line 3050
-3040 if character i of readLine is equal to '@' then output readLine
-3041 i = i + 1
-3045 go back to line 3035
-3050 go back to line 3020
-3055 return to main program
+2010 set nLines = 0
+2015 open input file named as the value of iFileName
+2020 if the file contain errors, skip to line 2080
+2025 if end-of-file is reached skip to line 2080
+2030 set lineFromFile = next line of the file
+2035 set nATs = value returned by subprogram processLine (give the value of lineFromFile as lineFromFile)
+2040 set i  = 0
+2045 if i < nATs then output lineFromFile, otherwise skip to 2060
+2050 set i = i + 1
+2055 go back to 2045
+2060 nLines = nLines + 1
+2065 go back to 2025
+2080 return to main program
+
+-->algorithm for subprogram "processLine"
+3010 set nATs = 0
+3015 set i = 0
+3020 if i => length of lineFromFile then skip to line 3045
+3025 if character i of lineFromFile is equal to '@' then nATs = nATs + 1
+3030 i = i + 1
+3035 go back to line 3020
+3045 return to readFile subprogram the value of nATs
 
 -->algorithm for "main" program
 ***data
@@ -80,9 +90,9 @@ DATA (list of all data items: definition, data type, formatting, or any other sp
 ***introduction 
 20 output introduction: objective, author, instructions/rules
 ***prompt user for file name, check for default and valid input
-30 set iFileName = userInput from subprogram "getFileName" (give the values of "input" as type and dFileName as defaultName)
+30 set iFileName = fileName from subprogram "getFileName" (give the values of "input" as filetype and dFileName as dFileName)
 35 if iFileName = dFileName then dFileName = "copyPasteMyEmails.txt", else dFileName = iFileName
-40 set oFileName = userInput from subprogram "getFileName" (give the values of "output" as type and dFileName as defaultName)
+40 set oFileName = fileName from subprogram "getFileName" (give the values of "output" as filetype and dFileName as dFileName)
 ***output file names
 50 output label for the input file name, and iFileName
 55 output label for the output file name, and oFileName
@@ -94,15 +104,15 @@ DATA (list of all data items: definition, data type, formatting, or any other sp
 
 4. Test cases (list purpose of each test case, any input values, and expected results)
 
-Test case #1: test the given test case
--->input file: 0.txt (modified)
+Test case #1: 
+-->purpose: simplest given test case
+-->input file: 0.txt
 Nothing
 here
 @
 @x
 x@
 x@x
-x@x@
 -->expected console I/O execution:
 Enter input filename [default: fileContainingEmails.txt]: 0.txt 
 Enter output filename [default: 0.txt]: y.txt 
@@ -113,196 +123,286 @@ press ENTER key to continue:
 @x
 x@
 x@x
-x@x@
-x@x@
 -->execution:
 ***data
 10 dFileName = "fileContainingEmails.txt"
 ***introduction 
 20 user introduction output
 ***prompt user for file name, check for default and valid input.
+30 going to subprogram getFileName
 <getFileName>
-1010 userInput = "No name"
+1010 fileName = "No name"
 1015 Enter input filename [Press ENTER for default: fileContainingEmails.txt]:
 1020 0.txt
-
-<validateInput>
-2010 isValid = false
-2015 n = 5
-2020 False, isValid = true
-2025 return isValid = true to getFileName 
-
-<getFileName>
-1025 False, valid = isValid = true
-1030 True, skipping to line 1040
-1040 return userInput = 0.txt to main
-
+1025 False
+1030 valid = false
+1035 False
+1040 True, skipping to 1050
+1050 returning fileName
 <main>
-30 set iFileName = userInput = 0.txt
+30 set iFileName = fileName = 0.txt
 35 False, dFileName = iFileName
-
+40 going to subprogram getFileName
 <getFileName>
-1010 userInput = "No name"
-1015 Enter output filename [Press ENTER for default: x.txr]:
+1010 fileName = "y.txt"
+1015 Enter input filename [Press ENTER for default: fileContainingEmails.txt]:
 1020 y.txt
-
-<validateInput>
-2010 isValid = false
-2015 n = 5
-2020 False, isValid = true
-2025 return isValid = true to getFileName 
-
-<getFileName>
-1025 False, valid = isValid = true
-1030 True, skipping to line 1040
-1040 return userInput = y.txt to main
-
+1025 False
+1030 valid = false
+1035 False
+1040 True, skipping to 1050
+1050 returning fileName
 <main>
-40 set oFileName = userInput = y.txt
+40 set oFileName = fileName = y.txt
 ***output file names
 50 Input file: 0.txt
 55 Output file: y.txt
 60 press ENTER key to continue:
 65 ENTER KEY
-70 going to subprogram readFile
+70 going to subprogram readFile (give the value of 0.txt as iFileName)
 
 <readFile>
-3010 "0.txt" opened
-3015 False, no errors
-3020 False, EOF not yet reached
-3025 readLine = "Nothing"
-3030 i = 0
-3035 False
-3040 False
-3041 i = 0 + 1 = 1
-3045 going back to line 3035
-3035 False
-3040 False
-3041 i = 1 + 1 = 2
-3045 going back to line 3035
-3035 False
-3040 False
-3041 i = 2 + 1 = 3
-3045 going 3035
-3035 False
-3040 False
-3041 i = 3 + 1 = 4
-3045 going back to line 3035
-3035 False
-3040 False
-3041 i = 4 + 1 = 5
-3045 going back to line 3035
-3035 False
-3040 False
-3041 i = 5 + 1 = 6
-3045 going back to line 3035
-3035 False
-3040 False
-3041 i =  6 + 1 = 7
-3045 going back to line 3035
-3035 True, skipping to line 3050
-3050 go back to line 3020
-3020 False, EOF not yet reached
-3025 readLine = "here"
-3030 i = 0
-3035 False
-3040 False
-3041 i = 0 + 1 = 1
-3045 going back to line 3035
-3035 False
-3040 False
-3041 i = 1 + 1 = 2
-3045 going back to line 3035
-3035 False
-3040 False
-3041 i = 2 + 1 = 3
-3045 going 3035
-3035 False
-3040 False
-3041 i = 3 + 1 = 4
-3045 going back to line 3035
-3035 True, skipping to line 3050
-3050 go back to line 3020
-3020 False, EOF not yet reached
-3025 readLine = "@"
-3030 i = 0
-3035 False
-3040 True, @
-3041 i = 0 + 1 = 1
-3045 going back to line 3035
-3035 True, skipping to line 3050
-3050 go back to line 3020
-3020 False, EOF not yet reached
-3025 readLine = "@x"
-3030 i = 0
-3035 False
-3040 True, @x
-3041 i = 0 + 1 = 1
-3045 going back to line 3035
-3035 False
-3040 False
-3041 i = 1 + 1 = 2
-3045 going back to line 3035
-3035 True, skipping to line 3050
-3050 go back to line 3020
-3020 False, EOF not yet reached
-3025 readLine = "x@"
-3030 i = 0
-3035 False
-3040 False
-3041 i = 0 + 1 = 1
-3045 going back to line 3035
-3035 False
-3040 True, x@
-3041 i = 1 + 1 = 2
-3045 going back to line 3035
-3035 True, skipping to line 3050
-3050 go back to line 3020
-3020 False, EOF not yet reached
-3025 readLine = "x@x"
-3030 i = 0
-3035 False
-3040 False
-3041 i = 0 + 1 = 1
-3045 going back to line 3035
-3035 False
-3040 True, x@x
-3041 i = 1 + 1 = 2
-3045 going back to line 3035
-3035 False
-3040 False
-3041 i = 2 + 1 = 3
-3045 going back to line 3035
-3035 True, skipping to line 3050
-3050 go back to line 3020
-3020 False, EOF not yet reached
-3025 readLine = "x@x@"
-3030 i = 0
-3035 False
-3040 False
-3041 i = 0 + 1 = 1
-3045 going back to line 3035
-3035 False
-3040 True, x@x
-3041 i = 1 + 1 = 2
-3045 going back to line 3035
-3035 False
-3040 False
-3041 i = 2 + 1 = 3
-3045 going back to line 3035
-3035 False
-3040 True, x@x
-3041 i = 3 + 1 = 4
-3045 going back to line 3035
-3035 True, skipping to line 3050
-3050 go back to line 3020
-3020 True, EOF is reached, skipping to line 3055
-3055 returning to main program
+2010 nLines = 0
+2015 0.txt opened
+2020 False, no errors
+
+2025 False, EOF not yet reached
+2030 lineFromFile = Nothing
+2035 going to subprogram processLine (give the value of Nothing as lineFromFile)
+<processLine>
+3010 nATs = 0
+3015 i = 0
+3020 False, i is not => 7
+3025 False
+3030 i = 0 + 1 = 1
+3020 False, i is not => 7
+3025 False
+3030 i = 1 + 1 = 2
+3020 False, i is not => 7
+3025 False
+3030 i = 2 + 1 = 3
+3020 False, i is not => 7
+3025 False
+3030 i = 3 + 1 = 4
+3020 False, i is not => 7
+3025 False
+3030 i = 4 + 1 = 5
+3020 False, i is not => 7
+3025 False
+3030 i = 5 + 1 = 6
+3020 False, i is not => 7
+3025 False
+3030 i = 6 + 1 = 7
+3020 True, i => 7
+3045 returning nATs = 0 to readFile subprogram
+<readFile>
+2035 nATs = 0
+2040 i = 0
+2045 False, skipping to 2060
+2060 nLines = 0 + 1 + 1
+2065 going back to 2025
+
+2025 False, EOF not yet reached
+2030 lineFromFile = here
+2035 going to subprogram processLine (give the value of here as lineFromFile)
+<processLine>
+3010 nATs = 0
+3015 i = 0
+3020 False, i is not => 4
+3025 False
+3030 i = 0 + 1 = 1
+3020 False, i is not => 4
+3025 False
+3030 i = 1 + 1 = 2
+3020 False, i is not => 4
+3025 False
+3030 i = 2 + 1 = 3
+3020 False, i is not => 4
+3025 False
+3030 i = 3 + 1 = 4
+3020 True, i => 4
+3045 returning nATs = 0 to readFile subprogram
+<readFile>
+2035 nATs = 0
+2040 i = 0
+2045 False, skipping to 2060
+2060 nLines = 1 + 1 + 2
+2065 going back to 2025
+
+2025 False, EOF not yet reached
+2030 lineFromFile = @
+2035 going to subprogram processLine (give the value of @ as lineFromFile)
+<processLine>
+3010 nATs = 0
+3015 i = 0
+3020 False, i is not => 4
+3025 True, nATs = 0 + 1 = 1
+3030 i = 0 + 1 = 1
+3020 True, i => 1
+3045 returning nATs = 1 to readFile subprogram
+<readFile>
+2035 nATs = 1
+2040 i = 0
+2045 True, "@"
+2060 nLines = 2 + 1 + 3
+2065 going back to 2025
+
+2025 False, EOF not yet reached
+2030 lineFromFile = @x
+2035 going to subprogram processLine (give the value of @x as lineFromFile)
+<processLine>
+3010 nATs = 0
+3015 i = 0
+3020 False, i is not => 2
+3025 True, nATs = 0 + 1 = 1
+3030 i = 0 + 1 = 1
+3020 False, i is not => 2
+3025 False
+3030 i = 1 + 1 = 2
+3020 True, i => 2
+3045 returning nATs = 1 to readFile subprogram
+<readFile>
+2035 nATs = 1
+2040 i = 0
+2045 True, @x
+2060 nLines = 3 + 1 + = 4
+2065 going back to 2025
+
+2025 False, EOF not yet reached
+2030 lineFromFile = x@
+2035 going to subprogram processLine (give the value of @x as lineFromFile)
+<processLine>
+3010 nATs = 0
+3015 i = 0
+3020 False, i is not => 2
+3025 False
+3030 i = 0 + 1 = 1
+3020 False, i is not => 2
+3025 True, nATs = 0 + 1 = 1
+3030 i = 1 + 1 = 2
+3020 True, i => 2
+3045 returning nATs = 1 to readFile subprogram
+<readFile>
+2035 nATs = 1
+2040 i = 0
+2045 True, x@
+2060 nLines = 4 + 1 + = 5
+2065 going back to 2025
+
+2025 False, EOF not yet reached
+2030 lineFromFile = x@
+2035 going to subprogram processLine (give the value of @x as lineFromFile)
+<processLine>
+3010 nATs = 0
+3015 i = 0
+3020 False, i is not => 3
+3025 False
+3030 i = 0 + 1 = 1
+3020 False, i is not => 3
+3025 True, nATs = 0 + 1 = 1
+3030 i = 1 + 1 = 2
+3020 False, i is not => 3
+3025 False
+3030 i = 1 + 1 = 3
+3020 True, i => 3
+3045 returning nATs = 1 to readFile subprogram
+<readFile>
+2035 nATs = 1
+2040 i = 0
+2045 True, x@x
+2060 nLines = 5 + 1 + = 6
+2065 going back to 2025
+
+2025 True, EOF reached, skipping to 2080
+2080 returning to main program
 <main>
 999 END
 -->comments: execution succesfully completed, got expected results
 
-Test case #2: test if program detects an invalid input
+Test case #2 : 
+-->purpose: test what if there are more than 1 @'s
+-->input file: 0.txt
+Nothing
+here
+@
+@x@
+x@x@x@
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: 0.txt 
+Enter output filename [default: 0.txt]: y.txt 
+Input file: 0.txt
+Output file: y.txt
+press ENTER key to continue:
+@
+@x@
+@x@
+x@x@x@
+x@x@x@
+x@x@x@
+
+Test case #3 : 
+-->purpose: test what if there are no lines in the text file
+-->input file: 0.txt (empty)
+
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: 0.txt 
+Enter output filename [default: 0.txt]: y.txt 
+Input file: 0.txt
+Output file: y.txt
+press ENTER key to continue:
+-comments: for future versions program should alert user about this issue
+
+Test case #4 test what if the input file does not exist: 
+-->purpose: simplest given test case
+-->input file: 0.txt (does not exist)
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: 0.txt 
+Enter output filename [default: 0.txt]: y.txt 
+Input file: 0.txt
+Output file: y.txt
+press ENTER key to continue:
+999 END
+-comments: for future versions program should alert user about this issue
+
+--------TEST CASES FROM VERSION P2A-------------
+Test case #1: given test case (no default choices)
+-->purpose: what if user enters two default choices
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: x.txt 
+Enter output filename [default: x.txt]: y.txt 
+Input file: x.txt
+Output file: y.txt
+press ENTER key to continue:
+
+Test case #2:
+-->purpose: what if user enters default choice for inputfile
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: x.txt 
+Enter output filename [default: x.txt]: 
+Input file: x.txt
+Output file: x.txt
+press ENTER key to continue:
+
+Test case #3: 
+-->purpose: what if user enters default choice for outputfile
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: 
+Enter output filename [default: copyPasteMyEmails.txt]: y.txt 
+Input file: fileContainingEmails.txt
+Output file: y.txt
+press ENTER key to continue:
+
+Test case #4: given test case (no default choices)
+-->purpose: what if user enters two default choices
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: x.txt 
+Enter output filename [default: x.txt]: y.txt 
+Input file: x.txt
+Output file: y.txt
+press ENTER key to continue:
+
+Test case #5: 
+-->purpose: test if program is able to detect an invalid input
 -->expected console I/O execution:
 Enter input filename [default: fileContainingEmails.txt]: .txt 
 Sorry, that is an invalid name. The file name must have the .txt extension. Try again please. 
@@ -313,40 +413,3 @@ Enter output filename [default: x.txt]: y.txt
 Input file: x.txt
 Output file: y.txt
 press ENTER key to continue:
--->execution:
-***data
-10 dFileName = "fileContainingEmails.txt"
-***introduction 
-20 user introduction output
-***prompt user for file name, check for default and valid input
-<getFileName>
-1010 userInput = "No name"
-1015 Enter input filename [Press ENTER for default: fileContainingEmails.txt]:
-1020 .txt
-<validateInput>
-2010 isValid = false
-2015 n = 4
-2020 True, Sorry, that is an invalid name. The file name must have the .txt extension. Try again please. 
-2025 return isValid = false to getFileName 
-<getFileName>
-1025 False, valid = isValid = false
-1030 False
-1035 going back to line 1015
-1015 Enter input filename [Press ENTER for default: fileContainingEmails.txt]:
-1020 x.doc
-<validateInput>
-2010 isValid = false
-2015 n = 5
-2020 True, Sorry, that is an invalid name. The file name must have the .txt extension. Try again please. 
-2025 return isValid = false to getFileName 
-<getFileName>
-1025 False, valid = isValid = false
-1030 False
-1035 going back to line 1015
-1015 Enter input filename [Press ENTER for default: fileContainingEmails.txt]:
-1020 x.txt
-.
-.The program will continue a successful execution as proven in test case 4
-.
-999 END
--->comments: execution succesfully completed, got expected results
