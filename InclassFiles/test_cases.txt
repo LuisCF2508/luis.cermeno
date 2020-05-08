@@ -1,0 +1,10 @@
+Test Cases:
+1.Test every function or thing that your algorithm/program does
+For example averageAge-algorithm.txt:
+-input people's ages
+-total of everyone's age
+-count of  everyone in the room
+-calculate the average age of everyone in the room
+-check each age is 0-122 years old
+-checks when no more ages need to be input
+-if no ages were entered then it outputs an average age of 0.0

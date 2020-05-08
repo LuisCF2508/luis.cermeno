@@ -1,0 +1,118 @@
+Teacher
+COMSC-110-8215
+Lab 11
+
+1. Objective: Prompt the user to input 4 numbers between 0 and 100, and calculate the average of those 4 numbers, and how many of those 4 numbers are above the average.
+
+2. Requirements:
+--INPUT
+4 numbers between 0-100
+
+--PROCESSING
+1. data definitions
+2. user introduction
+3. input values
+4. calculate and output average
+5. calculate and output number of values that are greater than the average
+
+--OUTPUT
+objective
+author
+user Instructions: You will be prompted for 4 numbers to get the average and how many of those numbers are above the average.
+prompt1: "Please enter a number [0-100]: "
+label1: "The average of "
+label2: " numbers is "
+label3: ".  "
+label4: " numbers are greater than the average."
+
+--Data
+array-Numbers defined for 4 values-->>stores 4 input values from the user (integer)
+average-->>calculated average of 4 values input (decimal)
+nGreater-->>calculated number of input values that are greater than the calculated average (integer)
+sum-->>sum of input values (integer)
+count-->>count input values (integer)
+i-->>loop iteration index (integer)
+
+3. Algorithm instructions
+***user information
+10 output objective
+20 output author
+30 output user instructions
+***initialize values
+40 i = 0
+50 count = 0
+60 sum = 0
+70 average = 0
+80 nGreater = 0
+***input loop
+90 output prompt1
+100 input Numbers[count]
+105 if Numbers[count] < 0 OR Numbers[count] > 100 then skip to instruction 90
+110 sum = sum + Numbers[count]
+120 count = count + 1
+130 if count <= 3 then skip to instruction 90
+***calculate average
+140 if count > 0 then average = sum / count
+***calculate the number of input values that are greater than the average
+150 if average < Numbers[i] then nGreater = nGreater + 1
+160 i = i + 1
+170 if i < count then skip to instruction 150
+***output results
+180 output "The average of " and count and " numbers is " and average and ".  "
+190 output nGreater and " numbers are greater than the average."
+999 END
+
+4. Test Cases
+Test Case #1: input values = 64, 94, 94, 94.  Expected results = 86.5 and 3 values are greater than the average.
+10 Objective: Prompt the user to input 4 numbers between 0 and 100, and calculate the average of those 4 numbers, and how many of those 4 numbers are above the average.
+20 Author: Teacher
+30 You will be prompted for 4 numbers to get the average and how many of those numbers are above the average.
+40 i = 0
+50 count = 0
+60 sum = 0
+70 average = 0
+80 nGreater = 0
+
+90 "Please enter a number [0-100]: "
+100 64
+105 False
+110 sum = 0 + 64 = 64
+120 count = 0 + 1 = 1
+130 True, going back to line 90
+90 "Please enter a number [0-100]: "
+100 94
+105 False
+110 sum = 64 + 94 = 158
+120 count = 1 + 1 = 2
+130 True, going back to line 90
+90 "Please enter a number [0-100]: "
+100 94
+105 False
+110 sum = 158 + 94 = 
+120 count = 2 + 1 = 3
+130 True, going back to line 90
+90 "Please enter a number [0-100]: "
+100 94
+105 False
+110 sum = 252 + 94 = 346
+120 count = 3 + 1 = 4
+130 False
+
+140 average = 346 / 4 = 86.5
+
+150 False
+160 i = 0 + 1 = 1
+170 True, going back to 150
+150 nGreater = 0 + 1 = 1
+160 i = 1 + 1 = 2
+170 True, going back to 150
+150 nGreater = 1 + 1 = 2
+160 i = 2 + 1 = 3
+170 True, going back to 150
+150 nGreater = 2 + 1 = 3
+160 i = 3 + 1 = 4
+170 False
+
+180 The average of 4 numbers is 86.5.
+190 3 numbers are greater than the average.
+999 END

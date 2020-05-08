@@ -1,0 +1,54 @@
+1. Create nameSorter-algorithm.txt to read names in a text file, sort them
+alphabetically, and output them to the screen with these specifications:
+A. The names are to be stored in an input text file, one name per line. 
+B. Prompt the user to enter the filename via the console keyboard.
+C. Skip any blank lines that may be in the input file.
+D. Skip any exact duplicates that may be in the input file.
+E. Allow up to 5 names. Stop reading the file after the end-of-file is reached, or the 5th name is
+added and the list reaches its capacity.
+F. Sort the list alphabetically, from A to Z, according to the first letter in the name string. The sorting and checking for duplicates should both be case-independent. But do not permanently convert the name case -- compare lowercase (or uppercase) versions of the
+text for sorting purposes only.
+
+2. Write nameSorter.cpp from nameSorter-algorithm.txt
+Example partial output:
+
+Enter the name of the file containing names: myFriends.txt
+Alex
+beth
+Carl
+Pat
+Sasha
+
+ 
+
+3. Write mp3Shuffler1-algorithm.txt to read all song titles from a text file,
+and randomly select and output titles in a loop until the user wishes to stop, with these specifications:
+A. The song titles are to be stored in an input text file named songs.txt, one name per line.
+B. Allow up to 200 song titles. 
+C. Stop reading the file after the end-of-file is reached, or the 200th song title is added and the list reaches its capacity.
+D. In a loop, prompt the user to “play a song [Y/N]?”. If the reply is N (or n), exit the loop and let the program end. If the reply is Y (or y), randomly choose a number for the index of the song title in the
+list to play. Print the song title, and repeat to the top of the loop.
+
+4. Write mp3Shuffler1.cpp from mp3Shuffler1-algorithm.txt using an array based list of capacity 200.
+Example partial output:
+
+play a song [Y/N]?: y
+Hey Jude
+play a song [Y/N]?: y
+Imagine
+play a song [Y/N]?: y
+Johnny B. Goode
+play a song [Y/N]?: y
+Respect
+play a song [Y/N]?: y
+Good Vibrations
+play a song [Y/N]?: y
+Johnny B. Goode
+play a song [Y/N]?: n
+
+
+5. Please submit the following files:
+nameSorter-algorithm.txt
+nameSorter.cpp 
+mp3Shuffler1-algorithm.txt
+mp3Shuffler1.cpp

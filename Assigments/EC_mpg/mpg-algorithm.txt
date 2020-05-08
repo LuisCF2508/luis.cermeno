@@ -1,0 +1,132 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+Calculate the remaining range of a car given its gas capacity, distance travelled, and gallons used
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+
+INPUT (any data items to be input):
+-maxCap: maximum gallon capacity of the user's car.
+-distanceTravelled: distance already travelled by the user.
+-gallonsUsed: gallon already used in the trip. 
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. console input
+4. calculation of efficiency and range.
+efficiency = distanceTravelled / gallonsUsed
+range = efficiency * (maxCap - gallonsUsed)
+5. console output of results
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: "Objective: Calculate the remaining range of a car given its gas capacity, distance travelled, and gallons used. Author: Luis Cermeno"
+-user instruction: "You will be asked to enter some information about your trip. After you type your answers, please hit the ENTER or RETURN key."
+-prompt: "Enter the maximum gallon capacity of your car [e.g. 14]:"
+-prompt: "How many miles have you already travelled? [e.g. 190.5]:"
+-prompt: "How many gallons have you already used? [e.g. 7.1]:"
+-label: "Your car has an efficiency of " and efficiency " miles per gallon, which will allow you to travel approximately " and range " miles more."
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-maxCap (decimal): maximum gallon capacity of the user's car.
+-distanceTravelled (decimal): distance already travelled by the user.
+-gallonsUsed (decimal): gallon already used in the trip. 
+-efficiency (decimal): the miles per gallon ratio of the car.
+-range (decimal): the remaining miles the car can travel.
+
+
+3. Algorithm instructions (recipe)
+***data
+10 declare maxCap
+20 declare distanceTravelled
+30 declare gallonsUsed
+40 declare efficiency
+50 declare range
+***introduction 
+30 output: "Objective: Calculate the remaining range of a car given its gas capacity, distance travelled, and gallons used. Author: Luis Cermeno"
+40 output: "You will be asked to enter some information about your trip. After you type your answers, please hit the ENTER or RETURN key."
+***console input
+50 output: "Enter the maximum gallon capacity of your car [e.g. 14]:"
+55 input maxCap
+60 output: "How many miles have you already travelled? [e.g. 190.5]:"
+65 input distanceTravelled
+70 output: "How many gallons have you already used? [e.g. 7.1]:"
+75 input gallonsUsed
+***calculation of efficiency and range
+80 set efficiency = distanceTravelled/gallonsUsed
+90 set range = efficiency * (maxCap - gallonsUsed)
+*** output 
+100 output "Your car has an efficiency of " and efficiency " miles per gallon, which will allow you to travel approximately " and range " miles more."
+999 END
+
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: 
+Purpose:
+-Test a basic case: Considering a 381 mile trip from SF to LA in a Honda CRV 2019 (specs: eff. 27mpg, cap. 14gal). The user is halfway and wants to know whether he is going to make it or not. 
+Input values:
+-maxCap = 14
+-distanceTravelled = 190.5
+-gallonsUsed = 7.1
+Expected output:
+-"Your car has an efficiency of 26.83 miles per gallon, which will allow you to travel approximately 186.13 miles more."
+Execution:
+10 maxCap declared
+20 distanceTravelled declared
+30 gallonsUsed declared
+40 efficiency declared
+50 range declared
+30 Objective: Calculate the remaining range of a car given its gas capacity, distance travelled, and gallons used. Author: Luis Cermeno Author: Luis Cermeno.
+40 You will be asked to enter some information about your trip. After you type your answers, please hit the ENTER or RETURN key.
+50 Enter the maximum gallon capacity of your car [e.g. 14]:
+55 14
+60 How many miles have you already travelled? [e.g. 190.5]:
+65 190.5
+70 How many gallons have you already used? [e.g. 7.1]:
+75 7.1
+80 set efficiency = 190.5/7.1 = 26.831...
+90 set range = 26.831... * (14 - 7.1) = 26.831... * 6.9 = 185.134...
+100 Your car has an efficiency of 26.83 miles per gallon, which will allow you to travel approximately 185.13 miles more.
+999 END
+Comments:
+-Succesfull execution with expected result. The user now knows he will need to fill up his tank before reaching LA.
+
+Test case #2:
+Purpose:
+-Test a basic case: Considering a 381 mile trip from SF to LA in a Ford F-150 Supercrew (specs: eff. 20mpg, cap. 26gal). The user is halfway and wants to know whether he is going to make it or not. 
+Input values:
+-maxCap = 26
+-distanceTravelled = 190.5
+-gallonsUsed = 7.4
+Expected output:
+-"Your car has an efficiency of 25.74 miles per gallon, which will allow you to travel approximately 478.82 miles more."
+Execution:
+10 maxCap declared
+20 distanceTravelled declared
+30 gallonsUsed declared
+40 efficiency declared
+50 range declared
+30 Objective: Calculate the remaining range of a car given its gas capacity, distance travelled, and gallons used. Author: Luis Cermeno
+40 You will be asked to enter some information about your trip. After you type your answers, please hit the ENTER or RETURN key.
+50 Enter the maximum gallon capacity of your car [e.g. 14]:
+55 26
+60 How many miles have you already travelled? [e.g. 190.5]:
+65 190.5
+70 How many gallons have you already used? [e.g. 7.1]:
+75 7.4
+80 set efficiency = 190.5/7.4 = 25.743...
+90 set range = 25.743... * (26 - 7.4) = 25.743... * 18.6 = 478.824...
+100 Your car has an efficiency of 25.74 miles per gallon, which will allow you to travel approximately 478.82 miles more.
+999 END
+Comments:
+-Succesfull execution with expected result. The user now knows he will NOT need to fill up his tank before reaching LA.
+
+
+
+
+
+
+ 

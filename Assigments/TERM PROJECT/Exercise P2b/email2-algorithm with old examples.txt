@@ -1,0 +1,333 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+Prompt the user for text file name, validate input and output name to the console.
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-iFileName
+-oFileName
+-enterKey
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. prompt user for file name, check for default and valid input
+4. output file names
+5. read input file and output lines with @
+
+Subprograms:
+<getFileName> : prompts for input for either input or output file names, also checks for default input
+<validateInput> : checks for valid input
+<readFile> : reads input file until EOF that calls function processLine for each line read from the input file
+
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-prompt "Enter input filename [Press ENTER for default: " and defaultName " ]: "
+-prompt "Enter output filename [Press ENTER for default: " and defaultName " ]: "
+-inputValidation "Sorry, that is an invalid name. The file name must have the .txt extension. Try again please." 
+
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+
+<main>
+-iFileName // (text) :  is the input file name
+-oFileName // (text) :  is the output file name
+-dFileName // (text) : is the default file name
+-enterKey // (text) : just a variable to read the ENTER key at the end of the program.
+
+<getFileName>
+-type // (text): is either "input" or "output" choice given to the subprogram "getFileName"
+-defaultName // (text) : is the default file name given to the subprogram "getFileName"
+-userInput // (text) : is the text entered by the user returned to the main program
+-valid // (boolean) : is true when the input is already processed by validation function 
+
+<validateInput>
+-inputName // (text): is the text entered by the user given to the subprogram "validateInput"
+-isValid // (boolean) : is true when the input is valid, returned to the getFileName subprogram
+-n // (integer) is the number of characters of the text input 
+
+<readFile>
+-iFileName // (text): is the name of the input file given to the subprogram "readFile"
+-readLine //(text) is a line read from the input file
+-i //(integer) is a counter used to process the line read a look for '@'
+
+
+3. Algorithm instructions (recipe)
+
+--->algorithm for subprogram "validateInput"
+2010 set isValid to false
+2015 set n to length of inputName
+2020 if n < 5 OR (character "n-1" of inputName is different from 't') OR (character "n-2" of inputName is different from 'x') OR (character "n-3" of inputName is different from 't') OR (character "n-4" of inputName is different from '.') then output "Sorry, that is an invalid name. The file name must have the .txt extension. Try again please.", otherwise set isValid to true
+2025 return from subprogram "validateInput" with isValid value 
+
+-->algorithm for subprogram "getFileName"
+1010 set userInput = "No name"
+1015 if type = "input" then output "Enter input filename [Press ENTER for default: " and defaultName " ]: " , otherwise if type = "input" then output "Enter output filename [Press ENTER for default: " and defaultName " ]: "
+1020 input userInput
+1025 if length of userInput is 0 then userInput = defaultName and skip to line 1040, otherwise set valid = isValid from subprogram validateInput (give the value of userInput as inputName)
+1030 if valid = true the skip to line 1040
+1035 go back to line 1015
+1040 return from subprogram "getFileName" with userInput value
+
+-->algorithm for subprogram "readFile"
+10 open input file named as the value of iFileName
+15 if the file contain errors, skip to line 55
+20 if end-of-file is reached skip to line 55
+25 set readLine = next line of the file
+30 set i = 0
+35 if i > length of readLine then skip to line 50
+40 if character i of readLine is equal to '@' then output readLine
+45 go back to line 35
+50 go back to line 20
+55 return to main program
+
+-->algorithm for "main" program
+***data
+10 set dFileName = "fileContainingEmails.txt"
+***introduction 
+20 output introduction: objective, author, instructions/rules
+***prompt user for file name, check for default and valid input
+30 set iFileName = userInput from subprogram "getFileName" (give the values of "input" as type and dFileName as defaultName)
+35 if iFileName = dFileName then dFileName = "copyPasteMyEmails.txt", else dFileName = iFileName
+40 set oFileName = userInput from subprogram "getFileName" (give the values of "output" as type and dFileName as defaultName)
+***output file names
+50 output label for the input file name, and iFileName
+55 output label for the output file name, and oFileName
+60 output a prompt to press ENTER key to continue
+65 input enterKey
+999 END
+
+
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: given test case (two default choices)
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: 
+Enter output filename [default: copyPasteMyEmails.txt]: 
+Input file: fileContainingEmails.txt
+Output file: copyPasteMyEmails.txt
+press ENTER key to continue:
+-->execution:
+***data
+10 dFileName = "fileContainingEmails.txt"
+***introduction 
+20 Objective: Prompt the user for text file name, validate input and output name to the console.
+***prompt user for file name, check for default and valid input
+<getFileName>
+1010 userInput = "No name"
+1015 Enter input filename [Press ENTER for default: fileContainingEmails.txt]:
+1020 ENTER key
+1025 True, userInput = defaultName = fileContainingEmails.txt, skipping to line 1040 
+1040 return userInput = fileContainingEmails.txt to main
+<main>
+30 set iFileName = userInput = fileContainingEmails.txt
+35 True, dFileName = "copyPasteMyEmails.txt"
+<getFileName>
+1010 userInput = "No name"
+1015 Enter output filename [Press ENTER for default: fileContainingEmails.txt]:
+1020 user presses ENTER key
+1025 True, userInput = defaultName = copyPasteMyEmails.txt, skipping to line 1040
+1040 return userInput = copyPasteMyEmails.txt to main
+<main>
+40 set oFileName = userInput = copyPasteMyEmails.txt
+***output file names
+50 Input file: fileContainingEmails.txt
+55 Output file: copyPasteMyEmails.txt
+60 press ENTER key to continue:
+65 ENTER KEY
+999 END
+
+
+Test case #2: given test case (default choice for inputfile)
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: x.txt 
+Enter output filename [default: x.txt]: 
+Input file: x.txt
+Output file: x.txt
+press ENTER key to continue:
+-->execution:
+***data
+10 dFileName = "fileContainingEmails.txt"
+***introduction 
+20 Objective: Prompt the user for text file name, validate input and output name to the console.
+***prompt user for file name, check for default and valid input
+<getFileName>
+1010 userInput = "No name"
+1015 Enter input filename [Press ENTER for default: fileContainingEmails.txt]:
+1020 x.txt
+<validateInput>
+2010 isValid = false
+2015 n = 5
+2020 False, isValid = true
+2025 return isValid = true to getFileName 
+<getFileName>
+1025 False, valid = isValid = true
+1030 True, skipping to line 1040
+1040 return userInput = x.txt to main
+<main>
+30 set iFileName = userInput = x.txt
+35 False, dFileName = iFileName
+<getFileName>
+1010 userInput = "No name"
+1015 Enter output filename [Press ENTER for default: x.txr]:
+1020 ENTER key
+1025 True, userInput = defaultName = x.txt, skipping to line 1040
+1040 return userInput = x.txt to main
+<main>
+40 set oFileName = userInput = x.txt
+***output file names
+50 Input file: x.txt
+55 Output file: x.txt
+60 press ENTER key to continue:
+65 ENTER KEY
+999 END
+
+
+Test case #3: given test case (default choice for outputfile)
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: 
+Enter output filename [default: copyPasteMyEmails.txt]: y.txt 
+Input file: fileContainingEmails.txt
+Output file: y.txt
+press ENTER key to continue:
+-->execution:
+***data
+10 dFileName = "fileContainingEmails.txt"
+***introduction 
+20 Objective: Prompt the user for text file name, validate input and output name to the console.
+***prompt user for file name, check for default and valid input
+<getFileName>
+1010 userInput = "No name"
+1015 Enter input filename [Press ENTER for default: fileContainingEmails.txt]:
+1020 ENTER key
+1025 True, userInput = defaultName = fileContainingEmails.txt, skipping to line 1040
+1040 return userInput = fileContainingEmails.txt to main
+<main>
+30 set iFileName = userInput = fileContainingEmails.txt
+35 True, dFileName = "copyPasteMyEmails.txt"
+<getFileName>
+1010 userInput = "No name"
+1015 Enter output filename [Press ENTER for default: copyPasteMyEmails.txt]:
+1020 y.txt
+<validateInput>
+2010 isValid = false
+2015 n = 5
+2020 False, isValid = true
+2025 return isValid = true to getFileName 
+<getFileName>
+1025 False, valid = isValid = true
+1030 True, skipping to line 1040
+1040 return userInput = y.txt to main
+<main>
+40 set oFileName = userInput = y.txt
+***output file names
+50 Input file: fileContainingEmails.txt
+55 Output file: y.txt
+60 press ENTER key to continue:
+65 ENTER KEY
+999 END
+
+Test case #4: given test case (no default choices)
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: x.txt 
+Enter output filename [default: x.txt]: y.txt 
+Input file: x.txt
+Output file: y.txt
+press ENTER key to continue:
+-->execution:
+***data
+10 dFileName = "fileContainingEmails.txt"
+***introduction 
+20 Objective: Prompt the user for text file name, validate input and output name to the console.
+***prompt user for file name, check for default and valid input
+<getFileName>
+1010 userInput = "No name"
+1015 Enter input filename [Press ENTER for default: fileContainingEmails.txt]:
+1020 x.txt
+<validateInput>
+2010 isValid = false
+2015 n = 5
+2020 False, isValid = true
+2025 return isValid = true to getFileName 
+<getFileName>
+1025 False, valid = isValid = true
+1030 True, skipping to line 1040
+1040 return userInput = x.txt to main
+<main>
+30 set iFileName = userInput = x.txt
+35 False, dFileName = iFileName
+<getFileName>
+1010 userInput = "No name"
+1015 Enter output filename [Press ENTER for default: x.txr]:
+1020 y.txt
+<validateInput>
+2010 isValid = false
+2015 n = 5
+2020 False, isValid = true
+2025 return isValid = true to getFileName 
+<getFileName>
+1025 False, valid = isValid = true
+1030 True, skipping to line 1040
+1040 return userInput = y.txt to main
+<main>
+40 set oFileName = userInput = y.txt
+***output file names
+50 Input file: x.txt
+55 Output file: y.txt
+60 press ENTER key to continue:
+65 ENTER KEY
+999 END
+
+Test case #5: test if program detects an invalid input
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: .txt 
+Sorry, that is an invalid name. The file name must have the .txt extension. Try again please. 
+Enter input filename [default: fileContainingEmails.txt]: x.doc
+Sorry, that is an invalid name. The file name must have the .txt extension. Try again please. 
+Enter input filename [default: fileContainingEmails.txt]: x.txt
+Enter output filename [default: x.txt]: y.txt  
+Input file: x.txt
+Output file: y.txt
+press ENTER key to continue:
+-->execution:
+***data
+10 dFileName = "fileContainingEmails.txt"
+***introduction 
+20 Objective: Prompt the user for text file name, validate input and output name to the console.
+***prompt user for file name, check for default and valid input
+<getFileName>
+1010 userInput = "No name"
+1015 Enter input filename [Press ENTER for default: fileContainingEmails.txt]:
+1020 .txt
+<validateInput>
+2010 isValid = false
+2015 n = 4
+2020 True, Sorry, that is an invalid name. The file name must have the .txt extension. Try again please. 
+2025 return isValid = false to getFileName 
+<getFileName>
+1025 False, valid = isValid = false
+1030 False
+1035 going back to line 1015
+1015 Enter input filename [Press ENTER for default: fileContainingEmails.txt]:
+1020 x.doc
+<validateInput>
+2010 isValid = false
+2015 n = 5
+2020 True, Sorry, that is an invalid name. The file name must have the .txt extension. Try again please. 
+2025 return isValid = false to getFileName 
+<getFileName>
+1025 False, valid = isValid = false
+1030 False
+1035 going back to line 1015
+1015 Enter input filename [Press ENTER for default: fileContainingEmails.txt]:
+1020 x.txt
+.
+.The program will continue a successful execution as proven in test case 4
+.
+999 END
+

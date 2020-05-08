@@ -1,0 +1,125 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+Prompt the user to enter a line of text, of any length, with spaces and punctuation. Then "decode" the entered text so that each character is converted to the previous character in the ASCII code. 
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-userText
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. user input
+4. decoding
+5. output decoded text
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-prompt "Please enter a line of text [E.g. Hello, World]: "
+-label "Text Decoded: " and value of userText
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-userText //(text) the text to decode entered by the user 
+-i //(integer) counter for the decoding main loop 
+
+3. Algorithm instructions (recipe)
+***data definitions
+10 set userText as text data
+15 set i = 0
+***introduction 
+20 output introduction: objective, author, instructions/rules
+***user input
+30 output "Please enter a line of text [E.g. Hello, World]: "
+40 input userText
+***decoding
+50 if i < userText lenght then continue, otherwise skip to line 70
+55 convert character "i" of userText to character "i + 1"
+56 i = i - 1
+60 go back to line 50
+***output decoded text
+70 output "Text Decoded: " and value of userText
+
+999 END
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: test a simply case.
+input: "Ifmmp"
+expected result: "Text Decoded: Hello"
+execution:
+10 userText declared as text data
+15 i = 0
+20 Objective:Prompt the user to enter a line of text, of any length, with spaces and punctuation. Then "decode" the entered text so that each character is converted to the next character in the ASCII code. Author:
+30 Please enter a line of text [E.g. Hello, World]:
+40 Ifmmp (lenght : 5)
+
+50 0 < 5, True
+55 73(I) = 73 - 1 = 72(H)
+56 i = 0 + 1 = 1
+60 go back to line 50
+
+50 1 < 5,True
+55 101(f) = 101 - 1 = 100(e)
+56 i = 1 + 1 = 2
+60 going back to line 50
+
+50 2 < 5,True
+55 109(m) = 109 - 1 = 108(l)
+56 i = 2 + 1 = 3
+60 going back to line 50
+
+50 3 < 5,True
+55 109(m) = 109 - 1 = 108(l)
+56 i = 3 + 1 = 4
+60 going back to line 50
+
+50 4 < 5,True
+55 112(p) = 112 - 1 = 111(o)
+56 i = 3 + 1 = 5
+60 going back to line 50
+
+50 5 is not < 5, False
+
+70 Text Decoded: Hello
+comments: execution completed successfully.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

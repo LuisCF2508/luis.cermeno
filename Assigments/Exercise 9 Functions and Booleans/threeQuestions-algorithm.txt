@@ -1,0 +1,159 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+Ask three computer science questions and then show their final score.
+
+2. Requirements (any and all requirements organized by input, processing, output, dat1):
+INPUT (any data items to be input): 
+-userAnswer
+
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. ask question and update score
+4. output final score
+
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-prompt: "Q1.Which one is a programming language?: 1)html 2)java 3)binary"
+-prompt: "Q2.Which loop is count controlled?: 1) while-true 2) for"
+-prompt: "Q3.How do you call the name of variables?: 1)label 2)parameter 3)identifier"
+-output: "Correct!"
+-output: "Very good,but a better answer is " and correctAnswer
+-output: "TOTAL SCORE: " and userScore " out of 3."
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-question (text) one computer science question <main>
+-correctAnswer (integer) the correct answer for each question <subprogram askQuestion>
+-userAnswer (integer) the answer input by the user <subprogram askQuestion>
+-userScore (integer) the number of correct answer the user has gotten. <main>
+-result (boolean) whether the user got the answe correct, true or false <subprogram askQuestion>
+
+
+3. Algorithm instructions (recipe)
+***data
+10 set userScore = 0;
+***introduction 
+30 output introduction: objective, author, instructions/rules
+***ask each question and update score
+40 set correctAnswer = 2
+41 set result = false
+42 set question = "Q1.Which one is a programming language?: 1)html 2)java 3)binary"
+43 output question
+44 input userAnswer
+45 if userAnswer equals to correctAnswer then set result to true
+46 if result is false then output "Very good,but a better answer is " and correctAnswer and then skip to line 50
+47 if result is true then output "Correct!"
+48 userScore = userScore + 1
+
+50 set correctAnswer = 2
+51 set result = false
+52 set question = "Q2.Which loop is count controlled?: 1) while-true 2) for"
+53 output question
+54 input userAnswer
+55 if userAnswer equals to correctAnswer then set result to true
+56 if result is false then output "Very good,but a better answer is " and correctAnswer and then skip to line 60
+57 if result is true then output "Correct!"
+58 userScore = userScore + 1
+
+60 set correctAnswer = 3
+61 set result = false
+62 set question "Q3.How do you call the name of variables?: 1)label 2)parameter 3)identifier"
+63 output question
+64 input userAnswer
+65 if userAnswer equals to correctAnswer then set result to true
+66 if result is false then output "Very good,but a better answer is " and correctAnswer and then skip to line 70
+67 if result is true then output "Correct!"
+68 userScore = userScore + 1
+
+***output final score
+70 output "TOTAL SCORE: " and userScore " out of 3."
+
+
+999 END
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: 
+purpose: test a simply execution with one incorrect answer
+input: 1 2 3
+expected result: ""TOTAL SCORE: 2 out of 3."
+execution:
+
+10 userScore = 0;
+30 Objective: Ask three computer science questions and then show their final score.Author: Luis Cermeno
+
+40 correctAnswer = 2
+41 result = false
+42 question = "Q1.Which one is a programming language?: 1)html 2)java 3)binary"
+43 Q1.Which one is a programming language?: 1)html 2)java 3)binary
+44 1
+45 False
+46 Very good,but a better answer is 2 
+
+50 set correctAnswer = 2
+51 result = false
+52 question = "Q2.Which loop is count controlled?: 1) while-true 2) for"
+53 Q2.Which loop is count controlled?: 1) while-true 2) for
+54 2
+55 result = true
+56 False
+57 Correct!
+58 userScore = 0 + 1 = 1
+
+60 correctAnswer = 3
+61 result = false
+62 question = "Q3.How do you call the name of variables?: 1)label 2)parameter 3)identifier"
+63 Q3.How do you call the name of variables?: 1)label 2)parameter 3)identifier
+64 3
+65 result = true
+66 False
+67 Correct!
+68 userScore = 1 + 1 = 2
+
+70 output "TOTAL SCORE: 2 out of 3."
+
+comments: Execution completed successfully. Expected results reached.
+
+
+
+999 END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

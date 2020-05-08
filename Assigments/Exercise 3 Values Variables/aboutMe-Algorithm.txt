@@ -1,0 +1,78 @@
+@copyrighted 1999 Valerie Colber
+Full Name and Student ID Number: Luis Cermeno-Farro
+Course and section: COMSC-110-5003
+
+1. Objective (1 sentence brief description of what this will do): 
+Output predetermined values for a person's lucky number,amount saved by the end of life, favorite movie, one initial from ther name.
+
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-luckyNumber
+-amountSaved
+-favMovie
+-initial
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. output with labels the values of luckyNumber, amountSaved, favMovie, initial
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-label "Your lucky number is " and value of luckyNumber.
+-label "The amount you will save by the end of your life is" and value of amountSaved.
+-label "Your favorite movie is " and value of favMovie.
+-label "Your initial from yout first, middle , or last name is " and value of initial.
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-luckyNumber (integer) represents a person's lucky number
+-amountSaved (decimal) represents how much money a person will have saved by the end of their life
+-favMovie(text) represent a person's favorite movie
+-initial (character) represents a person's first,middle,or last name initial. 	
+
+
+3. Algorithm instructions (recipe)
+***data
+10 set luckyNumber = 8
+20 set amountSaved = 1000000000.0
+30 set favMovie = "Forrest Gump"
+40 set initial = 'L'
+***introduction 
+50 output Objective: output predetermined values for a person's lucky number,amount saved by the end of life, favorite movie, one initial from ther name. Author: Luis Cermeno
+***output with labels the values of the data items
+60 output "Your lucky number is " and value of luckyNumber.
+70 output "The amount you will save by the end of your life is" and value of amountSaved.
+80 output "Your favorite movie is " and value of favMovie.
+90 output "Your initial from yout first, middle , or last name is " and value of initial.
+999 END
+
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: 
+purpose: 
+-To test the simpliest test case with 4 assigned values.
+
+input values:
+-luckyNumber = 8
+-amountSaved = 1000000000.0
+-favMovie = Forrest Gump
+-initial = L
+
+execution:
+10 luckyNumber = 8
+20 amountSaved = 1000000000.0
+30 favMovie = "Forrest Gump"
+40 initial = 'L'
+50 Objective: output predetermined values for a person's lucky number,amount saved by the end of life, favorite movie, one initial from ther name.This program was developed by Luis Cermeno.
+60 Your lucky number is 8
+70 The amount you will save by the end of your life is 1000000000.0
+80 Your favorite movie is Forrest Gump
+90 Your initial from yout first, middle , or last name is L
+999 END
+
+comments:
+The execution was succesfully completed with the expected results.
+
+

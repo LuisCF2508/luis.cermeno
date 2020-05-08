@@ -1,0 +1,86 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective: Determine how far away a boat can see a lighthouse at sea. 
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-height = height of the lighthouse entered by the user
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. user input of height
+4. calculation of distance
+distance=sqrt(0.8*height)
+5. output value of distance and height
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: "Objective: Determine how far away a boat can see a lighthouse at sea. .Author: Luis Cermeno"
+-user instruction: "You will be asked to enter the height of the lighthouse, please type the value with your keyboard and press ENTER key once you complete your input"
+-prompt "What's the lighthouse height in feet? [55.5]:"
+-label output "A " and height (with any decimal the user has input) " foot tall lighthouse can be seen from " and distance(rounded to nearest whole number) " miles away".
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+height (decimal) height of the lighthouse entered by the user.
+distance (decimal) maximun distance from what the lighthouse can be seen, calculated by the program.
+
+3. Algorithm instructions (recipe)	
+***data
+10 declare height
+20 declare distance
+***introduction 
+30 output introduction: "Objective: Determine how far away a boat can see a lighthouse at sea. .Author: Luis Cermeno"
+35 output instruction: "You will be asked to enter the height of the lighthouse, please type the value with your keyboard and press ENTER key once you complete your input"
+***user input of height
+40 prompt "What's the lighthouse height in feet? [55.5]:"
+50 input height
+***calculation of distance
+60 set distance = sqrt(0.8*height)
+***output value of distance and height
+70 output "A " and height (with any decimal the user has input) " foot tall lighthouse can be seen from " and distance(rounded to nearest whole number) " miles away".
+999 END
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1:
+-purpose:
+test the algorithm with basic case (given example)
+-input values:
+height = 100.001
+-expected result
+"A 100.001 foot tall lighthouse can be seen from 9 miles away".
+-execution:
+10 height declared 
+20 distance declared
+30 Objective: Determine how far away a boat can see a lighthouse at sea.Author: Luis Cermeno
+35 You will be asked to enter the height of the lighthouse, please type the value with your keyboard and press ENTER key once you complete your input
+40 What's the lighthouse height in feet? [55.5]
+50 100.001
+60 distance = sqrt(0.8*100.001) = 8.944
+70 A 100.001 foot tall lighthouse can be seen from 9 miles away.
+999 END
+-comments:
+Execution completed succesfully with expected result.
+
+
+Test case #2: 
+-purpose:
+test the algorithm with basic case (program given example)
+-input values:
+height = 55.5
+-expected result
+"A 55.5 foot tall lighthouse can be seen from 7 miles away".
+-execution:
+10 height declared 
+20 distance declared
+30 Objective: Determine how far away a boat can see a lighthouse at sea.Author: Luis Cermeno
+35 You will be asked to enter the height of the lighthouse, please type the value with your keyboard and press ENTER key once you complete your input
+40 What's the lighthouse height in feet? [55.5]
+50 55.5
+60 distance = sqrt(0.8*55.5) = 6.663
+70 A 55.5 foot tall lighthouse can be seen from 7 miles away.
+999 END
+-comments:
+Execution completed succesfully with expected result.

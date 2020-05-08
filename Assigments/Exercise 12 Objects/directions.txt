@@ -1,0 +1,13 @@
+1. Update your last version of mortgageCalculator-algorithm.txt according to any new specifications or requirements in Exercise 12.1 on www.rdb3.com (Links to an external site.) (Links to an external site.)
+
+ (Links to an external site.) (Links to an external site.)
+
+Assume a 30 year fixed loan.  Additionally, read the input values from a user selected input file, have a password (your student ID) to use the program, and have all the necessary test cases in the algorithm for all requirements. (refer to mort2.cpp example program from chapter 4, Exercises 4.1 (which makes a calculation modification), 5.1 (which makes an input modification), and 10.5 (which makes an input modification) and include everything that was done in exercise 10.5 plus the directions and requirements for Exercise 12.1 (which makes a data modification using a object record to store the data from file)
+
+2. Write mortgageCalculator.cpp according to any new specifications or requirements in Exercise 12.1 on www.rdb3.com (Links to an external site.)
+
+3. Please submit the following files:
+
+mortgageCalculator4-algorithm.txt (latest version)
+
+mortgageCalculator4.cpp

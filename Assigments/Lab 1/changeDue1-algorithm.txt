@@ -1,0 +1,291 @@
+COMSC-110-8215
+Teacher / Luis Cermeno-Farro
+
+1. Objective:  calculate change due in a transaction using these U.S. bills - no cents: $1, $2, $5, $10, $20, $50, $100, $500, $1000, $5000, $10000, and $100000 bills.
+
+
+2. Requirements:
+--INPUT: 
+-amountOwed = set amount by author
+-cashPaid = set amount by author
+
+
+--PROCESSING: 
+1. introduction (objective, author, use instructions)
+2. defining data items
+3. calculate the total change due and the number of each type of $bills. 
+(The paid out bills should include the fewest number of bills. For example, do not include two $10 bills when you can include one $20 bill instead.)
+4. Output results
+
+--OUTPUT:
+-objective
+-author 
+-user instructions: "set the amount owed and the cash paid amounts to calculate change due in all specified U.S. bills."
+-label1: "Amount owed: " and the value of amountOwed
+-label2: "Amount cash paid: " and the value of cashPaid
+-label3: "Change due: " and the value of totalChangeDue
+-label4: "Change paid out in: "
+-label5: "-this many $100,000 bills: " and the value of thousand100
+-label6: "-this many $10,000 bills: " and the value of thousand10
+-label7: "-this many $5,000 bills: " and the value of thousand5
+-label8: "-this many $1,000 bills: " and the value of thousand
+-label9: "-this many $500 bills: " and the value of hundred5
+-label10: "-this many $100 bills: " and the value of hundred
+-label11: "-this many $50 bills: " and the value of fifty
+-label12: "-this many $20 bills: " and the value of twenty
+-label13: "-this many $10 bills: " and the value of ten
+-label14: "-this many $5 bills: " and the value of five
+-label15: "-this many $2 bills: " and the value of two
+-label16: "-this many $1 bills: " and the value of one
+
+--DATA:
+-amountOwed-->>amount owed, is always less than cash paid(integer)
+-cashPaid-->>amount tendered to pay for the amount owed, cannot be zero or negative (integer)
+-totalChangeDue-->>the difference between amountOwed and cashPaid (integer)
+-changeDue-->>change due for each value of bills (integer)
+-thousand100-->>number of $100000 bills (integer)
+-thousand10-->>number of $10000 bills (integer)
+-thousand5-->>number of $5000 bills (integer)
+-thousand-->>number of $1000 bills (integer)
+-hundred5-->>number of $500 bills (integer)
+-hundred-->>number of $100 bills (integer)
+-fifty-->>number of $50 bills (integer)
+-twenty-->>number of $20 bills (integer)
+-ten-->>number of $10 bills (integer)
+-five-->>number of $5 bills (integer)
+-two-->>number of $2 bills (integer)
+-one-->>number of $1 bills (integer)
+
+
+3. Algorithm Instructions
+**Introduction
+10 output "Objective: Calculate change due in a transaction using these U.S. bills - no cents: $1, $2, $5, $10, $20, $50, $100, $500, $1000, $5000, $10000, and $100000 bills."
+20 output "Author: Mrs Colber / Luis Cermeno"
+30 output "Set the amount owed and the cash paid amounts to calculate change due in all specified U.S. bills."
+**Defining date items
+40 set amountOwed = (set amount by author)
+50 set cashPaid = (set amount by author)
+60 declare totalChangeDue
+70 declare changeDue
+80 declare thousand100
+90 declare thousand10
+10 declare thousand5
+20 declare thousand
+30 declare hundred5
+40 declare hundred
+50 declare fifty
+60 declare twenty
+70 declare ten
+80 declare five
+90 declare two
+100 declare one
+**Calculate the total change due and the number of each type of $bills
+110 totalChangeDue = cashPaid - amountOwed
+120 changeDue = totalChangeDue
+130 thousand100 = changeDue / 100000
+140 changeDue = remainder from changeDue / 100000
+150 thousand10 = changeDue /10000
+160 changeDue = remainder from changeDue / 10000
+170 thousand5 = changeDue / 5000
+180 changeDue = remainder from changeDue / 5000
+190 thousand = changeDue / 1000
+200 changeDue = remainder from changeDue / 1000
+210 hundred5 = changeDue / 500
+220 changeDue = remainder from changeDue / 500
+230 hundred = changeDue /100
+240 changeDue = remainder from changeDue / 100
+250 fifty = changeDue / 50
+260 changeDue = remainder from changeDue / 50
+270 twenty = changeDue / 20
+280 changeDue = remainder from changeDue / 20
+290 ten = changeDue / 10
+300 changeDue = remainder from changeDue / 10
+310 five = changeDue / 5
+320 changeDue = remainder from changeDue / 5
+325 two = changeDue / 2
+326 changeDue = remainder from changeDue / 2
+330 one = changeDue
+**Output results
+340 output "Amount owed: " and the value of amountOwed
+350 output "Amount cash paid: " and the value of cashPaid
+360 output "Change due: " and the value of totalChangeDue
+370 output "Change paid out in: "
+380 output "-this many $100,000 bills: " and the value of thousand100
+390 output "-this many $10,000 bills: " and the value of thousand10
+400 output "-this many $5,000 bills: " and the value of thousand5
+410 output "-this many $1,000 bills: " and the value of thousand
+420 output "-this many $500 bills: " and the value of hundred5
+430 output "-this many $100 bills: " and the value of hundred
+440 output "-this many $50 bills: " and the value of fifty
+450 output "-this many $20 bills: " and the value of twenty
+460 output "-this many $10 bills: " and the value of ten
+470 output "-this many $5 bills: " and the value of five
+480 output "-this many $2 bills: " and the value of two
+490 output "-this many $1 bills: " and the value of one
+999 END
+
+4. Test cases
+
+Test Case #1: 
+--Purpose: 
+Test a simple execution with valid input values
+--Input values:
+amountOwed = 45000
+cashPaid = 100000
+--Execution:
+10 output "Objective: Calculate change due in a transaction using these U.S. bills - no cents: $1, $2, $5, $10, $20, $50, $100, $500, $1000, $5000, $10000, and $100000 bills."
+20 output "Author: Mrs Colber / Luis Cermeno"
+30 output "Set the amount owed and the cash paid amounts to calculate change due in all specified U.S. bills."
+40 set amountOwed = 45000
+50 set cashPaid = 100000
+60 declare totalChangeDue
+70 declare changeDue
+80 declare thousand100
+90 declare thousand10
+10 declare thousand5
+20 declare thousand
+30 declare hundred5
+40 declare hundred
+50 declare fifty
+60 declare twenty
+70 declare ten
+80 declare five
+90 declare two
+100 declare one
+110 totalChangeDue = 100000 - 45000 = 55000
+120 changeDue = 55000
+130 thousand100 = 55000 / 100000 = 0 //its cero cause thousand100 is declared as an integer, can not accept decimals
+140 changeDue = 55000
+150 thousand10 = 55000 /10000 = 5
+160 changeDue = 5000
+170 thousand5 = 5000 / 5000 = 1
+180 changeDue = 0
+190 thousand = 0 / 1000 = 0
+200 changeDue = 0
+210 hundred5 = 0 / 500 = 0
+220 changeDue = 0
+230 hundred = 0 /100 = 0
+240 changeDue = 0
+250 fifty = 0 / 50 = 0
+260 changeDue = 0
+270 twenty = 0 / 20 = 0
+280 changeDue = 0
+290 ten = 0 / 10 = 0
+300 changeDue = 0
+310 five = 0 / 5 = 0
+320 changeDue = 0
+325 two = 0 / 2 = 0
+326 changeDue = 0
+330 one = 0
+340 output "Amount owed: 45000"
+350 output "Amount cash paid: 100000"
+360 output "Change due: 55000"
+370 output "Change paid out in: "
+380 output "-this many $100,000 bills: 0"
+390 output "-this many $10,000 bills: 5"
+400 output "-this many $5,000 bills: 1"
+410 output "-this many $1,000 bills: 0"
+420 output "-this many $500 bills: 0"
+430 output "-this many $100 bills: 0"
+440 output "-this many $50 bills: 0"
+450 output "-this many $20 bills: 0"
+460 output "-this many $10 bills: 0"
+470 output "-this many $5 bills: 0"
+480 output "-this many $2 bills: 0"
+490 output "-this many $1 bills: 0"
+999 END
+--Comments: The program output the expected results. Execution succesfully completed.
+
+Test Case #2: 
+--Purpose: 
+Test a simple execution with valid input values
+--Input values:
+amountOwed = 44999
+cashPaid = 50000
+--Execution:
+10 output "Objective: Calculate change due in a transaction using these U.S. bills - no cents: $1, $2, $5, $10, $20, $50, $100, $500, $1000, $5000, $10000, and $100000 bills."
+20 output "Author: Mrs Colber / Luis Cermeno"
+30 output "Set the amount owed and the cash paid amounts to calculate change due in all specified U.S. bills."
+40 set amountOwed = 44999
+50 set cashPaid = 50000
+60 declare totalChangeDue
+70 declare changeDue
+80 declare thousand100
+90 declare thousand10
+10 declare thousand5
+20 declare thousand
+30 declare hundred5
+40 declare hundred
+50 declare fifty
+60 declare twenty
+70 declare ten
+80 declare five
+90 declare two
+100 declare one
+110 totalChangeDue = 50000 - 44999 = 5001
+120 changeDue = 5001
+130 thousand100 = 5001 / 100000 = 0 //its cero cause thousand100 is declared as an integer, can not accept decimals
+140 changeDue = 5001
+150 thousand10 = 5001 /10000 = 0
+160 changeDue = 5001
+170 thousand5 = 5001 / 5000 = 1
+180 changeDue = 1
+190 thousand = 1 / 1000 = 0
+200 changeDue = 1
+210 hundred5 = 1 / 500 = 0
+220 changeDue = 1
+230 hundred = 1 /100 = 0
+240 changeDue = 1
+250 fifty = 1 / 50 = 0
+260 changeDue = 1
+270 twenty = 1 / 20 = 0
+280 changeDue = 0
+290 ten = 0 / 10 = 0
+300 changeDue = 1
+310 five = 1 / 5 = 0
+320 changeDue = 1
+325 two = 0 / 2 = 0
+326 changeDue = 0
+330 one = 1
+340 output "Amount owed: 44999"
+350 output "Amount cash paid: 50000"
+360 output "Change due: 5001"
+370 output "Change paid out in: "
+380 output "-this many $100,000 bills: 0"
+390 output "-this many $10,000 bills: 0"
+400 output "-this many $5,000 bills: 1"
+410 output "-this many $1,000 bills: 0"
+420 output "-this many $500 bills: 0"
+430 output "-this many $100 bills: 0"
+440 output "-this many $50 bills: 0"
+450 output "-this many $20 bills: 0"
+460 output "-this many $10 bills: 0"
+470 output "-this many $5 bills: 0"
+480 output "-this many $2 bills: 0"
+490 output "-this many $1 bills: 1"
+999 END
+--Comments: The program output the expected results. Execution succesfully completed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

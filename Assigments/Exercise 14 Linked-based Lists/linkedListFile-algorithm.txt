@@ -1,0 +1,178 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+Read an input file of scores and find average score
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-aScore (from file scores.txt)
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. input scores from file scores.txt and sum and count each score
+4. calculate average score
+5. find highest score, lowest score, and count number of scores greater than the average
+6. output average score and number of scores greater than the avreage
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-each score on one line separated by a space from input file scores.txt followed by a blank line
+-label "The maximun score is " + max
+-label "The minimun score is" + min
+-label "The average of " + count + "numbers is " + avreage
+-nGreater + " scores greater than the average score"
+-output "The file name used is scores.txt"
+-output "Please make sure you have this file ready"
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-average(decimal) is the average score of all the scores in the input file
+-sum (integer) is the sum of all the scores in the input file
+-count (integer) is the number of score in the input file
+-max (integer) is the highest score of all the score in the input file
+-min(integer) is the lowest score of all the scores in the input file
+-aScore (integer) is each score input from the input file
+-nScore (integer) is the number of scores greater than the average
+
+3. Algorithm instructions (recipe)
+***data
+10 set sum = 0
+20 set count = 0
+***introduction 
+30 output introduction: objective, author, instructions/rules
+***input scores from file scores.txt and sum and count each score
+60 open file score.txt
+70 input aScore
+80 if EOF marker then skip to 130
+90 set sum = sum + aScore
+100 set count = count + 1
+110 add score to list
+120 skip to instruction 70
+***calculate average score
+130 if count > 0 the set avreage = sum /count
+***find highest score, lowest score and count number of scores greater than the average
+140 if count > 0 then skip to 150
+142 output "The input file was empty" and skip to 999
+150 set max to first score on the list
+160 set min to first score on the list
+170 if max < next score on the list them set max to that next score on the list
+180 if min > next score on the list the set min to that next score on the list
+190 if score on the list is greater that average then add 1 to nGreater
+200 if not at the end of the list skip to instruction 170
+***output average score and number of scores greater than the average
+210 output new line
+220 output "The maximun score is " + max
+230 output "The minimun score is" + min
+240 output "The avereage of" + nScores + " numbers is" + average
+250 output nGreater + " score are greater than the average
+999 END
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: test a simple case
+input values:99 88 77 
+expected results:
+The file name used is scores.txt
+Please make sure you have this file ready.
+99 88 77 
+
+The maximun score is 99
+The minimun score is 77
+The average of 3 numbers is 88.0
+1 scores are greater than the average
+-execution:
+10 sum = 0
+20 count = 0
+30 output introduction: objective, author, instructions/rules
+60 file score.txt opened
+70 aScore = 99
+80 False
+90 sum = 0 + 99 = 99
+100 count = 0 + 1 = 1
+110 99 added to list
+120 skip to instruction 70
+70 aScore = 88
+80 False
+90 sum = 99 + 88 = 187
+100 count = 1 + 1 = 2
+110 88 added to list
+120 skip to instruction 70
+70 aScore = 77
+80 False
+90 sum = 187 + 77 = 264
+100 count = 2 + 1 = 3
+110 77 added to list
+120 skip to instruction 70
+70 aScore = 0
+80 True, skippin to 130
+130 True, average = 264 /3 = 88
+140 True, skipping to 150
+150 max = 77
+160 min = 77
+170 True, max = 88
+180 False
+190 False
+200 True, skippin to 170
+170 True, max = 99
+180 False
+190 True, nGreater = nGreater + 1
+200 False
+210 77 88 99 
+220 The maximun score is 99
+230 The minimun score is 77
+240 The average of 3 numbers is 88.0
+250 1 scores are greater than the average
+999 END
+
+
+Test case #2: what if input file scores.txt is empty?
+input values:
+expected results:
+The file name used is scores.txt
+Please make sure you have this file ready
+expected results:
+
+The file was empty
+
+-execution:
+10 sum = 0
+20 count = 0
+30 output introduction: objective, author, instructions/rules
+60 file score.txt opened
+70 aScore = 0
+80 True, skipping to 130
+130 False
+140 False
+142 "The input file was empty",skipping to 999
+999 END
+
+
+-----------------TEST CASES FOR FUTURE VERSIONS_________________
+
+Test case #3: what if an invalid value is in scores.txt
+input values: 99 88 77 -1
+expected results:
+The file name used is scores.txt
+Please make sure you have this file ready.
+99 88 77
+
+The maximun score is 99
+The minimun score is 77
+The average of 3 numbers is 88.0
+1 scores are greater than the average
+
+Test case #4: what if an invalid value is in scores.txt
+input values 99 88 77 hello
+expected results:
+The file name used is scores.txt
+Please make sure you have this file ready.
+99 88 77 
+
+99 88 77 
+
+The maximun score is 99
+The minimun score is 77
+The average of 3 numbers is 88.0
+1 scores are greater than the average

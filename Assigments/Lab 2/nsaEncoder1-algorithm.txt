@@ -1,0 +1,202 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+Encode a text file line by line so that each character is converted to the next character in the ASCII code. 
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-userFile
+-userText
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. user input
+4. encoding and outputting
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-prompt "Please enter the name of the text file including the extension [e.g. confidential.txt]: "
+-output "Text Encoded:"
+
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-userFile //(text) the name of the file to open for input
+-userText //(text) the text to encode entered by the user 
+-i //(integer) counter for the encoding main loop 
+
+3. Algorithm instructions (recipe)
+***data definitions
+10 set userText as text data
+11 set userFile as text data
+15 set i = 0
+***introduction 
+20 output introduction: objective, author, instructions/rules
+***user input
+30 output "Please enter the name of the text file including the extension [e.g. confidential.txt]: "
+40 input userFile
+***encoding and outputting
+50 open the input text file  with name userFile for input
+55 check for errors, if there is an error output a run time error and skip to line 999
+60 create and open "secret.txt" for output
+61 output "Text Encoded:"
+
+65 set userText to the next line of the input file
+70 if i < userText lenght then continue, otherwise skip to line 90
+75 convert character "i" of userText to character "i + 1"
+80 i = i + 1
+85 back to line 70
+
+90 append userText to the file "secret.txt"
+91 output userText
+95 if the end of the input text file is not reached then go back to line 65
+
+100 close input text File
+110 close output "secret.txt"
+999 END
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: test a simply case.
+-input: 
+*userFile = "confidential.txt"
+*confidential.txt:
+Hello
+World
+
+-expected result: 
+*console output:
+Text Encoded:
+Ifmmp
+Xpsme
+*secret.txt:
+Ifmmp
+Xpsme
+
+-execution:
+10 userText declared as text data
+11 userFile declared as text data
+15 i = 0
+20 Objective:Encode a text file line by line so that each character is converted to the next character in the ASCII code.Author: Luis Cermeno.
+30 Please enter a line of text [E.g. Hello, World]:
+
+40 userFile = "confidential.txt"
+
+50 "confidential.txt" opened for input
+55 no errors found
+60 "secret.txt" file created and opened for output
+61 Text Encoded:
+
+65 userText = "Hello" (lenght : 5)
+
+50 0 < 5, True
+55 72(H) = 72 + 1 = 73(I)
+56 i = 0 + 1 = 1
+60 go back to line 50
+
+70 1 < 5,True
+75 101(e) = 101 + 1 = 101(f)
+80 i = 1 + 1 = 2
+85 going back to line 50
+
+70 2 < 5,True
+75 108(l) = 108 + 1 = 109(m)
+80 i = 2 + 1 = 3
+85 going back to line 50
+
+70 3 < 5,True
+75 108(l) = 108 + 1 = 109(m)
+80 i = 3 + 1 = 4
+85 going back to line 50
+
+70 4 < 5,True
+75 111(o) = 111 + 1 = 112(p)
+80 i = 3 + 1 = 5
+85 going back to line 50
+
+70 5 is not < 5, False
+
+90 "Ifmmp" appended to "secret.txt"
+91 Ifmmp
+95 True, going back to line 65
+
+65 userText = "World" (lenght : 5)
+
+50 0 < 5, True
+55 86(W) = 86 + 1 = 87(X)
+56 i = 0 + 1 = 1
+60 go back to line 50
+
+70 1 < 5,True
+75 111(o) = 111 + 1 = 112(p)
+80 i = 1 + 1 = 2
+85 going back to line 50
+
+70 2 < 5,True
+75 114(r) = 114 + 1 = 115(s)
+80 i = 2 + 1 = 3
+85 going back to line 50
+
+70 3 < 5,True
+75 108(l) = 108 + 1 = 109(m)
+80 i = 3 + 1 = 4
+85 going back to line 50
+
+70 4 < 5,True
+75 100(d) = 100 + 1 = 111(e)
+80 i = 3 + 1 = 5
+85 going back to line 50
+
+70 5 is not < 5, False
+
+90 "Xpsme" appended to "secret.txt"
+91 Xpsme
+95 False
+
+100 "condidential.txt" closed
+110 "secret.txt" closed
+999 END
+
+comments: execution completed successfully.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

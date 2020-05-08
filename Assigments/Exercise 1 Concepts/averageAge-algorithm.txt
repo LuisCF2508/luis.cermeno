@@ -1,0 +1,123 @@
+@copyrighted 1999 Valerie Colber
+Full Name and Student ID Number: Luis Cermeno Farro 1837034
+Course and section: COMSC-110-5003
+
+1. Objective (1 sentence brief description of what this will do): Calculate the average age of everyone in the room.
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-age
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. input each person's age, sum each age, and count each person
+4. calculate average age = sum / count
+5. output average age
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-prompt "How old are you in years [0-122 or -1 if there are no more people]: "
+-label "The average age of everyone in the room is " and averageAge
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-age = each person's age (integer) valid values [0-122]
+-sum = total of all the people's ages in the room (integer)
+-count = total number of people in the room (integer)
+-averageAge = average age of everyone in the room (decimal) formatted to 1 digit past the decimal point
+
+3. Algorithm instructions (recipe)
+***data
+10 set sum = 0
+20 set count = 0
+25 set averageAge = 0.0
+***introduction 
+30 output introduction: objective, author, instructions/rules
+***input each person's age, sum each age, and count each person
+40 output "How old are you in years [0-122 or -1 if no more people]: "
+50 input age
+55 if age = -1 then skip to 90
+57 if age < 0 or age > 122 then skip to instruction 40
+60 sum = sum + age
+70 count = count + 1
+80 skip to instruction 40
+***calculate the average age
+90 if count > 0 then averageAge = sum / count
+***output result
+100 output "The average age of everyone in the room is " and averageAge
+999 END
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: purpose: simplest and expected test case
+              input: 21, 33, 44
+              expected results: The average age of everyone in the room is 32.6
+10 sum = 0
+20 count = 0
+25 averageAge=0.0
+30 objective:  Calculate the average age of everyone in the room.
+   Author: Teacher 
+   user instructions: You will be asked to input everyone's age to get the average age.
+40 How old are you in years [0-122 or -1 if no more people]: 
+50 age = 21
+55 false
+60 sum = 0 + 21 = 21
+70 count = 0 + 1 = 1
+80 skip to instruction 40
+40 How old are you in years [0-122 or -1 if no more people]: 
+50 age = 33
+55 false
+60 sum = 21 + 33 = 54
+70 count = 1 + 1 = 2
+80 skip to instruction 40
+40 How old are you in years [0-122 or -1 if no more people]: 
+50 age = 44
+55 false
+60 sum = 54 + 44 = 98
+70 count = 2 + 1 = 3
+80 skip to instruction 40
+40 How old are you in years [0-122 or -1 if no more people]: 
+50 age = -1
+55 skip to instruction 90
+90 averageAge = sum / count = 98 / 3 = 32.6
+100 The average age of everyone in the room is 32.6
+999 END
+
+Test case #2: purpose: what if there are no people in the room?
+              input = -1
+              expected result = The average age of everyone in the room is 0.0
+10 sum = 0
+20 count = 0
+25 averageAge=0.0
+30 objective:  Calculate the average age of everyone in the room.
+   Author: Teacher 
+   user instructions: You will be asked to input everyone's age to get the average age.
+40 How old are you in years [0-122 or -1 if no more people]: 
+50 age = -1
+55 skip to instruction 90
+90 false
+100 The average age of everyone in the room is 0.0
+999 END
+
+COMENT: Test successfully passed and completed.
+
+Test case #3: purpose: not a valid value for age
+                      input = 125
+                      expected result = not a valid value for age
+
+10 sum = 0
+20 count = 0
+25 averageAge=0.0
+30 objective:  Calculate the average age of everyone in the room.
+   Author: Teacher 
+   user instructions: You will be asked to input everyone's age to get the average age.
+40 How old are you in years [0-122 or -1 if no more people]: 
+50 age = 125
+55 false
+57 skip to instruction 40
+40 How old are you in years [0-122 or -1 if no more people]:
+
+COMENT: The algorithm should have a brach in which a label is printed saying "Invalid input please try again"
+, this way the user will understand why the program is asking for an input again so that he won't end up lost.
+
+

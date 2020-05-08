@@ -1,0 +1,30 @@
+EC: Functions
+Luis Cermeno-Farro
+
+a. what are all the kinds of functions in C++?
+- Functions belonging to the compiler's library.
+- Functions written by the programmer
+
+
+b. What are the 2 types of functions in C++, and how does each type of function work?
+-Value returning functions:
+-Void Functions
+
+c. When are functions used?
+-When the main program needs to be simplified because of its complexity. Functions remove code blocks from the main program and place them into the function. This action is called "modularization" and makes the program easy to read and follow its logic.
+
+d. Where do functions go in a program, and in what order should we list functions?
+-First, they are mentioned as prototypes above the main program, this promises the compiler that the function will be defined after the main program. Then, underneath main, the function is defined, in ther words the actual code is written there. They should be listed in the order they are called in the main program.
+
+e. What are parameters, what are they used for, how many can you have, and how are they documented?
+-Parameters are inputs sent to the function for processing. When calling a function in main program, parameters allow main to send values to the function, store them in variables for processing, and eventually returning an output. For instance, int example(int a, int b, int c ...). "a", "b", and "c" are parameters of the function "example". The maximun number of parameters in C++ is at least 256.
+
+f. Can a function call another function?
+- Yes, it is possible as long as both functions are correctly defined.
+
+h. What is a function prototype?
+- Its a promise to the compiler that the function will be defined later just after the main program. It includes the function header followed by a semicolon.
+
+i. What is the first code block in a function and what are the first few statements and why?
+-The first code block is the data section, in which the variable to be used in the function are declared. 
+-The first few statements are the declaration of the variable "return" whose data type must match the return type of the function. An assigment statement follows, in which "return" is a assigned a default value which would be returned to main unless it gets changed.

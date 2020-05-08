@@ -1,0 +1,111 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+- This program will Celcius to Farenheit degrees from a list extracted from a text file named  temps.txt.
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+F = 9 / 5 * C + 32
+
+INPUT (any data items to be input): 
+-dCel
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. file input and output
+  3.1 read each line of the file
+  3.2 calculation
+  3.3 output
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-output : "Celcius: " and value of dCel " is " Farenheit: " and value of dFar
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-dCel (decimal) Celcius degrees extracted from text file
+-dFar (decimal) Farenheit degrees extracted from text file
+
+3. Algorithm instructions (recipe)
+***data
+10 data declaration
+***introduction 
+20 output introduction: objective, author, instructions/rules
+***file input and output
+30 open temp.txt
+31 if file is invalid pop up a run-time error message
+****read each line
+
+40 read line for the file and if end-of-file is reached skip to line 999
+41 set dCel = (value read)
+42 if dCel is equal -999 then skip to line 999
+****calculation
+50 set dFar = ((9.0/5) * dCel) + 32
+****output
+60 output "Celcius: " and value of dCel " is " Farenheit: " and value of dFar(with only 2 decimal places)
+70 go back to line 40 but this time read next line in the text file
+999 END
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: 
+-purpose: test a simple case using a list without the sentinel value -999.
+-input file:
+0
+15
+25
+-expected results:
+Celcius: 0 is Farenheit: 32.00
+Celcius: 15 is Farenheit: 59.00
+Celcius: 25 is Farenheit: 77.00
+-execution:
+
+20 This program will Celcius to Farenheit degrees from a list extracted from a text file named  temps.txt.Author: Luis Cermeno.
+30 temp.txt opened...
+31 False
+40 0
+41 set dCel = 0
+42 False
+50 dFar = ((9.0/5) * 0) + 32 = 32.00
+60 Celcius: 0 is Farenheit: 32
+40 15
+41 set dCel = 15
+42 False
+50 dFar = ((9.0/5) * 15) + 32 = 59
+60 Celcius: 15 is Farenheit: 59.00
+40 25
+41 set dCel = 25
+42 False
+50 dFar = ((9.0/5) * 25) + 32 = 77
+60 Celcius: 25 is Farenheit: 77.00
+40 True
+999 END
+-comments: test successfully executed with expected results.
+
+
+Test case #2: 
+-purpose: another case using a floating point number as input AND using the sentinel -999
+-input file:
+23.34
+-999
+-expected results: 
+Celcius: 23.34 is Farenheit: 74.01
+-execution:
+
+20 This program will Celcius to Farenheit degrees from a list extracted from a text file named  temps.txt.Author: Luis Cermeno.
+30 temp.txt opened...
+31 False
+40 23.34
+41 set dCel = 23.34
+42 False
+50 dFar = ((9.0/5) * 23.34) + 32 = 74.01
+60 Celcius: 23.34 is Farenheit: 74.01
+40 False
+41 set dCel = -999
+42 True
+999 END
+-comments: test successfully executed with expected results.
+
+
+

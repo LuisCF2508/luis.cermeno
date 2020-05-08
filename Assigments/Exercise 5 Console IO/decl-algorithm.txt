@@ -1,0 +1,120 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective: Prompt a person for their lucky number,favorite movie, age, first letter on their name and then output the values of the variables.
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-luckyNumber
+-favMovie
+-age
+-initial
+
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. user input of luckyNumber,favMovie,age,initial
+4. output values of luckyNumber,favMovie,age,initial
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: "Objective: Prompt a person for their lucky number, favorite movie, age, first letter on their name and then output the values of the variables.Author: Luis Cermeno"
+-user instruction: "You will be asked to answer some questions about you, please type with your keyboard and press ENTER key after you complete your answer"
+-prompt "Enter your lucky number as whole number [8]:"
+-prompt "Enter you favorite movie name [Forrest Gump]:"
+-prompt "Enter your age [20]:"
+-prompt "Enter the first letter on yout name [L]:"
+-label "Your lucky number is " and luckyNumber " ,your favorite movie is " and favMovie " ,you are " and age " years old and the first letter of your name is " and initial
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-luckyNumber (integer) user's lucky number.
+-favMovie (text) user's favorite movie name.
+-age (decimal) user's age
+-initial (character) user's first letter of their name.
+
+3. Algorithm instructions (recipe)	
+***data
+10 declare luckyNumber
+20 declare favMovie
+30 declare age
+40 declare initial
+***introduction 
+30 output introduction: "Objective: Prompt a person for their lucky number, favorite movie, age, first letter on their name and then output the values of the variables.Author: Luis Cermeno"
+35 output instruction: "You will be asked to answer some questions about you, please type with your keyboard and press ENTER key after you complete your answer"
+***user input of luckyNumber,favMovie,age,initial
+40 prompt "Enter your lucky number as whole number [8]:"
+50 input luckyNumber
+60 prompt "Enter you favorite movie name [Forrest Gump]:"
+70 input favMovie
+80 prompt "Enter your age in years [20]:"
+90 input age
+100 prompt "Enter the first letter on yout name [L]:"
+110 input initial
+***output values of luckyNumber,favMovie,age,initial
+120 output "Your lucky number is " and luckyNumber " ,your favorite movie is " and favMovie " ,you are " and age " years old and the first letter of your name is " and initial.
+
+999 END
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1:
+-purpose:
+test the algorithm with basic case (ramdom example)
+-input values:
+luckyNumber = 7
+favMovie = The Godfather
+age = 60
+initial = M
+-expected result
+"Your lucky number is 7 ,your favorite movie is The Godfather ,you are 60 years old and the first letter of your name is M."
+-execution:
+10 luckyNumber declared
+20 favMovie declared
+30 age declared
+40 initial declared
+30 Objective: Prompt a person for their lucky number, favorite movie, age, first letter on their name and then output the values of the variables.Author: Luis Cermeno
+35 You will be asked to answer some questions about you, please type with your keyboard and press ENTER key after you complete your answer
+40 Enter your lucky number as whole number [8]:
+50 7
+60 Enter you favorite movie name [Forrest Gump]:
+70 The Godfather
+80 Enter your age in years [20]:
+90 60
+100 Enter the first letter on yout name [L]:
+110 M
+120 Your lucky number is 7 ,your favorite movie is The Godfather ,you are 60 years old and the first letter of your name is M.
+999 END
+-comments:
+Execution completed succesfully with expected result.
+
+
+Test case #2: 
+-purpose:
+test the algorithm with basic case (personal example)
+-input values:
+luckyNumber = 8
+favMovie = Forrest Gump
+age = 20
+initial = L
+-expected result
+"Your lucky number is 8 ,your favorite movie is Pulp Fiction ,you are 20 years old and the first letter of your name is L."
+-execution:
+10 luckyNumber declared
+20 favMovie declared
+30 age declared
+40 initial declared
+30 Objective: Prompt a person for their lucky number, favorite movie, age, first letter on their name and then output the values of the variables.Author: Luis Cermeno
+35 You will be asked to answer some questions about you, please type with your keyboard and press ENTER key after you complete your answer
+40 Enter your lucky number as whole number [8]:
+50 8
+60 Enter you favorite movie name [Forrest Gump]:
+70 Forrest Gump
+80 Enter your age in years [20]:
+90 20
+100 Enter the first letter on yout name [L]:
+110 L
+120 Your lucky number is 8 ,your favorite movie is Forrest Gump ,you are 20 years old and the first letter of your name is L.
+999 END
+-comments:
+Execution completed succesfully with expected result.

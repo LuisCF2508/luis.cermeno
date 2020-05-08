@@ -1,0 +1,7 @@
+1. Modify listFile.cpp that read scores from input file (scores.txt) and calculate the average, highest, lowest scores and number of scores greater than the average, using a linked list (but do NOT sort).
+
+2. Please submit the following files:
+
+linkedListFile-algorithm.txt
+
+linkedListFile.cpp

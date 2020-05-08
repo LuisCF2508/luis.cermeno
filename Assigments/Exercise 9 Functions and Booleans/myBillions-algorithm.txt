@@ -1,0 +1,169 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+Calculate how many weeks it would take to be a billionaire, millionaire and a thousandaire if each week that passes the amount saved duplicates.
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+
+amountSaved = amountSaved + amountWeek
+amountSaved. stars as 0
+amountWeek starts as 0.05
+amountWeek will duplicate each week
+
+INPUT (any data items to be input)
+NONE 
+
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. calculation if number of weeks
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-output: "In " and thousandWeeks " weeks, I will be a thousandaire!"
+-output: "In " and millionWeeks " weeks, I will be a millionaire!"
+-output: "In " and billionWeeks " weeks, I will be a billionaire!"
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+- amountSaved (double) //total amount saved that increases week by week
+- amountWeek (double) //amount saved in each week, will be doubling week by week
+- thousandWeeks (integer) //number of weeks that will take to become a thousandaire
+- millionWeeks (integer) //number of weeks that will take to become a millionaire
+- billionWeeks (integer) //number of weeks that will take to become a billionaire
+- thousand_notFoundYet // (boolean) is false if the amount of weeks to be a thousandaire has been found
+- million_notFoundYet // (boolean) is false if the amount of weeks to be a millionaire has been found
+- billion_notFoundYet // (boolean) is false if the amount of weeks to be a billionaire has been found
+
+3. Algorithm instructions (recipe)
+***data
+10 set amountSaved = 0;
+11 set amountWeek = 0.05;
+12 set numberWeek = 0;
+13 set thousand_notFoundYet = true;
+14 set million_notFoundYet = true;
+15 set billion_notFoundYet = true;
+***introduction 
+20 output introduction: objective, author, instructions/rules
+***calculation of number of weeks
+30 numberWeek = numberWeek + 1
+40 amountSaved = amountSaved + amountWeek
+50 if amountSaved > 1000 and thousand_notFoundYet is True then output "In " and numberWeek " weeks, I will be a thousandaire!"
+51 if amountSaved > 1000 and thousand_notFoundYet is True then set thousand_notFoundYet = false
+60 if amountSaved > 1000000 and million_notFoundYet is True then output "In " and numberWeek " weeks, I will be a millionaire!"
+61 if amountSaved > 1000000 and million_notFoundYet is True then set million_notFoundYet = false
+70 if amountSaved > 1000000000 and billion_notFoundYet is True then output "In " and numberWeek " weeks, I will be a billionaire!"
+71 if amountSaved > 1000000000 and billion_notFoundYet is True then set billion_notFoundYet = false
+80 amountWeek = amountWeek * 2
+90 if billion_notFoundYet = True then go back to line 30, otherwise skip to line 999.
+
+
+
+
+999 END
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1:
+
+purpose: test if program can tell where the money would grow up to 0.30 dollars.
+modification:
+70 if amountSaved > 0.3 and billion_notFoundYet is True then output "In " and numberWeek " weeks, I will have 30 cents!"
+71 if amountSaved > 0.3 and billion_notFoundYet is True then set billion_notFoundYet = false
+expected result: "In 3 weeks, I will have 30 cents!"
+execution:
+10 amountSaved = 0
+11 amountWeek = 0.05
+12 numberWeek = 0
+13 thousand_notFoundYet = true
+14 million_notFoundYet = true
+15 billion_notFoundYet = true
+20 Objective: Calculate how many weeks it would take to be a billionaire, millionaire and a thousandaire if each week that passes the amount saved duplicates.Author: Luis Cermeno
+
+30 numberWeek = 0 + 1 = 1
+40 amountSaved = 0 + 0.05 = 0.05
+50 False
+51 False
+60 False
+61 False
+70 False
+71 False
+80 amountWeek = 0.05 * 2 = 0.1
+90 True
+
+30 numberWeek = 1 + 1 = 2
+40 amountSaved = 0.05 + 0.1 = 0.15
+50 False
+51 False
+60 False
+61 False
+70 False
+71 False
+80 amountWeek = 0.1 * 2 = 0.2
+90 True
+
+30 numberWeek = 2 + 1 = 3
+40 amountSaved = 0.15 + 0.2 = 0.35
+50 False
+51 False
+60 False
+61 False
+70 "In 3 weeks, I will have 30 cents!"
+71 billion_notFoundYet = false
+80 amountWeek = 0.2 * 2 = 0.4
+90 False
+
+999 END
+
+
+comments: Execution successfully completed, expected results reached. The loop works well, so if the program is the modified to find amountSaved > 1000000000 again, the loop will repeat many times more but eventually reach the correct answer.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

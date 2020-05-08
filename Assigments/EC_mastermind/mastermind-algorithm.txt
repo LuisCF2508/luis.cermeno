@@ -1,0 +1,355 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+Interactive game in which the user will have 10 oportunities to guess the correct sequence of 4 colors. (RGBY)
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+The colors will be:
+Red: 'R'
+Green: 'G'
+Blue: 'B'
+Yellow: 'Y'
+
+Function to create 4 random characters
+Function to give the number of correct positions.
+Function to give the number of correct colors 
+
+
+INPUT (any data items to be input): 
+-userChoice
+-playAgain
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. create 4 random characters to store computer choice
+4. user input of userChoice and stract characters from userChoice
+5. calculate the number of correct positions.
+6. calculate the number of correct colors.
+ 6.1 extract the number of each color user's and computer combinations have
+ 6.2 comparing number of colors between computerchoice and userchoice
+7. output feedback
+8. show correct answer and chance to play Again
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+prompt : "Input your choice [e.g. YRGB]: "
+-feedback : "You got " and n_correctColors " correct colors and " n_correctPositions "correct positions"
+-input validation: "Invalid input, please try again..."
+-chance to exit the program: "What to play again? [Y:Yes, N:No]:".
+-closing "Thank you for playing!"
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-computerChoice1 (character) // the first color chosen by the computer. <main>
+-computerChoice2 (character) // the second color chosen by the computer. <main>
+-computerChoice3 (character) // the third color chosen by the computer. <main>
+-computerChoice4 (character) // the fourth color chosen by the computer. <main>
+-userChoice1 (character) //the the first color chosen by the user. <main>
+-userChoice2 (character) // the second color chosen by the user. <main>
+-userChoice3 (character) // the third color chosen by the user. <main>
+-userChoice4 (character) // the fourth color chosen by the user. <main>
+-userChoice (text) // the text the user will input with their choices of colors<main>
+-n_correctColors (integer) // the total number of correct colors userChoice matches with computerChoice <main>
+-n_correctPositions (integer) // the number of correct positions userChoice matches with computerChoice. <main>
+
+-n_computerRed (integer) // the number of red computerChoice has <correct colors function>
+-n_computerGreen (integer) // the number of green computerChoice has <correct colors function>
+-n_computerBlue (integer) // the number of blue computerChoice has <correct colors function>
+-n_computerYellow (integer) // the number of yellow computerChoice has <correct colors function>
+-n_userRed (integer) // the number of red userChoice has  <correct colors function>
+-n_userGreen (integer) // the number of green userChoice has <correct colors function>
+-n_userBlue (integer) // the number of blue userChoice has <correct colors function>
+-n_userYellow (integer) // the number of yellow userChoice has<correct colors function>
+
+
+3. Algorithm instructions (recipe)
+***data
+10 set n_correctColors = 0
+11 set n_correctPositions = 0
+12 set n_computerRed = 0
+13 set n_computerGreen = 0
+14 set n_computerBlue = 0
+15 set n_computerYellow = 0
+16 set n_userRed = 0
+17 set n_userGreen = 0
+18 set n_userBlue = 0
+19 set n_userYellow = 0
+
+***introduction 
+30 output introduction: objective, author, instructions/rules
+***create 4 random characters to store computer choice
+
+40 generate 1 random number from 0 to 3
+41 if randomNumber = 0 then set computerChoice1 to 'R'
+42 if randomNumber = 1 then set computerChoice1 to 'G'
+43 if randomNumber = 2 then set computerChoice1 to 'B'
+44 if randomNumber = 3 then set computerChoice1 to 'Y'
+
+50 generate 1 random number from 0 to 3
+51 if randomNumber = 0 then set computerChoice2 to 'R'
+52 if randomNumber = 1 then set computerChoice2 to 'G'
+53 if randomNumber = 2 then set computerChoice2 to 'B'
+54 if randomNumber = 3 then set computerChoice2 to 'Y'
+
+60 generate 1 random number from 0 to 3
+61 if randomNumber = 0 then set computerChoice3 to 'R'
+62 if randomNumber = 1 then set computerChoice3 to 'G'
+63 if randomNumber = 2 then set computerChoice3 to 'B'
+64 if randomNumber = 3 then set computerChoice3 to 'Y'
+
+70 generate 1 random number from 0 to 3
+71 if randomNumber = 0 then set computerChoice4 to 'R'
+72 if randomNumber = 1 then set computerChoice4 to 'G'
+73 if randomNumber = 2 then set computerChoice4 to 'B'
+74 if randomNumber = 3 then set computerChoice4 to 'Y'
+
+***user input of userChoice and stract characters from userChoice
+
+80 output "Input your choice [e.g. YRGB]: "
+81 input userChoice 
+82 set userChoice1 = (first extracted character from userChoice)
+83 set userChoice2 = (second extracted character from userChoice)
+84 set userChoice3 = (third extracted character from userChoice)
+85 set userChoice4 = (fourth extracted character from userChoice)
+86 if userChoice1 or userChoice2 or userChoice3 or userChoice4 are different from R or G or B or Y then output "Invalid input, please try again..." and return to line 80.
+
+***calculate the number of correct positions
+90 if userChoice1 = computerChoice1 then n_correctPositions = n_correctPositions + 1
+100 if userChoice2 = computerChoice2 then n_correctPositions = n_correctPositions + 1
+110 if userChoice3 = computerChoice3 then n_correctPositions = n_correctPositions + 1
+120 if userChoice4 = computerChoice4 then n_correctPositions = n_correctPositions + 1
+
+***calculate the number of correct colors
+
+*extracting the number of colors
+
+130 if computerChoice1 is 'R' then n_computerRed = n_computerRed + 1 and then skip to line 140
+131 if computerChoice1 is 'G' then n_computerGreen = n_computerGreen + 1 and then skip to line 140
+132 if computerChoice1 is 'B' then n_userBlue = n_userBlue + 1 and then skip to line 140
+133 if computerChoice1 is 'Y' then n_userYellow = n_userYellow + 1 and then skip to line 140
+
+140 if computerChoice2 is 'R' then n_computerRed = n_computerRed + 1 and then skip to line 150
+141 if computerChoice2 is 'G' then n_computerGreen = n_computerGreen + 1 and then skip to line 150
+142 if computerChoice2 is 'B' then n_userBlue = n_userBlue + 1 and then skip to line 150
+143 if computerChoice2 is 'Y' then n_userYellow = n_userYellow + 1 and then skip to line 150
+
+150 if computerChoice3 is 'R' then n_computerRed = n_computerRed + 1 and then skip to line 160
+151 if computerChoice3 is 'G' then n_computerGreen = n_computerGreen + 1 and then skip to line 160
+152 if computerChoice3 is 'B' then n_comuterBlue = n_computerBlue + 1 and then skip to line 160
+153 if computerChoice3 is 'Y' then n_computerYellow = n_computerYellow + 1 and then skip to line 160
+
+160 if computerChoice4 is 'R' then n_computerRed = n_computerRed + 1 and then skip to line 170
+161 if computerChoice4 is 'G' then n_computerGreen = n_computerGreen + 1 and then skip to line 170
+162 if computerChoice4 is 'B' then n_computerBlue = n_computerBlue + 1 and then skip to line 170
+163 if computerChoice4 is 'Y' then n_computerYellow = n_computerYellow + 1 and then skip to line 170
+
+170 if userChoice1 is 'R' then n_userRed = n_userRed + 1 and then skip to line 180
+171 if userChoice1 is 'G' then n_userGreen = n_userGreen + 1 and then skip to line 180
+172 if userChoice1 is 'B' then n_userBlue = n_userBlue + 1 and then skip to line 180
+173 if userChoice1 is 'Y' then n_userYellow = n_userYellow + 1 and then skip to line 180
+
+180 if userChoice2 is 'R' then n_userRed = n_userRed + 1 and then skip to line 190
+181 if userChoice2 is 'G' then n_userGreen = n_userGreen + 1 and then skip to line 190
+182 if userChoice2 is 'B' then n_userBlue = n_userBlue + 1 and then skip to line 190
+183 if userChoice2 is 'Y' then n_userYellow = n_userYellow + 1 and then skip to line 190
+
+190 if userChoice3 is 'R' then n_userRed = n_userRed + 1 and then skip to line 200
+191 if userChoice3 is 'G' then n_userGreen = n_userGreen + 1 and then skip to line 200
+192 if userChoice3 is 'B' then n_userBlue = n_userBlue + 1 and then skip to line 200
+193 if userChoice3 is 'Y' then n_userYellow = n_userYellow + 1 and then skip to line 200
+
+200 if userChoice4 is 'R' then n_userRed = n_userRed + 1 and then skip to line 210
+201 if userChoice4 is 'G' then n_userGreen = n_userGreen + 1 and then skip to line 210
+202 if userChoice4 is 'B' then n_userBlue = n_userBlue + 1 and then skip to line 210
+203 if userChoice4 is 'Y' then n_userYellow = n_userYellow + 1 and then skip to line 210
+
+*comparing number of colors between computerchoice and userchoice
+
+210 if n_userRed < n_computerRed then n_correctColors = n_correctColors + n_userRed otherwise n_correctColors = n_correctColors + n_computerRed;
+220 if n_userGreen < n_computerGreen then n_correctColors = n_correctColors + n_userGreen otherwise n_correctColors = n_correctColors + n_computerGreen;
+230 if n_userBlue < n_computerBlue then n_correctColors = n_correctColors + n_userBlue then n_correctColors = n_correctColors + n_computerBlue;
+240 if n_userYellow < n_computerYellow then n_correctColors = n_correctColors + n_userYellow otherwise n_correctColors = n_correctColors + n_computerYellow;
+
+***output feedback
+
+300 output "You got " and n_correctColors " correct colors and " n_correctPositions "correct positions"
+310 Go back to line 10
+
+***show correct answer and chance to play again
+310 output "The correct combination is:" and computerChoice 1,2,3,4
+320 output "What to play again? [Y:Yes, N:No]:"
+330 input playAgain
+340 if playAgain = Y or y then go back to line 10
+350 if playAgain = N or no then output "Thanks for playing"
+
+
+999 END
+
+
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: 
+purpose: test a simple case supposing that computerChoice is RRGG, the user will enter an invalid input at first
+input value: userChoice = GBY, RGBY.  playAgain = n
+expected result: You got 2 correct colors and 1 correct positions.
+execution:
+
+10 n_correctColors = 0
+11 n_correctPositions = 0
+12 n_computerRed = 0
+13 n_computerGreen = 0
+14 n_computerBlue = 0
+15 n_computerYellow = 0
+16 n_userRed = 0
+17 n_userGreen = 0
+18 n_userBlue = 0
+19 n_userYellow = 0
+
+30 "Objective: Interactive game in which the user will have 10 oportunities to guess the correct sequence of 4 colors. (RGBY). Author: Luis Cermeno"
+40 0
+41 computerChoice1 = 'R'
+42 False
+43 False
+44 False
+
+50 0
+51 computerChoice2 = 'R'
+52 False
+53 False
+54 False
+
+60 1
+61 False
+62 computerChoice3 = 'G'
+63 False
+64 False
+
+70 1
+71 False
+72 computerChoice4 = 'G'
+73 False
+74 False
+
+
+80 "Input your choice [e.g. YRGB]: "
+81 nGBY 
+82 userChoice1 = n
+83 userChoice2 = G
+84 userChoice3 = B
+85 userChoice4 = Y
+86 Invalid input, please try again...
+
+80 "Input your choice [e.g. YRGB]: "
+81 RGBY 
+82 userChoice1 = R
+83 userChoice2 = G
+84 userChoice3 = B
+85 userChoice4 = Y
+86 False
+
+90 n_correctPositions = 0 + 1 = 1
+100 False
+110 False
+120 False
+
+***calculate the number of correct colors
+
+*extracting the number of colors
+
+130 n_computerRed = 0 + 1 = 1
+140 n_computerRed = 1 + 1 = 2
+150 False
+151 n_computerGreen = 0 + 1 = 1
+160 False
+161 n_computerGreen = 1 + 1 = 2
+
+170 n_userRed = 0 + 1 = 1
+180 False
+181 n_userGreen = 0 + 1 = 1
+190 False
+191 False
+192 n_userBlue = 0 + 1 = 1
+200 False
+201 False
+202 False
+203 n_userYellow = 0 + 1 = 1
+
+*comparing number of colors between computerchoice and userchoice
+
+210 n_correctColors = 0 + 1 = 1;
+220 n_correctColors = 1 + 1 = 2;
+230 n_correctColors = 2 + 0 = 2;
+240 n_correctColors = 2 + 0 = 2;
+
+***output feedback
+
+300 You got 2 correct colors and 1 correct positions
+
+ASUMING THAT THE NUMBER OF LOOPS HAVE REACHED 10....
+
+310 The correct combination is: RRGG
+320 What to play again? [Y:Yes, N:No]:
+330 n
+340 False
+350 Thanks for playing
+
+999 END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

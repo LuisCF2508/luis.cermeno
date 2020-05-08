@@ -1,0 +1,57 @@
+1.What are all the logical operators?
+
+> greater than, opposite: <= less than or equal to
+< less than, opposite: >= greater than or equal to
+== equal to, opposite: != not equal to
+&& and, opposite: || or
+
+2.What are the 4 lines in the truth table and what does it mean?
+They are values that help us programmers evaluate whether a complex condition would result in a True or False value.
+
+3.Explain the difference between Opposite logic and Not logic?
+For example, being the condition x>5:
+
+DeMorgan's theorem or "Opposite logic" reverts the logic of the condition, it rewrites the expression with the opposite logical operator:
+x <= 5
+"Not logic" just makes the condition to be "negative"
+! (x > 5)
+
+4.What are the advantages of the complete if statement versus the limitations of the swith statement in C++?
+If statement can evaluate complex conditions whereas switch statements can only evaluate wheter a variable value is equal to another.
+If statements can evaluate conditions ivolving string and floating point numbers data whereas switch statements only work with integers and characters.
+
+5.What happens in a if statement where there is no curly braces?
+for example:
+  if (...)
+    statement;
+  if (..) statement;
+
+In this case, only ONE statement inmediately after the if-condition is run by the computer if the condition is TRUE.
+If the programmer writes another statement below the first one, it will executed regardless of the condition.
+Ussually this statement is either idented in the next line or written inmediately after the condition solely in one line.
+This is only to enhance readability.
+
+6. What happens in a if statement where there is no statement?
+  for example:
+    if (...);
+
+In this case, the semicolon after the condition will end the if statement.
+The program will compile but nothing will regardless of whether or not the condition is TRUE.
+
+7.Name the 2 kinds of loops (how the loop is controlled)
+Event controlled: It is controlled by evaluating whether a condition is FALSE or TRUE. 
+If it is true the loop will be executed all over again until the condition become false.
+
+Count controlled: It repeats a certain amount of times. It is used when the programmer know how many times the loop has to be executed.
+
+8.Define a sentinel value.
+It is a value used mainly to end a loop. It is located mostly inside an if-break statement.
+So if a variable has the sentinel value the loop will stop.
+
+
+
+
+
+
+
+

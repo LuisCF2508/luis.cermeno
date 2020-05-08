@@ -1,0 +1,213 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+Objective: Determine the monthly payment on borrowed amount of money to be paid back in a 30 years fixed loan
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+FORMULAS
+payment = p * (1 +(rate/1200))^(n * 12) * (rate/1200)) / ( ((1 + (rate/1200))^(n * 12)) - 1 )
+where -p:amount borrowed
+      -rate: anuel interest rate
+      -n: number of monthly payments
+    
+INPUT (any data items to be input): 
+-fileName
+-text file containing values for p and rate
+
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. security 
+4. user file input 
+5. calculation of payment
+6. echo input values and output value of payment
+7. output redults to text file mortgage.txt
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-prompt "Please enter the password for the program :"
+-feedback "Sorry, incorrect password, try again..."
+-prompt "Please enter an input filename [i.e.: x.txt]: "
+-echo "Amount borrowed (user input) = $" << user.p
+-echo "Annual interest rate (user input) = " << user.rate << "%"
+-echo "Payback period (programmer input) = " << user.n << " Years"
+-output "Monthly payment (output) = $" 
+-instructions "Results have been saved to text file named mortgage.txt"
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-userFile // (text) the name of the input file <main>
+-pass //(text) attemp of password by the user <password>
+-p // (decimal) amount borrowed (we dont need that much of precision here) <main>
+-rate //(double) annual interest rate <main>
+-n // (integer) number of monthly payments <main>
+-payment // (decimal) the monthly payment <main>
+
+3. Algorithm instructions (recipe)
+***data definitions
+10 set i = 0
+***introduction 
+20 output introduction: objective, author, instructions/rules
+***security
+30 output "Please enter the password for the program :"
+35 input pass
+40 if pass is "1837034" then skip to instruction 50 , otherwise output "Sorry, incorrect password, try again..."
+45 go back to instruction 30
+***user file input
+50 output "Please enter an input filename [i.e.: x.txt]: "
+55 input userFile
+60 if userFile is not longer than 5 characters go back to instruction 50
+65 open input text file
+70 if user File has a error skip to instrcution 999
+75 if i => 2 skip to instruction 100
+80 if i = 0 then set p to the next line of the input text file
+85 if i = 1 then set rate to the next line of the input text file
+90 i = i + 1
+95 go back to  instruction 75
+100 close input file
+***calculation of payment
+105 if p = 0 OR rate = 0 then skip to insteuction 999
+110 set n = 30
+115 set payment = p * (1 +(rate/1200))^(n * 12) * (rate/1200)) / ( ((1 + (rate/1200))^(n * 12)) - 1 )
+***echo input values and output value of payment
+120 output "Amount borrowed (user input) = $" and value of p
+125 output "Annual interest rate (user input) = " and value of rate  "%"
+130 output "Payback period (programmer input) = " and value of user.n " Years"
+135 output "Monthly payment (output) = $" and value of payment formated to two decimal places
+***output redults to text file mortgage.txt
+140 open text file "mortgage.txt", if it doesnt exist then create it.
+145 output to file "Amount borrowed (user input) = $" and value of p
+150 output to file "Annual interest rate (user input) = " and value of rate  "%"
+155 output to file "Payback period (programmer input) = " and value of user.n " Years"
+160 output to file "Monthly payment (output) = $" and value of payment formated to two decimal places
+165 output "Results have been saved to text file named mortgage.txt"
+170 close text file "mortgage.txt"
+999 END
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: test a simple case (given example)
+input variables: pass= 1837034
+input file: "data.txt"
+270000
+5.125
+expected result: 
+Amount borrowed (user input) = $270000
+Annual interest rate (user input) = 5.125% 
+Payback period (programmer input) = 30 Years 
+Monthly payment (output) = $1470.11
+execution:
+10 i = 0
+20 Objective: Determine the monthly payment on borrowed amount of money to be paid back in a 30 years fixed loan.Author Luis Cermeno
+30 Please enter the password for the program :
+35 pass = 1837034
+40 True, pass is "1837034" skipping to instruction 50
+50 Please enter an input filename [i.e.: x.txt]:
+55 userFile = "data.txt"
+60 False, userFile is 8 characters long
+65 data.txt opened
+70 False, user File does not have a error
+75 False, i = 0 is not => 2 
+80 True, i = 0, p = 270000
+85 False, i is not = 1
+90 i = 0 + 1 = 1
+95 going back to  instruction 75
+75 False, i = 1 is not => 2 
+80 False, i is not = 0
+85 True, i is = 1, rate = 5.125
+90 i = 1 + 1 = 2
+95 going back to  instruction 75
+75 True, i = 2 is => 2, skipping to instruction 100
+100 data.txt closed
+105 False, p = is not 0 neither rate
+110 set n = 30
+115 set payment = 270000 * (1 +(5.125/1200))^(30 * 12) * (5.125/1200)) / ( ((1 + (5.125/1200))^(30 * 12)) - 1 ) = 1470.11
+120 Amount borrowed (user input) = $270000
+125 Annual interest rate (user input) = 5.125% 
+130 Payback period (programmer input) = 30 Years 
+135 Monthly payment (output) = $1470.11
+140 "mortgage.txt" created an opened
+145 "Amount borrowed (user input) = $270000" output to text file mortgage.txt
+150 "Annual interest rate (user input) = 5.125% " output to text file mortgage.txt
+155 "Payback period (programmer input) = 30 Years" output to text file mortgage.txt
+160 "Monthly payment (output) = $1470.11" output to text file mortgage.txt
+165 Results have been saved to text file named mortgage.txt output to text file mortgage.txt
+170 "mortgage.txt" closed
+999 END
+
+
+Test case #2: test what happens if the user's input file doesn't exist
+input variables: pass= 1837034
+input file: "data.txt"
+execution:
+10 i = 0
+20 Objective: Determine the monthly payment on borrowed amount of money to be paid back in a 30 years fixed loan.Author Luis Cermeno
+30 Please enter the password for the program :
+35 pass = 1837034
+40 True, pass is "1837034" skipping to instruction 50
+50 Please enter an input filename [i.e.: x.txt]:
+55 userFile = "data.txt"
+60 False, userFile is 8 characters long
+65 data.txt couldn't be finded
+70 True, userFile does not exist, skipping to line 999
+999 END
+
+
+Test case #3: test what happens if the user never inputs the correct password
+input variables: pass= 123, 456, 987
+execution:
+10 i = 0
+20 Objective: Determine the monthly payment on borrowed amount of money to be paid back in a 30 years fixed loan.Author Luis Cermeno
+30 Please enter the password for the program :
+35 pass = 123
+40 False, pass is not "1837034"
+45 go back to instruction 30
+30 Please enter the password for the program :
+35 pass = 456
+40 False, pass is not "1837034"
+45 go back to instruction 30
+30 Please enter the password for the program :
+35 pass = 987
+40 False, pass is not "1837034"
+45 go back to instruction 30
+and goes on and on... never continues with the program
+
+Test case #4: test what happens if text file is empty
+input variables: pass= 1837034
+input file: "data.txt"
+[EMPTY FILE]
+expected result: 
+Amount borrowed (user input) = $270000
+Annual interest rate (user input) = 5.125% 
+Payback period (programmer input) = 30 Years 
+Monthly payment (output) = $1470.11
+execution:
+10 i = 0
+20 Objective: Determine the monthly payment on borrowed amount of money to be paid back in a 30 years fixed loan.Author Luis Cermeno
+30 Please enter the password for the program :
+35 pass = 1837034
+40 True, pass is "1837034" skipping to instruction 50
+50 Please enter an input filename [i.e.: x.txt]:
+55 userFile = "data.txt"
+60 False, userFile is 8 characters long
+65 data.txt opened
+70 False, user File does not have a error
+75 False, i = 0 is not => 2 
+80 True, i = 0, p = 0
+85 False, i is not = 1
+90 i = 0 + 1 = 1
+95 going back to  instruction 75
+75 False, i = 1 is not => 2 
+80 False, i is not = 0
+85 True, i is = 1, rate = 0
+90 i = 1 + 1 = 2
+95 going back to  instruction 75
+75 True, i = 2 is => 2, skipping to instruction 100
+100 data.txt closed
+105 True, p = 0 so is rate, skipping to instruction 999
+99 END
+
+
+

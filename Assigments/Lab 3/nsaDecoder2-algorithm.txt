@@ -1,0 +1,316 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+Decode a text file line by line so that each character ASCII value is substracted with a sequence of characters retrieved from text file named offset.txt.
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-userFile
+-userText
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. Retrieving decoding sequence from offset.txt
+4. text file input
+5. decoding and outputting
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-label "Text will be decoded with the following coding sequence of " and randomSize " numbers: " and value of each element of arraySequence
+-output "ERROR: Unfortunately offset.txt is not working properly"
+-prompt "Please enter the name of the text file to decode including the extension [e.g. secret.txt]:"
+-output "Text Decoded:" and the value of userText
+-error message 
+
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-userFile //(text) the name of the file to open for input
+-userText //(text) the text to decode entered by the user 
+-i //(integer) counter for the decoding main loop
+-j //(integer) convenience variable for reading each element of arraySequence
+
+3. Algorithm instructions (recipe)
+***data definitions
+10 set userFile as text data
+11 set userText as text data
+15 set i = 0
+16 set randomSize = 0
+***introduction 
+20 output introduction: objective, author, instructions/rules
+***creation of decoding sequence
+21 open text file "offset.txt"
+22 check for errors, if it has an error skip to instruction 999
+23 read next line of offset.txt
+24 randomSize = randomSize + 1
+25 if end of offset.txt has not been reached yet, go back to instruction 23
+26 if randomSize < 5, output "ERROR: Unfortunately offset.txt is not working properly" and skip to instruction 999
+30 create arraySequence with 'randomSize' elements
+31 close text file "offset.txt"
+35 open text file "offset.txt"
+40 output "Text will be decoded with the following coding sequence of " and randomSize " numbers: "
+45 if i => randomSize then skip to instruction 85
+50 set arraySequence[i] to a next line if text file offset.txt
+60 output arraySequence[i]
+75 i = i + 1
+80 go back to instruction 45
+85 close text file "offset.txt"
+***text file input
+90 output "Please enter the name of the text file to decode including the extension [e.g. secret.txt]: "
+95 input userFile
+100 if userFile is less than 5 characters long, go back to instruction 90
+***decoding and outputting
+110 open the input text file  with name userFile for input
+115 check for errors, if there is an error then output a run time error and skip to line 999
+125 output "Text decoded:"
+126 set i = 0
+130 set userText to the next line of the input file
+135 if i => userText lenght skip to instruction 165
+140 j = remainder of i/randomSize
+145 userText[i] = userText[i] - arraySequence[j]
+150 i = i + 1
+155 back to instruction 135
+165 output value of userText
+170 if the end of the input text file is not reached yet then go back to line 130
+175 close input text File
+999 END
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: test a simply case supposing that the decoding sequence generated is 10,-10,-20,10,2.
+-input: 
+*userFile = "secret.txt"
+*secret.txt:
+R[Xvq
+ae^vf
+*offset.txt:
+10
+-10
+-20
+10
+2
+-expected result: 
+*console output:
+Hello
+World
+-execution:
+10 userText declared as text data
+11 userFile declared as text data
+15 i = 0
+16 randomSize = 0
+20 Objective:decode a text file line by line so that each character ASCII value is sumed with a random character.Author: Luis Cermeno.
+21 "offset.txt" opened
+22 No errors
+23 first line read
+24 randomSize = 0 + 1 = 1
+25  True, end of offset.txt has not been reached yet, going back to instruction 23
+23 second line read
+24 randomSize = 1 + 1 = 2
+25  True, end of offset.txt has not been reached yet, going back to instruction 23
+23 third line read
+24 randomSize = 2 + 1 = 3
+25  True, end of offset.txt has not been reached yet, going back to instruction 23
+23 fourth line read
+24 randomSize = 3 + 1 = 4
+25  True, end of offset.txt has not been reached yet, going back to instruction 23
+23 fifth line read
+24 randomSize = 4 + 1 = 5
+25 False, end of offset.txt has been reached
+26 False, randomSize is not < 5
+30 arraYSequence created with 5 elements [0-4]
+31 offset.txt closed
+35 offset.txt opened
+40 Text will be decoded with the following coding sequence of 5 numbers:
+45 False, i=0 is not => 5
+50 arraySequence[0] = 10
+60 10
+75 i = 0 + 1 = 1
+80 going back to instruction 45
+45 False, i=1 is not => 5
+50 arraySequence[1] = -10
+60 -10
+75 i = 1 + 1 = 2
+80 going back to instruction 45
+45 False, i=2 is not => 5
+50 arraySequence[2] = -20
+60 -20
+75 i = 2 + 1 = 3
+80 going back to instruction 45
+45 False, i=3 is not => 5
+50 arraySequence[3] = 10
+60 10
+75 i = 3 + 1 = 4
+80 going back to instruction 45
+45 False, i=4 is not => 5
+50 arraySequence[4] = 2
+60 2
+75 i = 4 + 1 = 5
+80 going back to instruction 45
+45 False, i=5 is => 5, skipping to instruction 85
+85 offset.txt closed
+90 "Please enter the name of the text file to decode including the extension [e.g. secret.txt]: "
+95 inputFile = "secret.txt"
+100 False, "secret.txt" is 10 char long > 5
+110 secret.txt opened
+115 False, secret.txt has no errors
+125 Text decoded:
+126 i = 0
+130 userText = "R[Xvq" (lenght : 5)
+135 False, i = 0 < 5
+140 j = remainder(0/5) = 0
+145 82(R) = 82 - 10 = 72(H)
+150 i = 0 + 1 = 1
+155 go back to instruction 135
+135 False, i = 1 < 5
+140 j = remainder(1/5) = 1
+145 91([) = 91 + 10 = 101(e)
+150 i = 1 + 1 = 2
+155 going back to instruction 135
+135 False, i = 2 < 5
+140 j = remainder(2/5) = 2
+145 88(X) = 88 + 20 = 108(l)
+150 i = 2 + 1 = 3
+155 going back to instruction 135
+135 False, i = 3 < 5
+140 j = remainder(3/5) = 3
+145 118(v) = 118 - 10 = 108(l)
+150 i = 3 + 1 = 4
+155 going back to instruction 135
+135 False, i = 4 < 5
+140 j = remainder(4/5) = 4
+145 113(q) = 113 - 2 =111(o)
+150 i = 3 + 1 = 5
+155 going back to instruction 135
+135 True i= 5 is => 5, skipping to instruction 165
+165 Hello
+170 True, going back to instruction 126
+126 i = 0
+130 userText = "ae^vf" (lenght : 5)
+135 False, i = 0 < 5
+140 j = remainder(0/5) = 0
+145 96(a) = 96 - 10 = 86(W)
+150 i = 0 + 1 = 1
+155 go back to instruction 135
+135 False, i = 1 < 5
+140 j = remainder(1/5) = 1
+145 101(e) = 101 + 10 = 111(o)
+150 i = 1 + 1 = 2
+155 going back to instruction 135
+135 False, i = 2 < 5
+140 j = remainder(2/5) = 2
+145 94(^) = 94 + 20 = 114(r)
+150 i = 2 + 1 = 3
+155 going back to instruction 135
+135 False, i = 3 < 5
+140 j = remainder(3/5) = 3
+145 118(v) = 118 - 10 = 108(l)
+150 i = 3 + 1 = 4
+155 going back to instruction 135
+135 False, i = 4 < 5
+140 j = remainder(4/5) = 4
+145 102(f) = 102 - 2 = 100(d)
+150 i = 3 + 1 = 5
+155 going back to instruction 135
+135 True i= 5 is => 5, skipping to instruction 165
+165 World
+170 False, EOF reached
+175 secret.txt closed
+comments: execution completed successfully.
+
+
+Test case #2: test what happens if offset.txt is empty
+-input: 
+*offset.txt: EMPTY
+-expected result: 
+ERROR: Unfortunately offset.txt is not working properly
+-execution:
+10 userText declared as text data
+11 userFile declared as text data
+15 i = 0
+16 randomSize = 0
+20 Objective:decode a text file line by line so that each character ASCII value is sumed with a random character.Author: Luis Cermeno.
+21 "offset.txt" opened
+22 No errors
+23 first line read
+24 randomSize = 0 + 1 = 1
+25 False, end of offset.txt has been reached
+26 True, randomSize is 1 < 5, ERROR: Unfortunately offset.txt is not working properly
+Comments: succesful execution
+
+Test case #3: test what happens if input text file does not exist
+-input: 
+*offset.txt:
+10
+-10
+-20
+10
+2
+*userFile = "secret.txt"
+*secret.txt: DOES NOT EXIST
+-expected result: 
+Program should end suddenly
+*console output:
+-execution:
+10 userText declared as text data
+11 userFile declared as text data
+15 i = 0
+16 randomSize = 0
+20 Objective:decode a text file line by line so that each character ASCII value is sumed with a random character.Author: Luis Cermeno.
+21 "offset.txt" opened
+22 No errors
+23 first line read
+24 randomSize = 0 + 1 = 1
+25  True, end of offset.txt has not been reached yet, going back to instruction 23
+23 second line read
+24 randomSize = 1 + 1 = 2
+25  True, end of offset.txt has not been reached yet, going back to instruction 23
+23 third line read
+24 randomSize = 2 + 1 = 3
+25  True, end of offset.txt has not been reached yet, going back to instruction 23
+23 fourth line read
+24 randomSize = 3 + 1 = 4
+25  True, end of offset.txt has not been reached yet, going back to instruction 23
+23 fifth line read
+24 randomSize = 4 + 1 = 5
+25 False, end of offset.txt has been reached
+26 False, randomSize is not < 5
+30 arraYSequence created with 5 elements [0-4]
+31 offset.txt closed
+35 offset.txt opened
+40 Text will be decoded with the following coding sequence of 5 numbers:
+45 False, i=0 is not => 5
+50 arraySequence[0] = 10
+60 10
+75 i = 0 + 1 = 1
+80 going back to instruction 45
+45 False, i=1 is not => 5
+50 arraySequence[1] = -10
+60 -10
+75 i = 1 + 1 = 2
+80 going back to instruction 45
+45 False, i=2 is not => 5
+50 arraySequence[2] = -20
+60 -20
+75 i = 2 + 1 = 3
+80 going back to instruction 45
+45 False, i=3 is not => 5
+50 arraySequence[3] = 10
+60 10
+75 i = 3 + 1 = 4
+80 going back to instruction 45
+45 False, i=4 is not => 5
+50 arraySequence[4] = 2
+60 2
+75 i = 4 + 1 = 5
+80 going back to instruction 45
+45 False, i=5 is => 5, skipping to instruction 85
+85 offset.txt closed
+90 "Please enter the name of the text file to decode including the extension [e.g. secret.txt]: "
+95 inputFile = "secret.txt"
+100 False, "secret.txt" is 10 char long > 5
+110 secret.txt cannot be opened, it does not exist
+115 True, secret.txt has error, skipping to instruction 999
+999 END
+-comments: even if the file is empty the program will waste RAM memory retrieving the random sequence from offset, this issue should be fixed for further versions.

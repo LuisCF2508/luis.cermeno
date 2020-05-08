@@ -1,0 +1,379 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+Encode a text file line by line so that each character is converted to the next character in the ASCII code. 
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-userFile
+-userText
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. creation of encoding sequence
+4. text file input
+5. encoding and outputting
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-label "Text will be encoded with the following coding sequence of " and randomSize " numbers: " and value of each element of arraySequence
+-prompt "Please enter the name of the text file to encode including the extension [e.g. confidential.txt]:"
+-output "Text Encoded:" and the value of userText
+-output "The encoded text has been saved in a text file named secret.txt."
+
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-userFile //(text) the name of the file to open for input
+-userText //(text) the text to encode entered by the user 
+-i //(integer) counter for the encoding main loop
+-j //(integer) convenience variable for reading each element of arraySequence
+
+3. Algorithm instructions (recipe)
+***data definitions
+10 set userFile as text data
+11 set userText as text data
+15 set i = 0
+***introduction 
+20 output introduction: objective, author, instructions/rules
+***creation of encoding sequence
+25 set randomSize to a random generated number between 5 to 10
+30 create arraySequence with 'randomSize' elements
+35 open text file "offset.txt", if it does not exist create it.
+40 output "Text will be encoded with the following coding sequence of " and randomSize " numbers: "
+45 if i => randomSize then skip to instruction 85
+50 set arraySequence[i] to a random generated number between -20 to 20
+60 output arraySequence[i]
+65 output to file arraySequence[i]
+70 if i = randomSize - 1 then jump to the next line of offset.txt
+75 i = i + 1
+80 go back to instruction 45
+85 close text file "offset.txt"
+***text file input
+90 output "Please enter the name of the text file to encode including the extension [e.g. confidential.txt]: "
+95 input userFile
+100 if userFile is less than 5 characters long, go back to instruction 90
+***encoding and outputting
+110 open the input text file  with name userFile for input
+115 check for errors, if there is an error then output a run time error and skip to line 999
+120 create and open "secret.txt" for output
+125 output "Text Encoded:"
+126 set i = 0
+130 set userText to the next line of the input file
+135 if i => userText lenght skip to instruction 160
+140 j = remainder of i/randomSize
+145 userText[i] = userText[i] + arraySequence[j]
+150 i = i + 1
+155 back to instruction 135
+160 append value of userText to the file "secret.txt"
+165 output value of userText
+170 if the end of the input text file is not reached yet then go back to line 130
+175 close input text File
+180 close output "secret.txt"
+185 output "The encoded text has been saved in a text file named secret.txt."
+999 END
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: test a simply case supposing that the encoding sequence generated is 10,-10,-20,10,2.
+-input: 
+*userFile = "confidential.txt"
+*confidential.txt:
+Hello
+World
+-expected result: 
+*offset.txt:
+10
+-10
+-20
+10
+2
+*console output:
+Text Encoded:
+R[Xvq
+ae^vf
+*secret.txt:
+R[Xvq
+ae^vf
+-execution:
+10 userText declared as text data
+11 userFile declared as text data
+15 i = 0
+20 Objective:Encode a text file line by line so that each character ASCII value is sumed with a random character.Author: Luis Cermeno.
+25 randomSize = 7
+30 arraYSequence created with 7 elements [0-6]
+35 offset.txt created and opened
+40 Text will be encoded with the following coding sequence of 7 numbers:
+45 False, i=0 is not => 5
+50 arraySequence[0] = 10
+60 10
+65 10 output to offset.txt
+70 False, i=0 is not 4, jumped to next line in offset.txt
+75 i = 0 + 1 = 1
+80 going back to instruction 45
+45 False, i=1 is not => 5
+50 arraySequence[1] = -10
+60 -10
+65 -10 output to offset.txt
+70 False, i=1 is not 4, jumped to next line in offset.txt
+75 i = 1 + 1 = 2
+80 going back to instruction 45
+45 False, i=2 is not => 5
+50 arraySequence[2] = -20
+60 -20
+65 -20 output to offset.txt
+70 False, i=2 is not 4, jumped to next line in offset.txt
+75 i = 2 + 1 = 3
+80 going back to instruction 45
+45 False, i=3 is not => 5
+50 arraySequence[3] = 10
+60 10
+65 10 output to offset.txt
+70 False, i=3 is not 4, jumped to next line in offset.txt
+75 i = 3 + 1 = 4
+80 going back to instruction 45
+45 False, i=4 is not => 5
+50 arraySequence[4] = 2
+60 2
+65 2 output to offset.txt
+70 False, i=4 is 4
+75 i = 4 + 1 = 5
+80 going back to instruction 45
+45 False, i=5 is => 5, skipping to instruction 85
+85 offset.txt closed
+90 "Please enter the name of the text file to encode including the extension [e.g. confidential.txt]: "
+95 inputFile = "confidential.txt"
+100 False, "confidential.txt" is 16 char long > 5
+110 confidential.txt opened
+115 False, confidential.txt has no errors
+120 secret.txt created and opened for input
+125 Text Encoded:
+
+126 i = 0
+130 userText = "Hello" (lenght : 5)
+
+135 False, i = 0 < 5
+140 j = remainder(0/5) = 0
+145 72(H) = 72 + 10 = 82(R)
+150 i = 0 + 1 = 1
+155 go back to instruction 135
+
+135 False, i = 1 < 5
+140 j = remainder(1/5) = 1
+145 101(e) = 101 - 10 = 91([)
+150 i = 1 + 1 = 2
+155 going back to instruction 135
+
+135 False, i = 2 < 5
+140 j = remainder(2/5) = 2
+145 108(l) = 108 - 20 = 88(X)
+150 i = 2 + 1 = 3
+155 going back to instruction 135
+
+135 False, i = 3 < 5
+140 j = remainder(3/5) = 3
+145 108(l) = 108 + 10 = 118(v)
+150 i = 3 + 1 = 4
+155 going back to instruction 135
+
+135 False, i = 4 < 5
+140 j = remainder(4/5) = 4
+145 111(o) = 111 + 2 = 113(q)
+150 i = 3 + 1 = 5
+155 going back to instruction 135
+
+135 True i= 5 is => 5, skipping to instruction 160
+
+160 "R[Xvq" appended to "secret.txt"
+165 R[Xvq
+170 True, going back to instruction 126
+
+126 i = 0
+130 userText = "World" (lenght : 5)
+
+135 False, i = 0 < 5
+140 j = remainder(0/5) = 0
+145 86(W) = 86 + 10 = 96(a)
+150 i = 0 + 1 = 1
+155 go back to instruction 135
+
+135 False, i = 1 < 5
+140 j = remainder(1/5) = 1
+145 111(o) = 111 - 10 = 101(e)
+150 i = 1 + 1 = 2
+155 going back to instruction 135
+
+135 False, i = 2 < 5
+140 j = remainder(2/5) = 2
+145 114(r) = 114 - 20 = 94(^)
+150 i = 2 + 1 = 3
+155 going back to instruction 135
+
+135 False, i = 3 < 5
+140 j = remainder(3/5) = 3
+145 108(l) = 108 + 10 = 118(v)
+150 i = 3 + 1 = 4
+155 going back to instruction 135
+
+135 False, i = 4 < 5
+140 j = remainder(4/5) = 4
+145 100(d) = 100 + 2 = 102(f)
+150 i = 3 + 1 = 5
+155 going back to instruction 135
+
+135 True i= 5 is => 5, skipping to instruction 160
+
+160 "ae^vf" appended to "secret.txt"
+165 ae^vf
+170 False, EOF reached
+175 confidential.txt closed
+180 secret.txt closed
+185 The encoded text has been saved in a text file named secret.txt.
+comments: execution completed successfully.
+
+Test case #2: test what happens if the user's input file doesn't exist
+-input: 
+*userFile = "confidential.txt"
+*confidential.txt: DOES NOT EXIST
+-expected result: 
+RUN TIME ERROR, PROGRAM QUITS
+-execution:
+10 userText declared as text data
+11 userFile declared as text data
+15 i = 0
+20 Objective:Encode a text file line by line so that each character ASCII value is sumed with a random character.Author: Luis Cermeno.
+25 randomSize = 7
+30 arraYSequence created with 7 elements [0-6]
+35 offset.txt created and opened
+40 Text will be encoded with the following coding sequence of 7 numbers:
+45 False, i=0 is not => 5
+50 arraySequence[0] = 10
+60 10
+65 10 output to offset.txt
+70 False, i=0 is not 4, jumped to next line in offset.txt
+75 i = 0 + 1 = 1
+80 going back to instruction 45
+45 False, i=1 is not => 5
+50 arraySequence[1] = -10
+60 -10
+65 -10 output to offset.txt
+70 False, i=1 is not 4, jumped to next line in offset.txt
+75 i = 1 + 1 = 2
+80 going back to instruction 45
+45 False, i=2 is not => 5
+50 arraySequence[2] = -20
+60 -20
+65 -20 output to offset.txt
+70 False, i=2 is not 4, jumped to next line in offset.txt
+75 i = 2 + 1 = 3
+80 going back to instruction 45
+45 False, i=3 is not => 5
+50 arraySequence[3] = 10
+60 10
+65 10 output to offset.txt
+70 False, i=3 is not 4, jumped to next line in offset.txt
+75 i = 3 + 1 = 4
+80 going back to instruction 45
+45 False, i=4 is not => 5
+50 arraySequence[4] = 2
+60 2
+65 2 output to offset.txt
+70 False, i=4 is 4
+75 i = 4 + 1 = 5
+80 going back to instruction 45
+45 False, i=5 is => 5, skipping to instruction 85
+85 offset.txt closed
+90 "Please enter the name of the text file to encode including the extension [e.g. confidential.txt]: "
+95 inputFile = "confidential.txt"
+100 False, "confidential.txt" is 16 char long > 5
+110 confidential.txt couldnt be opened because is not in the local directory
+115 True, confidential.txt does not exist , skipping to 999
+999 END
+Comments: even if the file does not exist the program will waste RAM memory generating a random sequencea and saving it into offset.txt, this issue should be fixed for further versions.
+
+
+Test case #3: test what happens if text file is empty
+-input: 
+*userFile = "confidential.txt"
+*confidential.txt: DOES NOT EXIST
+-expected result: 
+*offset.txt:
+10
+-10
+-20
+10
+2
+*console output:
+Text Encoded:
+[BLANK SPACE]
+*secret.txt:
+[BLANK SPACE]
+-execution:
+10 userText declared as text data
+11 userFile declared as text data
+15 i = 0
+20 Objective:Encode a text file line by line so that each character ASCII value is sumed with a random character.Author: Luis Cermeno.
+25 randomSize = 7
+30 arraYSequence created with 7 elements [0-6]
+35 offset.txt created and opened
+40 Text will be encoded with the following coding sequence of 7 numbers:
+45 False, i=0 is not => 5
+50 arraySequence[0] = 10
+60 10
+65 10 output to offset.txt
+70 False, i=0 is not 4, jumped to next line in offset.txt
+75 i = 0 + 1 = 1
+80 going back to instruction 45
+45 False, i=1 is not => 5
+50 arraySequence[1] = -10
+60 -10
+65 -10 output to offset.txt
+70 False, i=1 is not 4, jumped to next line in offset.txt
+75 i = 1 + 1 = 2
+80 going back to instruction 45
+45 False, i=2 is not => 5
+50 arraySequence[2] = -20
+60 -20
+65 -20 output to offset.txt
+70 False, i=2 is not 4, jumped to next line in offset.txt
+75 i = 2 + 1 = 3
+80 going back to instruction 45
+45 False, i=3 is not => 5
+50 arraySequence[3] = 10
+60 10
+65 10 output to offset.txt
+70 False, i=3 is not 4, jumped to next line in offset.txt
+75 i = 3 + 1 = 4
+80 going back to instruction 45
+45 False, i=4 is not => 5
+50 arraySequence[4] = 2
+60 2
+65 2 output to offset.txt
+70 False, i=4 is 4
+75 i = 4 + 1 = 5
+80 going back to instruction 45
+45 False, i=5 is => 5, skipping to instruction 85
+85 offset.txt closed
+90 "Please enter the name of the text file to encode including the extension [e.g. confidential.txt]: "
+95 inputFile = "confidential.txt"
+100 False, "confidential.txt" is 16 char long > 5
+110 confidential.txt opened
+115 False, confidential.txt has no errors
+120 secret.txt created and opened for input
+125 Text Encoded:
+
+126 i = 0
+130 userText = "" (lenght : 0)
+135 True i= 0 is => , skipping to instruction 160
+160 "" appended to ""
+165  
+170 False, EOF reached
+175 confidential.txt closed
+180 secret.txt closed
+185 The encoded text has been saved in a text file named secret.txt.
+999 END
+-comments: even if the file is empty the program will waste RAM memory generating a random sequence , saving it into offset.txt and trying to convert ASCII codes, this issue should be fixed for further versions outputting feedback such as: "The text file confidential is empty"
+
+

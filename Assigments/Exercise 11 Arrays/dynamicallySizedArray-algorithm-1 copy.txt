@@ -1,0 +1,84 @@
+Teacher
+COMSC-110-1024
+
+1. Objective: input number of scores to be input, then input that many scores, calculate the maximum score, average score, minimum score, and how many A grade scores.
+
+2. Requirements:
+--INPUT
+size
+scores
+
+--PROCESSING
+1. data definitions
+2. user introduction
+3. input how many values (size) to input and then the score values (each score between 0-100)
+4. sort the scores from low to high
+5. calculate the maximum, minimum, and average score, and the number scores that are an A grade
+6. output results: the sorted scores, minimum score, high score, average score, and the number of A grade scores
+
+--OUTPUT
+objective
+author
+user instructions
+prompt1 "How many scores? "
+prompt2 "Enter a score: "
+label1 "Sorted: "
+label2 "Minimum: "
+label3 "Maximum: "
+label4 "Average: "
+label5 "Number of A grades: "
+
+
+--DATA
+size-->>the number of values to be input (integer)
+array-Scores-->>dynamically defined for SIZE number of values (integer)
+max-->>maximum value of inputed values (integer)
+min-->>minimum value of inputed values (integer)
+sum-->>total of inputed values (integer)
+average-->>average value of inputed values (decimal)
+nGradeA-->>number of scores that are A grade
+temp-->>used for temporarily storing one of the values in the array in the swapping process to sort (integer)
+i-->>outer loop index for sorting (integer)
+j-->>inner loop index for sorting (integer)
+
+
+3. Algorithm Instructions
+***user information
+10 output objective
+20 output author
+30 output user instructions
+***initialize values
+40
+
+
+
+***input loop
+
+
+
+***calculate average
+
+
+
+***calculate minimum and maximum
+
+
+
+***calculate the number of scores that are an A grade
+
+
+
+***sort loops
+
+
+
+***output results
+
+
+
+999 END
+
+
+4. Test Cases
+Test Case #1: SIZE=4. Input values: 96 94 64 92.  Expected results: minimum=64. maximum=96. average=86.5 number of A grades=3.
+10

@@ -1,0 +1,122 @@
+@copyrighted 1999 Valerie Colber
+Full Name and Student ID Number: Luis Cermeno Farro 1837034
+Course and section: COMSC-110-5003
+
+1. Objective (1 sentence brief description of what this will do): Calculate the average height of everyone in the classroom.
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-height
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. input each person's height, sum height, and count each person
+4. calculate average height = sum / count
+5. output average height
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-prompt "Enter one person's height in cm [0-250 or -1 if there are no more people]: "
+-label "The average height of everyone in the classroom is " and averageHeight
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-height = each student's height (integer) valid values [0-250]
+-sum = total of all the people's height in the classroom (integer)
+-count = total number of people in the classroom (integer)
+-averageHeight = average height of everyone in the room (decimal) formatted to 1 digit past the decimal point
+
+3. Algorithm instructions (recipe)
+***data
+10 set sum = 0
+20 set count = 0
+25 set averageHeight = 0.0
+***introduction 
+30 output introduction: objective, author, instructions/rules
+***input each person's height, sum each height, and count each person
+40 output "Enter one person's height in cm [0-250 or -1 if there are no more people]: "
+50 input height
+55 if height = -1 then skip to 90
+57 if height < 0 or height > 250 output "Invalid input, please try again", then skip to instruction 40
+60 sum = sum + height
+70 count = count + 1
+80 skip to instruction 40
+***calculate the average height
+90 if count > 0 then averageHeight = sum / count
+***output result
+100 output "The average height of everyone in the room is " and averageHeight
+999 END
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: purpose: simple and most common test case
+              input: 160, 170, 180
+              expected results: The average height of everyone in the room is 170.0
+10 sum = 0
+20 count = 0
+25 averageHeight=0.0
+30 objective:  Calculate the average height of everyone in the room.
+   Author: Luis Cermeno
+   user instructions: You will be asked to input everyone's height to get the average height.
+40 Enter one person's height in cm [0-250 or -1 if there are no more people]: 
+50 height = 160
+55 false
+60 sum = 0 + 160 = 160
+70 count = 0 + 1 = 1
+80 skip to instruction 40
+40 Enter one person's height in cm [0-250 or -1 if there are no more people]: 
+50 height = 170
+55 false
+60 sum = 160 + 170 = 330
+70 count = 1 + 1 = 2
+80 skip to instruction 40
+40 Enter one person's height in cm [0-250 or -1 if there are no more people]: 
+50 height = 180
+55 false
+60 sum = 330 + 180 = 510
+70 count = 2 + 1 = 3
+80 skip to instruction 40
+40 Enter one person's height in cm [0-250 or -1 if there are no more people]: 
+50 height = -1
+55 skip to instruction 90
+90 averageHeight = sum / count = 510 / 3 = 170.0
+100 The average height of everyone in the room is 170.0
+999 END
+
+Test case #2: purpose: no people in the room test case
+              input = -1
+              expected result = The average height of everyone in the room is 0.0
+10 sum = 0
+20 count = 0
+25 averageHeight=0.0
+30 objective:  Calculate the average height of everyone in the room.
+   Author: Luis Cermeno
+   user instructions: You will be asked to input everyone's height to get the average height.
+40 Enter one person's height in cm [0-250 or -1 if there are no more people]: 
+50 height = -1
+55 skip to instruction 90
+90 false
+100 The average height of everyone in the room is 0.0
+999 END
+
+COMENT: Test successfully passed and completed.
+
+Test case #3: purpose: invalid input made by the user test case
+                      input = 300
+                      expected result = message alerting that user has not entered a valid value for height
+
+10 sum = 0
+20 count = 0
+25 averageHeight=0.0
+30 objective:  Calculate the average height of everyone in the room.
+   Author: Luis 
+   user instructions: You will be asked to input everyone's height to get the average height.
+40 Enter one person's height in cm [0-250 or -1 if there are no more people]: 
+50 height = 300
+55 false
+57 Invalid output, please try again. Skip to instruction 40
+40 Enter one person's height in cm [0-250 or -1 if there are no more people]:
+
+COMENT: Test successfully passed and completed.
+
+

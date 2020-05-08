@@ -1,0 +1,42 @@
+@copyrighted 1999 Valerie Colber
+Full Name and Student ID Number: Luis Cermeno Farro 1837034
+Course and section: COMSC-110-5003
+
+
+
+1a. Explain in words what are the 3 control structures and how each of the 3 control structures 
+works in general.
+
+The control structures is the pattern that the computer follows in order to execute the instructions of a program. The sequence control structure is straight forward, it executes the
+instructions in order. The selection control structures only executes the instructions in order IF a condition previously evaluated its true, if its not, then it will skip down a group of instructions.
+Finally the repletion control structure allow the computer to make iterations of a certain group of instruction, just like the selection control structure this type evaluates a condition, but this
+Time if it is true it will skip up all the way to the beginning of the group of instruction repeating them one more time.
+
+
+
+1b. Explain in words what are the 3 kinds of programming errors and give examples.
+
+Syntax error, this happens when the developer make a "grammar" mistake in with the programming language so the code editor doesn't understand. 
+Example: 10 inpot averageAge. 
+
+Logic, this happens when the developer makes a solving plan wrong, with contradictions.
+Example: if averageAge>10 and averageAge<5 then...
+
+Execution: when the developer write a code that is not possible to be executed by the computer.
+
+1c. What are the 5 functions of all computers?
+Input, output, processing, store, communicate/
+
+1d. Explain in words what is a statement and what is an expression and what is the difference.
+A statement is like a "sentence" in computer language, these gives the computer a certain instruction to execute.
+A expression is like a "phrase" in computer language, this only indicates a certain value assigned to a variable.
+
+
+
+1e. What are the 2 major categories of software and the 3 subcategories of each.
+
+Application software which includes: productivity, education, entertainment.
+System software which includes: OS, utilities and language translators
+
+1f. What are the 3 language translators and how do they work? They translate what to what?
+They translate a computer language ( C++, Java, C, etc) into binary, which is the modern tonge of computes. These are text editors, code editors, and IDEs.

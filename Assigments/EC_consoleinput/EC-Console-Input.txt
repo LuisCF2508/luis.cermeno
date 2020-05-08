@@ -1,0 +1,36 @@
+Duncan Ferguson
+A. What is a prompt and why should it be used for console input?
+-A prompt is written by a programmer to ask the user for input. A prompt is useful because it allows the user to change variables without having to edit the program and recompile.
+B. What is a transfer statement?  Transfer from what to what?
+- A transfer statement is a line of code that waits for user input before proceeding. It transfers data from the keyboard to a variable.
+
+C.(Luis Cermeno-Farro) Explain what is a keyboard buffer and how it works with respect to console input in a program?
+-"Keyboard buffer" is a small space of the computer memory which is used to store the keyboard strokes the user types during a console input. After the user is prompted, they will begin to type. These keystrokes are temporarily stored in the "keyboard buffer" until the user hits ENTER. Once they do so, the keystrokes are sent from the buffer to the processor and then stored in variables.
+D.(Luis Cermeno-Farro) Explain what is the difference between console input and programmer input.
+-They are data that is sent to the computer to be stored in variables; the difference regards the way the data is collected. "Console input", as its name tells, uses the computer's "console" to pick data. This means it uses the keyboard for the user to enter the values. On the other hand, "programmer input" occurs when the programmer himself assigns a value to a variable when writing the program. In the first case, the values can change anytime the program runs, while in the second case, the values are fixed and the only way to change them is changing the script and compiling the program again.
+
+
+Darmarea Barr (E,F)
+E. Explain in English what this statement cin.ignore(1000,10); exactly will do.
+- It will put a parameter on the cin object so it can break after the user has type a response, so next time you use cin it won't save what was left in buffer . So cin.ignore(1000,10), would mean after 1000 characters can be stored but delimiter will stop at 10.
+
+F. What library is necessary for the statement cin.ignore(1000,10); need to work?  What are the 2 parameters, and what do they represent?  Can the parameters be changed?
+- The library that are needed is #include <iostream> , using namespace std. Two parameters are what's in parentheses so (1000,) is the maximum number of characters to extract.
+(,10) is the delimiter character. Also yes parameters can be changed by the programmer. 
+
+Christian Fontecha (G,H)
+G. Which data types need to use this statement cin.ignore(integer, integer); and explain why in words?
+- cin.ignore(integer, integer) uses the data types int, double and char. They are all used in cin.ignore(integer, integer), because they get rid of any unnecessary number values that are unwanted on the code. If there were many unimportant values in the code, then there would be multiple syntax and programming errors because of the values not disregarded.
+
+H. What happens to the input values if an integer is input from the keyboard after outputting a prompt, and then text is input from the keyboard after outputting a prompt, and there is no use of a cin.ignore(integer, integer); statement?
+- If input values are added from the keyboard without the usage of the cin.ignore(integer, integer) statement, then there will be multiple and unimportant values included and they will be counted as syntax errors in the input buffer.
+
+Tijana Popovic (I,J,K)
+I.Explain in English what this statement getline(cin, name); exactly will do.
+Statement getline(cin, name) will cause the program to pause and wait for the user to input a value (text) and press ENTER key before continuing. After that, it will assign that value to a variable "name".
+J.Explain what happens to the input value if text with multiple words separated by spaces is input from the keyboard using cin and not getline?
+If text with multiple words separated by spaces is input from the keyboard using cin and not getline, the input value will only recognize the first word (until the first SPACE) and the input value will not be complete. 
+K.Explain why should prompts and the user response be on the same line?
+Prompts and the user response should be on the same line so it is clearer to the user that he should be entering a value. If the user gets the flashing horizontal line inder the prompt, this can be mixed with the same flashing line we get when waiting for a program to finish some long commands.
+
+

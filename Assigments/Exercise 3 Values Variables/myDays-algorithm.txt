@@ -1,0 +1,128 @@
+@copyrighted 1999 Valerie Colber
+Full Name and Student ID Number: Luis Cermeno-Farro 1837034
+Course and section: COMSC-110-5003
+
+1. Objective (1 sentence brief description of what this will do): 
+Calculate how many days old a person would be by the due date of this assignment.
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-dateOfBirth
+-dueDate
+-yearsLived
+-nLeapYears
+-nDaysBY
+-nDaysRemaining
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. input yearsLived, nLeapYears, nDaysBY, nDaysRemaining
+4. calculate how many days olds the person will be by the due date of this assignment
+5. output values of DdateOfBirth, dueDate, days
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-label "Date of Birth: " and dateOfBirth
+-label "Due Date: " and dueDate
+-label "Age in days: " and nDaysBY
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-dateOfBirth (string) person's date of birth [month, date, year].
+-dueDate (string) assignment due date [month, date, year].
+-days (integer) how many days old a person would be by the due date of the assignment.
+-yearslived (integer) the number of years in which you've lived, including your birth year and the due date year.
+-nLeapYears (integer) the number os leap years in your life.
+-nDaysBY (integer) the number os days in your life.
+-nDaysRemaining (integer) the number of days remaining inthe current year after de due date for this lab excluding that day.
+
+3. Algorithm instructions (recipe)
+***data definitions
+10 set dateOfBirth = "May 31, 1993"
+20 set dueDate = "September 20, 2014"
+30 set days = 0
+***user introduction 
+40 output "Objective: Calculate how many days old a person would be by the due date of this assignment. Author: Luis Cermeno."
+***input yearsLived, nLeapYears, nDaysBY, nDaysRemaining
+50 set yearsLived = 22
+60 set nLeapYears = 5
+70 set nDaysBY = 151
+80 set nDaysRemaining = 102
+***calculate how many days old the person will be by the due date of this assignment
+90 add to "days" the result of this multiplication: 365 times the value of yearsLived.
+100 add to "days" the value of nLeapYears.
+110 subtract from "days" the value of nDaysBY.
+120 subtract from "days" the nDaysRemaining.
+***output dateOfBirth, dueDate, days
+130 output "Date of Birth: " and the value of dateOfBirth
+140 output "Due Date: " and the value of dueDate
+150 output "Age in days: " and the value of days
+999 END
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1:
+purpose: to test a ramdom simple execution (given example).
+
+input values:
+-dateOfBirth = "May 31,1993"
+-dueDate = "September 20, 2014"
+-yearsLived = 22
+-nLeapYears = 5
+-nDaysBY = 151
+-nDaysRemaining = 102
+
+execution:
+10 set dateOfBirth = "May 31, 1993"
+20 set dueDate = "September 20, 2014"
+30 set days = 0
+40 output "Objective: Calculate how many days old a person would be by the due date of this assignment. Author: Luis Cermeno."
+50 set yearsLived = 22
+60 set nLeapYears = 5
+70 set nDaysBY = 151
+80 set nDaysRemaining = 102
+90 days = days + (365 * yearsLived) = 0 + 8030 = 8030
+100 days = days +  nLeapYears = 8030 + 5 = 8035
+110 days = days - nDaysBY = 8035 - 151 = 7884 
+120 days = days - nDaysRemaining = 7884 - 102 = 7782
+130 Date of Birth: May 31, 1993
+140 Due Date: September 20, 2014
+150 Age in days: 7782
+999 END
+
+comments: 
+The program output the expected result. Successful execution.
+
+999 END
+
+Test case #2: 
+purpose: to test a ramdom simple execution (personal example).
+
+input values:
+-dateOfBirth = "August 25,1999"
+-dueDate = "February 13, 2020"
+-yearsLived = 20
+-nLeapYears = 6
+-nDaysBY = 237
+-nDaysRemaining = 322
+
+execution:
+10 set dateOfBirth = "August 25,1999"
+20 set dueDate = "February 13, 2020"
+30 set days = 0
+40 output "Objective: Calculate how many days old a person would be by the due date of this assignment. Author: Luis Cermeno."
+50 set yearsLived = 22
+60 set nLeapYears = 6
+70 set nDaysBY = 237
+80 set nDaysRemaining = 322
+90 days = days + (365 * yearsLived) = 0 + 8030 = 8030
+100 days = days +  nLeapYears = 8030 + 6 = 8036
+110 days = days - nDaysBY = 8036 - 237 = 7799 
+120 days = days - nDaysRemaining = 7799 - 322 = 7477
+130 Date of Birth: May 31, 1993
+140 Due Date: September 20, 2014
+150 Age in days: 7477
+999 END
+
+comments: 
+The program output the expected result. Successful execution.

@@ -1,0 +1,254 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+Display an interactive rock-paper-scissors game human vs. computer.
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-userPlay
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. generation of random number and user input
+4. winner decision and scoreboard
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-prompt: "Choose: [R=rock, P=paper, S=scissors, or Q=quit]"
+-label: "Computer: " and computerPlay "Human: " and userPlay and either ",Computer wins" or ",Human wins" or ",tie"
+-label: "Computer wins: " and computerScore " Human wins: " and userScore
+-output: "Invalid input,try again..."
+-output "Thanks for playing!"
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-userPlay (character) the user's choice between rock,paper,scissors.
+-computerPlay (integer) the computer random choice (0-rock, 1-paper, 2-scissors).
+-userScore (integer) the number of user wins
+-computerScore (integer) the number of computer wins
+
+3. Algorithm instructions (recipe)
+***data
+10 set userScore = 0
+20 set computerScore = 0
+***introduction 
+30 output introduction: objective, author, instructions/rules
+***generation of random number and user input
+40 generate a random number between 0 to 2
+50 set computerPlay = (generated random number)
+60 output "Choose: [R=rock, P=paper, S=scissors, or Q=quit]"
+70 input userPlay
+80 if userPlay is equal to Q or q then skip to line 200
+100 if userPlay is different from R,P,S,Q,r,p,s,q then output "Invalid input,try again..." and return to line 40
+
+***winner decision and scoreboard
+110 if userPlay is equal to R or r  and computerPlay is equal to 0 then continue, otherwise skip to line 120
+111 output "Computer: R, Human: " and userPlay ",tie"
+112 output "Computer wins: " and computerScore " Human wins: " and userScore
+113 return to line 40
+
+120 if userPlay is equal to R or r  and computerPlay is equal to 1 then continue, otherwise skip to line 130
+121 output "Computer: P, Human: " and userPlay ",Computer wins"
+122 computerScore = computerScore + 1
+123 output "Computer wins: " and computerScore " Human wins: " and userScore
+124 return to line 40
+
+130 if userPlay is equal to R or r  and computerPlay is equal to 2 then continue, otherwise skip to line 140
+131 output "Computer: S, Human: " and userPlay ",you win!"
+132 userScore = userScore + 1
+133 output "Computer wins: " and computerScore " Human wins: " and userScore
+134 return to line 40
+
+140 if userPlay is equal to P or p  and computerPlay is equal to 0 then continue, otherwise skip to line 150
+141 output "Computer: R, Human: " and userPlay ",You win!"
+142 userScore = userScore + 1
+143 output "Computer wins: " and computerScore " Human wins: " and userScore
+144 return to line 40
+
+150 if userPlay is equal to P or p  and computerPlay is equal to 1 then continue, otherwise skip to line 160
+151 output "Computer: P, Human: " and userPlay ",tie"
+152 output "Computer wins: " and computerScore " Human wins: " and userScore
+153 return to line 40
+
+160 if userPlay is equal to P or p  and computerPlay is equal to 2 then continue, otherwise skip to line 170
+161 output "Computer: S, Human: " and userPlay ",Computer wins"
+162 computerScore = computerScore + 1
+163 output "Computer wins: " and computerScore " Human wins: " and userScore
+164 return to line 40
+
+170 if userPlay is equal to S or s  and computerPlay is equal to 0 then continue, otherwise skip to line 180
+171 output "Computer: R, Human: " and userPlay ",Computer Wins!"
+172 computerScore = computerScore + 1
+173 output "Computer wins: " and computerScore " Human wins: " and userScore
+174 return to line 40
+
+180 if userPlay is equal to S or s  and computerPlay is equal to 1 then continue, otherwise skip to line 190
+181 output "Computer: P, Human: " and userPlay ",You win!"
+182 userScore = userScore + 1
+183 output "Computer wins: " and computerScore " Human wins: " and userScore
+184 return to line 40
+
+190 if userPlay is equal to S or s  and computerPlay is equal to 0 then continue, otherwise return to line 40
+191 output "Computer: S, Human: " and userPlay ",tie"
+192 output "Computer wins: " and computerScore " Human wins: " and userScore
+193 return to line 40
+
+200 output "Thanks for playing!"
+999 END
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: 
+purpose: Test a simple case with ALL possible combinations.
+input values: p,p,r,p,s,q
+execution:
+10 userScore = 0
+20 computerScore = 0
+30 "Objective: Display an interactive rock-paper-scissors game human vs. computer.Author: Luis Cermeno"
+
+40 0
+50 computerPlay = 0
+60 output "Choose: [R=rock, P=paper, S=scissors, or Q=quit]"
+70 userPlay = r
+80 False
+100 False
+110 True
+111 Computer: R, Human: R,tie
+112 Computer wins: 0, Human wins: 0
+
+40 1
+50 computerPlay = 1
+60 output "Choose: [R=rock, P=paper, S=scissors, or Q=quit]"
+70 userPlay = r
+80 False
+100 False
+110 False
+120 True
+121 Computer: P, Human: R ,Computer wins"
+122 computerScore = 0 + 1 = 1
+123 Computer wins: 1 Human wins: 0
+
+40 2
+50 computerPlay = 2
+60 output "Choose: [R=rock, P=paper, S=scissors, or Q=quit]"
+70 userPlay = r
+80 False
+100 False
+110 False
+120 False
+130 True
+131 Computer: S, Human: R,you win!"
+132 userScore = 0 + 1 = 1
+133 Computer wins: 1 Human wins: 1
+
+40 0
+50 computerPlay = 0
+60 output "Choose: [R=rock, P=paper, S=scissors, or Q=quit]"
+70 userPlay = p
+80 False
+100 False
+110 False
+120 False
+130 False
+140 True
+141 output "Computer: R, Human: P,You win!"
+142 userScore = 1 + 1 = 2
+143 Computer wins: 1 Human wins: 2
+
+40 1
+50 computerPlay = 1
+60 output "Choose: [R=rock, P=paper, S=scissors, or Q=quit]"
+70 userPlay = p
+80 False
+100 False
+110 False
+120 False
+130 False
+140 False
+150 True
+151 Computer: P, Human: P,tie
+152 "Computer wins: 1 Human wins: 2
+
+40 2
+50 computerPlay = 2
+60 output "Choose: [R=rock, P=paper, S=scissors, or Q=quit]"
+70 userPlay = p
+80 False
+100 False
+110 False
+120 False
+130 False
+140 False
+150 False
+160 True
+161 Computer: S, Human P,Computer wins
+162 computerScore = 1 + 1 = 2
+163 Computer wins: 2 Human wins: 2
+
+40 0
+50 computerPlay = 0
+60 output "Choose: [R=rock, P=paper, S=scissors, or Q=quit]"
+70 userPlay = s
+80 False
+100 False
+110 False
+120 False
+130 False
+140 False
+150 False
+160 False
+170 True
+171 Computer: R Human: S ,Computer Wins!"
+172 computerScore = 2 + 1 = 3
+173 Computer wins: 3 Human wins: 2
+
+40 1
+50 computerPlay = 1
+60 output "Choose: [R=rock, P=paper, S=scissors, or Q=quit]"
+70 userPlay = s
+80 False
+100 False
+110 False
+120 False
+130 False
+140 False
+150 False
+160 False
+170 False
+180 True
+181 Computer: P, Human: S,You win!"
+182 userScore = 2 + 1 = 3
+183 Computer wins: 3 Human wins: 3
+
+40 1
+50 computerPlay = 1
+60 output "Choose: [R=rock, P=paper, S=scissors, or Q=quit]"
+70 userPlay = s
+80 False
+100 False
+110 False
+120 False
+130 False
+140 False
+150 False
+160 False
+170 False
+180 False
+190 True
+191 Computer: S, Human: S,tie"
+192 Computer wins: 3 Human wins: 3
+193 return to line 40
+
+40 0
+50 computerPlay = 0
+60 output "Choose: [R=rock, P=paper, S=scissors, or Q=quit]"
+70 userPlay = q
+80 True
+200 output "Thanks for playing!"
+999 END
+
+comments: Test successfullt executed with expected results, in case the user had entered their play with uppercase letters the logic would have been the same.
+
+Test case #2: 

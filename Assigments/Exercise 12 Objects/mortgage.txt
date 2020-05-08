@@ -1,0 +1,4 @@
+Amount borrowed (user input) = $270000
+Annual interest rate (user input) = 5.125%
+Payback period (programmer input) = 30 Years
+Monthly payment (output) = $1470.11

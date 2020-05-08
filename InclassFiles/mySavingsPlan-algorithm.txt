@@ -1,0 +1,89 @@
+COMSC-110-8076
+Luis Cermeno-Farro
+
+1. Objective: calculate how much money to save every month for number of years before retirement and how much money would you have when you retire.
+
+2. Requirements: 
+--INPUT
+deposit = author selected amount (for example $10, $100, etc.)
+interestRate = author selects annual interest rate (for example 0.075 is 7.5%)
+
+--PROCESSING
+1. data definitions
+2. user introduction
+3. calculate amount of money to save every month
+interestRate = interestRate / 12
+time = years * 12
+amountSaved = deposit * ((pow(1 + interestRate, time) - 1) / interestRate)
+4. output results
+
+
+--OUTPUT
+-user introduction: objective, author, user instructions (if any)
+-label "In "
+-years
+label " years at "
+-interestRate
+label "%, $"
+-deposit
+label " deposited per month will grow to $
+-amountSaved formatted to 2 digits past the decimal point
+
+--DATA
+deposit-->> how much money you will add to your savings account each month (integer)
+interestRate-->> annual interest rate you can expect (check google.com: for example 0.04 is 4%) (decimal)
+years-->> how many more years until you retire (integer)
+amountSaved-->> how much money you have when you retire (decimal) (formatted to 2 digits past decimal point)
+time-->>number of months in years (integer)
+
+3. Algorithm Instructions
+***data definitions
+10 set years = how many more years until you retire 
+20 set deposit = how much $ to be saved each month
+30 set interestRate = expected interest rate on deposit expressed as a number between 0 and 1
+40 set interestRate = interestRate / 12
+50 set time = years * 12
+*** user introduction
+60 output the user introduction (objective, author, and any user instructions)
+*** calculate amount of money to save every month
+70 set amountSaved = deposit * ((((1 + interestRate) ^ time) - 1) / interestRate)
+80 set interestRate = (interestRate * 100) * 12
+***output results
+90 output "In " and years and " years at " and interestRate and "%, $" and deposit and " deposited per month will grow to $" and amountSaved
+100 END
+
+4. Test Cases
+
+Test Case #1: 
+purpose: example test case
+              
+input values: 
+-years=10, 
+-interestRate=7.5%, 
+-investment=$100
+       
+expected output: "In 10 years at 7.5% , $100 deposited per month will grow to $17793.03."
+
+10 set years = 10
+20 set deposit = 100
+30 set interestRate = 0.075
+40 set interestRate = 0.075/ 12 = 0.00625
+50 set time = 10 * 12 + 120
+*** user introduction
+60 Objective: Calculate how much money to save every month for number of years before retirement and how much money would you have when you retire.
+Author: Luis Cermeno-Farro
+*** calculate amount of money to save every month
+70 set amountSaved = 100 * ((((1 + 0.00625) ^ 120) - 1) / 0.00625) = 17793.03
+80 set interestRate = (interestRate * 100) * 12 = (0.00625*100)*12 = 7.5
+***output results
+90 In 10 years at 7.5%,$100 deposited per month will grow to $17793.03
+100 END
+
+Comment: The test was succesfully executed. Expected output reached.
+
+
+
+
+
+
+

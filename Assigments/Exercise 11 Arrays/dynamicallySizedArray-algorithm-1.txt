@@ -1,0 +1,267 @@
+Teacher
+COMSC-110-1024
+
+1. Objective: input number of scores to be input, then input that many scores, calculate the maximum score, average score, minimum score, and how many A grade scores.
+
+2. Requirements:
+--INPUT
+size
+scores
+
+--PROCESSING
+1. data definitions
+2. user introduction
+3. input how many values (size) to input and then the score values (each score between 0-100)
+4. sort the scores from low to high
+5. calculate the maximum, minimum, and average score, and the number scores that are an A grade
+6. output results: the sorted scores, minimum score, high score, average score, and the number of A grade scores
+
+--OUTPUT
+objective
+author
+user instructions " You will be prompted to enter a certain number of grades, you can choose how many grades you want to enter"
+prompt1 "How many scores? "
+prompt2 "Enter a score: "
+label1 "Sorted: "
+label2 "Minimum: "
+label3 "Maximum: "
+label4 "Average: "
+label5 "Number of A grades: "
+
+
+--DATA
+size-->>the number of values to be input (integer)
+arrayScores-->>dynamically defined for SIZE number of values (integer)
+sum-->>total of inputed values (integer)
+average-->>average value of inputed values (decimal)
+nGradeA-->>number of scores that are A grade
+temp-->>used for temporarily storing one of the values in the array in the swapping process to sort (integer)
+count-->>count input values (integer)
+i-->>outer loop index for sorting (integer)
+j-->>inner loop index for sorting (integer)
+
+
+
+3. Algorithm Instructions
+***user information
+10 output objective
+20 output author
+30 output user instructions
+***initialize values
+40 sum = 0
+41 nGradeA = 0
+42 i = 0
+43 count = 0
+***input loop
+50 output prompt1
+51 input size
+52 create arrayScore with "size" elements
+53 output prompt2
+54 input arrayScore[count]
+55 if arrayScore[count] < 0 OR arrayScore[count] > 100 then go back to instruction 53
+56 sum = sum + arrayScore[count]
+57 count = count + 1
+58 if count < size then skip to instruction 53
+***calculate average
+60 if size > 0 then average = sum / size
+***calculate the number of scores that are an A grade
+70 count = 0
+71 if arrayScore[count] > 90 then nGradeA = nGradeA + 1
+72 count = count + 1
+73 if count < size then go back to line 71
+***sort loops
+80 j = i + 1
+90 if arrayScore[i] > arrayScore[j] then continue, otherwise skip to line 94
+91 temp = arrayScore[i]
+92 arrayScore[i] = arrayScore[j]
+93 arrayScore[j] = temp
+94 j = j + 1
+95 if j < size then go back to line 90
+100 i = i + 1
+101 if i < (size - 1) then go back to line 80
+***output results
+110 set count = 0
+111 output "Sorted: "
+112 output value of arrayScore[count]
+113 count = count + 1
+114 if count < size go back to line 111
+120 output "Minimum: " and the value of arrayScore[0]
+130 output "Maximum: " and the value of arrayScore[size - 1]
+140 output "Average: " and the value of average
+150 output "Number of A grades: " and the value of nGradeA
+999 END
+
+
+4. Test Cases
+Test Case #1: size=4. Input values: 96 94 64 92.  Expected results: minimum=64. maximum=96. average=86.5 number of A grades=3.
+***user information
+10 Objective: input number of scores to be input, then input that many scores, calculate the maximum score, average score, minimum score, and how many A grade scores.
+20 Author: Luis Cermeno
+30 You will be prompted to enter a certain number of grades, you can choose how many grades you want to enter.
+***initialize values
+40 sum = 0
+41 nGradeA = 0
+42 i = 0
+43 count = 0
+50 "How many scores?"
+51 size = 4
+52 arrayScore created with 4 elements
+***input loop
+53 "Enter a score: "
+54 arrayScore[0] = 96
+55 False
+56 sum = 0 + 96 = 96
+57 count = 0 + 1 = 1
+58 True, going back to line 53...
+
+53 "Enter a score: "
+54 arrayScore[1] = 94
+55 False
+56 sum = 96 + 94 = 190
+57 count = 1 + 1 = 2
+58 True, going back to line 53...
+
+53 "Enter a score: "
+54 arrayScore[2] = 64
+55 False
+56 sum = 190 + 64 = 254
+57 count = 2 + 1 = 3
+58 True, going back to line 53...
+
+53 "Enter a score: "
+54 arrayScore[3] = 92
+55 False
+56 sum = 254 + 92 = 346
+57 count = 3 + 1 = 4
+58 False
+***calculate average
+60 average = 346 / 4 = 86.5
+***calculate the number of scores that are an A grade
+70 count = 0
+
+71 nGradeA = 0 + 1 = 1
+72 count = 0 + 1 = 1
+73 True, going back to line 71
+
+71 nGradeA = 1 + 1 = 2
+72 count = 1 + 1 = 2
+73 True, going back to line 71
+
+71 False
+72 count = 2 + 1 = 3
+73 True, going back to line 71
+
+71 nGradeA = 2 + 1 = 3
+72 count = 3 + 1 = 4
+73 False
+***sort loops
+80 j = 0 + 1 = 1
+------
+90 True
+91 temp = 96
+92 arrayScore[0] = 94
+93 arrayScore[1] = 96
+94 j = 1 + 1 = 2
+95 True, going back to line 90
+
+90 True
+91 temp = 94
+92 arrayScore[0] = 64
+93 arrayScore[2] = 94
+94 j = 2 + 1 = 3
+95 True, going back to line 90
+
+90 False, skipping to line 94
+94 j = 3 + 1 = 4
+95 False
+-------
+100 i = 0 + 1 = 1
+101 True, going back to line 80
+
+80 j = 1 + 1 = 2
+-------
+90 True
+91 temp = 96
+92 arrayScore[1] = 94
+93 arrayScore[2] = 96
+94 j = 2 + 1 = 3
+95 True, going back to line 90
+
+90 True
+91 temp = 94
+92 arrayScore[1] = 92
+93 arrayScore[3] = 94
+94 j = 3 + 1 = 4
+95 False
+------
+100 i = 1 + 1 = 2
+101 True, going back to line 80
+
+80 j = 2 + 1 = 3
+------
+90 True
+91 temp = 96
+92 arrayScore[2] = 94
+93 arrayScore[3] = 96
+94 j = 3 + 1 = 4
+95 False
+------
+100 i = 2 + 3 = 3
+101 False
+***output results
+110 count = 0
+
+111 Sorted:
+112 64
+113 count = 0 + 1 = 1
+114 True, going back to line 111
+
+111 Sorted:
+112 92
+113 count = 1 + 1 = 2
+114 True, going back to line 111
+
+111 Sorted:
+112 94
+113 count = 2 + 1 = 3
+114 True, going back to line 111
+
+111 Sorted:
+112 96
+113 count = 3 + 1 = 4
+114 False
+
+120 Minimum: 64
+130 Maximum: 96
+140 Average: 86.5
+150 Number of A grades: 3
+999 END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

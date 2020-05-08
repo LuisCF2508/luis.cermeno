@@ -1,0 +1,210 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+Display an interactive cards game human vs. computer.
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-playAgain
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. Data definitions
+2. User introduction
+3. Generation of random numbers 
+4. Output cards value and suit
+5. Output winner decision
+
+SUBPROGRAMS:
+-outputCard (request a list "card")(does not return)//function to output card 
+-getYesOrNo(does not request)(returns a boolean "playAgain"); //function to prompt the user if they -checkSuits(request a list "card" and an integer "n_Cards")(returns a boolean "shuffle"); //function to check for 13 repeated suits
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-output: "Computer's card is a " and computerValue " of " and computerSuit
+-output: "Human's card is a " and humanValue " of " and humanSuit
+-output "Human wins!" or "Computer wins!" or "It's a tie"
+-prompt: "Want to play again?"
+-output: "13 cards of the same suit have been played, re-shuffling the deck."
+-output: "52 pairs of cards have been played, re-shuffling the deck."
+
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+
+<main>
+-i //(integer) is a counter to traverse cards array
+-playAgain //(boolean) is true if the user wants to play again
+-shuffle // (boolean) is true if the deck needs a shuffle (reset the array for cards)
+-MAX_CARDS //(integer) list capacity: if 52 cards have been played the list will be reset
+-n_Cards //(integer) list size
+-cardHuman // (list of integers for human playing cards, has to fields: value and suit)
+-cardComputer // (list of integers for computer playing cards, has to fields: value and suit)
+
+<outputCard>
+-card // (list of integers for either human or computerplaying cards requested by the subprogram)
+
+<getYesOrNo>
+-playAgain // (boolean) is true if the user wants to play again, value returned to main
+-inputPlayAgain // (char) is the character input by the user
+
+<checkSuits>
+-card // list of integers for either human or computerplaying cards requested by the subprogram
+-n_Cards // (integer) size of list card requested by the subprogram
+-nSpades  // (integer) number of Spades already played
+-nDiamonds // (integer) number of Diamonds already played
+-nHearts // (integer) number of Hearts already played
+-nClubs // (integer) number of Clubs already played
+-shuffle // (boolean) is true if the deck needs a shuffle (reset the array for cards), value returned to main program
+
+3. Algorithm instructions (recipe)
+
+<outputCard>
+1010 if card value is 11 output "Jack" and go to line 1035
+1015 if card value is 12 output "Queen" and go to line 1035
+1020 if card value is 13 output "King" and go to line 1035
+1025 if card value is 14 output "Ace" and go to line 1035
+1030 if card value is not 11,12,13 nor 14 output card value
+1035 output " of "
+1040 if card value is 0 output "Spades" and go to line 1060
+1045 if card value is 1 output "Diamonds" and go to line 1060
+1050 if card value is 2 output "Hearts" and go to line 1060
+1055 if card value is 3 output "Clubs"
+1060 return to main program
+
+<getYesOrNo>
+2010 set playAgain = true
+2020 set inputPlayAgain
+2030 output "Want to play again?"
+2040 input inputPlayAgain
+2050 if (inputplayAgain == 'Y' or 'y') then playAgain = true, then skip to line 2080
+2060 if (inputplayAgain == 'N' or 'n') then playAgain = true, then skip to line  2080
+2070 output "Invalid input, please try again" and return to line 2030
+2080 return value of playAgain to main program
+
+<checkSuits>
+3010 set shuffle = false
+3015 set nSpades = 0
+3020 set nDiamonds = 0
+3025 set nHearts = 0
+3030 set nClubs = 0
+3040 set i = 0
+3050 if i => (n_Cards - 1) then skip to line 3120
+3060 if card[i] suit = 0 then nSpades = nSpades + 1 and skip to line 3100
+3070 if card[i] suit = 1 then nDiamonds = nDiamonds + 1 and skip to line 3100
+3080 if card[i] suit = 2 then nHearts = nHearts + 1and skip to line 3100
+3090 if card[i] suit = 3 then nClubs = nClubs + 1
+3100 i = i + 1
+3110 return to line 3050
+3120 if (nSpades > 13 OR nDiamonds > 13 OR nHearts > 13 OR nClubs > 13 ) then set shuffle = true
+return shuffle to main program
+
+<main>
+***data definitions
+10 set i = 0;
+15 set shuffle = false
+20 set MAX_CARDS = 52
+21 set n_Cards = 0
+25 set array cardHuman with MAX_CARDS elements
+30 set array cardComputer with MAX_CARDS elements
+***user introduction
+40 output introduction: objective, author, instructions/rules
+***generation of random numbers
+50 set cardHuman[i] value to a random number between 2 to 14
+55 set cardHuman[i] suit to a random number between 0 to 3
+60 set cardComputer[i] value to a random number between 2 to 14
+65 set cardComputer[i] suit to a random number between 0 to 3
+***output cards value and suit
+70 output "Pair of Cards #" and value of n_Cards + 1
+75 output "Human's card is a "
+80 execute subprogram outputCard sending the record cardHuman[i] as card.
+85 output "Computer's card is a "
+90 execute function outputCard sending the record cardComputer[i] as card.
+***output winner decision
+100 if (cardComputer[i] value > cardHuman[i] value) then output "Computer wins!" then skip to line 
+105 if (cardHuman[i] value > cardComputer[i] value) then output "Human wins!" then skip to line 130
+110 if (cardComputer[i] value == cardHuman[i] value) then output "It's a tie!" then return to line 
+115 execute function getYesOrNO and set playAgain to value returned
+120 i = i + 1
+125 execute function checkSuit sending the the field suit of cardHuman as card and n_Cards as n_Cards, and set shuffle to value returned
+130 execute function checkSuit sending the the field suit of cardComputer as card and n_Cards as n_Cards, and set shuffle to value returned
+135 if shuffle = true then output "13 cards of the same suit have been played, re-shuffling the deck." and set n_Cards = 0
+140 if n_Cards is 52 then output "52 pairs of cards have been played, re-shuffling the deck." and set n_Cards = 0.
+145 if playAgain = true then go back to line 50
+***
+
+
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: 
+purpose: Test a simple case with an tie and a invalid input for tryAgain.
+input values: 'K','n'
+
+execution:
+30 Objective: Display an interactive cards game human vs. computer.Author:Luis Cermeno
+40 14
+41 computerValue = 14
+42 2
+43 computerKind = 2
+44 14
+45 humanValue = 14
+46 0
+47 humanKind = 0
+50 Human's card is a 
+60 F
+61 F
+62 F
+63 Ace
+70 of
+71 Spades
+80 Computer's card is a
+90 F
+91 F
+92 F
+93 Ace
+100 of
+110 F
+111 F
+112 Hearts
+120 F
+121 F
+122 It's a tie!
+
+40 2
+41 computerValue = 2
+42 1
+43 computerKind = 1
+44 12
+45 humanValue = 12
+46 0
+47 humanKind = 0
+50 Human's card is a 
+60 F
+61 Queen
+70 of
+71 Spades
+80 Computer's card is a 
+90 F
+91 F
+92 F
+93 F
+94 2
+100 of
+110 F
+111 Diamonds
+120 F
+121 Human wins!
+130 Want to play again?
+140 K
+150 F
+160 F
+170 Invalid input, please try again"
+130 Want to play again?
+140 'n'
+150 F
+160 T
+
+999 END
+
+comments: Test successfullt executed with expected results.

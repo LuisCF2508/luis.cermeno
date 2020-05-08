@@ -1,0 +1,157 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+Display an interactive cards game human vs. computer.
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-playAgain
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. generation of random numbers 
+4. output cards value and kind
+5. output winner decision
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-output: "Computer's card is a " and computerValue " of " and computerSuit
+-output: "Human's card is a " and humanValue " of " and humanSuit
+-output "Human wins!" or "Computer wins!"
+-prompt: "Want to play again?"
+
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-computerValue (integer) computer's card value,number between 2-14, 11 as Jack, 12 as Queen, 13 as King, and 14 as Ace
+-computerKind (integer) computer's card kind, number between 0-3, 0 as Spades, 1 as Diamonds, 2 as Hearts, and 3 as Clubs
+-humanValue (integer) computer's card value,a number between 2-14,11 as Jack, 12 as Queen, 13 as King, and 14 as Ace
+-humanKind (integer) computer's card kind,number between 0-3, 0 as Spades, 1 as Diamonds, 2 as Hearts, and 3 as Clubs
+-playAgain (character) 'Y' for yes or 'N' for no.
+
+
+3. Algorithm instructions (recipe)
+***data
+***introduction 
+30 output introduction: objective, author, instructions/rules
+
+***generation of random number
+40 generate a random number between 2 to 14
+41 set computerValue = (generated random number)
+42 generate a random number between 0 to 3
+43 set computerKind = (generated random number)
+44 generate a random number between 2 to 14
+45 set humanValue = (generated random number)
+46 generate a random number between 0 to 3
+47 set humanKind = (generated random number)
+
+***output cards value and kind
+50 output "Human's card is a "
+60 if (humanValue == 11) then output "Jack" and skip to line 70, otherwise skip to next line
+61 if (humanValue == 12) then output "Queen" and skip to line 70, otherwise skip to next line
+62 if (humanValue == 13) then output "King" and skip to line 70, otherwise skip to next line
+63 if (humanValue == 14) then output "Ace" and skip to line 70, otherwise skip to next line
+64 output humanValue
+70 output " of "
+71 if (humanKind == 0) then output "Spades" and skip to line 80, otherwise skip to next line
+72 if (humanKind == 1) then output "Diamonds" and skip to line 80, otherwise skip to next line
+73 if (humanKind == 2) then output "Hearts" and skip to line 80, otherwise skip to next line
+74 if (humanKind == 3) then output "Clubs" and skip to line 80, otherwise skip to next line
+80 output "Computer's card is a "
+90 if (computerValue == 11) then output "Jack" and skip to line 100, otherwise skip to next line
+91 if (computerValue == 12) then output "Queen" and skip to line 100, otherwise skip to next line
+92 if (computerValue == 13) then output "King" and skip to line 100, otherwise skip to next line
+93 if (computerValue == 14) then output "Ace" and skip to line 100, otherwise skip to next line
+94 output computerValue
+100 output " of "
+110 if (computerKind == 0) then output "Spades" and skip to line 120, otherwise skip to next line
+111 if (computerKind == 1) then output "Diamonds" and skip to line 120, otherwise skip to next line
+112 if (computerKind == 2) then output "Hearts" and skip to line 120, otherwise skip to next line
+113 if (computerKind == 3) then output "Clubs" and skip to line 120, otherwise skip to next line
+
+***output winner decision
+120 if (computerValue > humanValue) then output "Computer wins!" then skip to line 130
+121 if (humanValue > computerValue) then output "Human wins!" then skip to line 130
+122 if (computerValue == humanValue) then output "It's a tie!" then return to line 40
+130 output "Want to play again?"
+140 input playAgain
+150 if (playAgain == 'Y' or 'y') then return to line 40
+160 if (playAgain == 'N' or 'n') then skip to line 999
+170 output "Invalid input, please try again" and return to line 130
+999 END
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: 
+purpose: Test a simple case with an tie and a invalid input for tryAgain.
+input values: 'K','n'
+
+execution:
+30 Objective: Display an interactive cards game human vs. computer.Author:Luis Cermeno
+40 14
+41 computerValue = 14
+42 2
+43 computerKind = 2
+44 14
+45 humanValue = 14
+46 0
+47 humanKind = 0
+50 Human's card is a 
+60 F
+61 F
+62 F
+63 Ace
+70 of
+71 Spades
+80 Computer's card is a
+90 F
+91 F
+92 F
+93 Ace
+100 of
+110 F
+111 F
+112 Hearts
+120 F
+121 F
+122 It's a tie!
+
+40 2
+41 computerValue = 2
+42 1
+43 computerKind = 1
+44 12
+45 humanValue = 12
+46 0
+47 humanKind = 0
+50 Human's card is a 
+60 F
+61 Queen
+70 of
+71 Spades
+80 Computer's card is a 
+90 F
+91 F
+92 F
+93 F
+94 2
+100 of
+110 F
+111 Diamonds
+120 F
+121 Human wins!
+130 Want to play again?
+140 K
+150 F
+160 F
+170 Invalid input, please try again"
+130 Want to play again?
+140 'n'
+150 F
+160 T
+
+999 END
+
+comments: Test successfullt executed with expected results.
