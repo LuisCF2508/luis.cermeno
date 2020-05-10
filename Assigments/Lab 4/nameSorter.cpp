@@ -77,7 +77,7 @@ int main()
     nNames++;
   }//while fin.good
 
-  //sort loops
+  //sort alphabetically
   string temp;
   for (i = 0; i < (nNames - 1); i++)
   {

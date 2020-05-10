@@ -72,7 +72,7 @@ int main()
                 cout.flush();  //clears the output buffer
 
                 //pause for one tenth of a second 
-                #ifdef _WIN32 
+                #ifdef _WIN32
                 Sleep(100); // hundred milliseconds
                 #else 
                 sleep(0.1); // 1 tenth of a second 
