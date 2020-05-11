@@ -67,7 +67,6 @@ DATA (list of all data items: definition, data type, formatting, or any other sp
 81 i = i + 1
 85 go back to 75
 90 if noDuplicate is true then set name[nNames] = lineFromFile
-95 go back to 65
 100 nNames = nNames + 1
 105 go back to 60
 ***sort alphabetically
@@ -85,6 +84,7 @@ DATA (list of all data items: definition, data type, formatting, or any other sp
 160 if i >= nNames then skip to 999
 165 output name [i]
 170 i = i + 1
+175 go back to 160
 999 END
 
 4. Test cases (list purpose of each test case, any input values, and expected results)
@@ -104,7 +104,6 @@ beth
 Carl
 Pat
 Sasha
-999 END
 -->execution:
 10 MAX_NAMES = 5
 15 nNames = 0
@@ -128,24 +127,83 @@ Sasha
 65 lineFromFile = Carl
 66 False
 70 i = 0
-75 True
+75 True, skipping to 90
 90 True, name[0] = Carl
-95 go back to 65
+100 nNames = 0 + 1 = 1
+105 go back to 60
+60 False, EOF not yet reached, Nnames is not >=5
 65 lineFromFile = beth
 66 False
 70 i = 0
-75 True
+75 False
+80 False
+81 i = 0 + 1 = 1
+85 go back to 75
+75 True, skipping to 90
 90 True, name[0] = beth
-95 go back to 65
-
-
-
-
-
-100 nNames = nNames + 1
+100 nNames = 1 + 1 = 2
 105 go back to 65
+60 False, EOF not yet reached, Nnames is not >=5
+65 lineFromFile = Pat
+66 False
+70 i = 0
+75 False
+80 False
+81 i = 0 + 1 = 1
+85 go back to 75
+75 False
+80 False
+81 i = 1+ 1 = 2
+85 go back to 75
+75 True, slipping to 90
+90 True, name[0] = Pat
+100 nNames = 2 + 1 = 3
+105 go back to 65
+60 False, EOF not yet reached, Nnames is not >=5
+65 lineFromFile = Alex
+66 False
+70 i = 0
+75 False
+80 False
+81 i = 0 + 1 = 1
+85 go back to 75
+75 False
+80 False
+81 i = 1+ 1 = 2
+85 go back to 75
+80 False
+81 i = 2 + 1 = 3
+85 go back to 75
+75 True, slipping to 90
+90 True, name[0] = Alex
+100 nNames = 3 + 1 = 4
+105 go back to 65
+60 False, EOF not yet reached, Nnames is not >=5
+65 lineFromFile = Sasha
+66 False
+70 i = 0
+75 False
+80 False
+81 i = 0 + 1 = 1
+85 go back to 75
+75 False
+80 False
+81 i = 1+ 1 = 2
+85 go back to 75
+80 False
+81 i = 2 + 1 = 3
+85 go back to 75
+75 False
+80 False
+81 i = 3+ 1 = 4
+85 go back to 75
+75 True, slipping to 90
+90 True, name[0] = Sasha
+100 nNames = 4 + 1 = 5
+105 go back to 65
+60 True, EOF is reached, skipping to 110
 ***sort alphabetically
-110 set i = 0
+110 i = 0
 115 if i >= Nnames - 1 then skip to 155
 120 set j = i + 1 
 125 if j >= nNames then skip to 145
@@ -155,11 +213,83 @@ Sasha
 145 i = i + 1
 150 go back to 115
 ***output names sorted
-155 set i = 0 
-160 if i >= nNames then skip to 999
-165 output name [i]
-170 i = i + 1
+155 i = 0 
+160 False
+165 Alex
+170 i = 0 + 1 = 1
+175 going back to 160
+160 False
+165 beth
+170 i = 1 + 1 = 2
+175 going back to 160
+160 False
+165 Carl
+170 i = 2 + 1 = 3
+175 going back to 160
+160 False
+165 Pat
+170 i = 3 + 1 = 4
+175 going back to 160
+160 False
+165 Sasha
+170 i = 4 + 1 = 5
+175 going back to 160
+160 True, skipping to 999
 999 END
 
 
 Test case #2: 
+--> purpose: test what if the file contain black lines and repeated names
+-->input files: myFriends.txt
+Carl
+carl
+beth
+
+Sasha
+bEtH
+
+Pat
+Alex
+ALEX
+-->expected console output:
+Enter the name of the file containing names: myFriends.txt
+Alex
+beth
+Carl
+Pat
+Sasha
+
+Test case #3: 
+--> purpose: test what if the file is empty
+-->input files: myFriends.txt [empty]
+-->expected console output:
+Enter the name of the file containing names: myFriends.txt
+--> comments: for future version console should let the user know the file is empty
+
+Test case #4: 
+--> purpose: test if the program is able to validate input
+-->input files: myFriends.cpp, .txt, myFriends.docx, myFriends.txt
+Carl
+beth
+Pat
+Alex
+Sasha
+-->expected console output:
+Enter the name of the file containing names: myFriends.cpp
+Sorry, that is an invalid name.
+The file name must have the .txt extension. Try again please.
+Enter the name of the file containing names: .txt
+Sorry, that is an invalid name.
+The file name must have the .txt extension. Try again please.
+Enter the name of the file containing names: myFriends.docx
+Sorry, that is an invalid name.
+The file name must have the .txt extension. Try again please.
+Enter the name of the file containing names: myFriends.txt
+Alex
+beth
+Carl
+Pat
+Sasha
+
+
+
