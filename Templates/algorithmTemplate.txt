@@ -23,19 +23,15 @@ DATA (list of all data items: definition, data type, formatting, or any other sp
 3. Algorithm instructions (recipe)
 ***data
 10 set ...
-20
 ***introduction 
-30 output introduction: objective, author, instructions/rules
+ output introduction: objective, author, instructions/rules
 ***
-40
 
-999 END
 
 4. Test cases (list purpose of each test case, any input values, and expected results)
 
 Test case #1: 
-10
-
-999 END
-
-Test case #2: 
+-->purpose:
+-->input values:
+-->expected console execution:
+-->execution:

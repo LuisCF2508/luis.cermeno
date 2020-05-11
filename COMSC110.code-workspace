@@ -10,7 +10,8 @@
 			"ostream": "cpp",
 			"iostream": "cpp",
 			"algorithm": "cpp",
-			"cctype": "cpp"
+			"cctype": "cpp",
+			"string": "cpp"
 		}
 	}
 }

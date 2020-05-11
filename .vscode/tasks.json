@@ -23,8 +23,8 @@
         },
         {
             "type": "shell",
-            "label": "clang++ build active file",
-            "command": "clang++",
+            "label": "c++ build active file",
+            "command": "c++",
             "args": [
                 "${file}",
                 "-o",
@@ -37,20 +37,18 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": []
         },
         {
             "type": "shell",
-            "label": "clang ++ test active file",
+            "label": "c++ test active file",
             "command": "${fileDirname}/a.out",
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${fileDirname}"
             },
             "group": {
                 "kind": "test",
                 "isDefault": true
             },
-            "problemMatcher": []
         }
     ]
 }

@@ -1,7 +1,7 @@
 //Objective:  template for C++ programs and to test code
 //Name: Luis Cermeno-Farro 1837034
 //Course: COMSC-110-8076
-//Compiler: Xcode
+//Compiler: Apple clang version 11.0.3 (clang-1103.0.32.59)
 //Editor: TextEdit
 
 //libraries
