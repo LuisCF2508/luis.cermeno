@@ -3,6 +3,7 @@ Luis Cermeno-Farro 1837034:
 Course and section: COMSC-110-8076
 
 1. Objective (1 sentence brief description of what this will do): 
+Read names from a text file and sort them alphabetically
 
 2. Requirements (any and all requirements organized by input, processing, output, data):
 INPUT (any data items to be input): 
@@ -11,31 +12,154 @@ INPUT (any data items to be input):
 PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
 1. data definitions
 2. user introduction
-3. 
+3. prompt for input file
+4.store the names checking for dubplicsates and blank spaces
+5.sort alphabetically
+6. output names sorted
 
 OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
 -user introduction: introduction of objective, author, user instructions/rules
--
+-prompt "Enter the name of the file containing names:"
+-output "Sorry, that is an invalid name. The file name must have the .txt extension. Try again please"
+-output elements of list name sorted alphabetically
 
-DATA (list of all data items: definition, data type, formatting, or any other specifications):
--
+DATA (list of all data items: definition, data type, formatting, or any other specifications)
+-inputFileName // (text) is the name of the file to read, input by the user <main>
+-lineFromFile // (text) is a line from the text file <main>
+-MAX_NAMES // (integer) is the maximun names that th list name can process <main>
+-nNames // (integer )is how many names the list has so far <main>
+-name // (list)  is the list of names <main>
+-temp // (string) is a temporary varaible to store each name when sorting
+-i // (integer) a counter to sort the names alphabetically <main>
+-j // (integer a counter to sort the names alphabetically <main>
+-noDuplicate // (boolean) is false when the list has a duplicate <main>
+-userInput // (text) is the input made by the user, value returned to main program <getFileName>
+
+
 
 3. Algorithm instructions (recipe)
+
+<algorithm for getFileName>
+1000 output "Enter input file name:
+1015 input userInput
+1020 if the lenght of userInput < 5 OR the last 4 characters are different from .txt then output "Sorry, that is an invalid name. The file name must have the .txt andextension. Try again please" and go back to 10
+1025 return the value of userInput to main program
+
+<algorithm for main program>
 ***data
-10 set ...
-20
+10 set MAX_NAMES = 5
+15 set nNames = 0
+16 set noDuplicate = true
+20 create list name with MAX_NAMES elements
 ***introduction 
 30 output introduction: objective, author, instructions/rules
-***
-40
-
+***prompt for input file
+40 go to subprogram <getFileName> and set inputFileName to the value returned
+***store the names checking for duplciates and blank spaces
+50 open file named as inputFileName
+55 if file has errors skip to 999
+60 if the end-of-file is reached OR nNames >= 5 then skip to 110
+65 set lineFromFile to the next line from file
+66 if lineFromFile lenght = 0 then skip to 105
+70 set i = 0
+75 if i >= Nnames skip to 90
+80 if lineFromFile = name[i] then set noDuplicate to false
+81 i = i + 1
+85 go back to 75
+90 if noDuplicate is true then set name[nNames] = lineFromFile
+95 go back to 65
+100 nNames = nNames + 1
+105 go back to 60
+***sort alphabetically
+110 set i = 0
+115 if i >= Nnames - 1 then skip to 155
+120 set j = i + 1 
+125 if j >= nNames then skip to 145
+130 if name[i] > name [j] then temp = name[i], name[i] = name[j], name[j] = temp
+135 j = j + 1
+140 go back to 125
+145 i = i + 1
+150 go back to 115
+***output names sorted
+155 set i = 0 
+160 if i >= nNames then skip to 999
+165 output name [i]
+170 i = i + 1
 999 END
 
 4. Test cases (list purpose of each test case, any input values, and expected results)
 
 Test case #1: 
-10
-
+--> purpose: test the simplest case
+-->input files: myFriends.txt
+Carl
+beth
+Pat
+Alex
+Sasha
+-->expected console output:
+Enter the name of the file containing names: myFriends.txt
+Alex
+beth
+Carl
+Pat
+Sasha
 999 END
+-->execution:
+10 MAX_NAMES = 5
+15 nNames = 0
+16 noDuplicate = true
+20 list name created with 5 elements 
+***introduction 
+30 introduction goes here...
+***prompt for input file
+40 going to subprogram <getFileName>
+<getFileName>
+1000 "Enter input file name:
+1015 myFriends.txt
+1020 False
+1025 return the value of userInput to main program
+<main>
+40 inputFileName = myFriends.txt
+***store the names checking for duplciates and blank spaces
+50 myFriends.txt opened
+55 False, no errors
+60 False, EOF not yet reached, Nnames is not >=5
+65 lineFromFile = Carl
+66 False
+70 i = 0
+75 True
+90 True, name[0] = Carl
+95 go back to 65
+65 lineFromFile = beth
+66 False
+70 i = 0
+75 True
+90 True, name[0] = beth
+95 go back to 65
+
+
+
+
+
+100 nNames = nNames + 1
+105 go back to 65
+***sort alphabetically
+110 set i = 0
+115 if i >= Nnames - 1 then skip to 155
+120 set j = i + 1 
+125 if j >= nNames then skip to 145
+130 if name[i] > name [j] then temp = name[i], name[i] = name[j], name[j] = temp
+135 j = j + 1
+140 go back to 125
+145 i = i + 1
+150 go back to 115
+***output names sorted
+155 set i = 0 
+160 if i >= nNames then skip to 999
+165 output name [i]
+170 i = i + 1
+999 END
+
 
 Test case #2: 
