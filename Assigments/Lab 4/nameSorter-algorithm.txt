@@ -7,7 +7,7 @@ Read names from a text file and sort them alphabetically
 
 2. Requirements (any and all requirements organized by input, processing, output, data):
 INPUT (any data items to be input): 
--
+-inputFileName
 
 PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
 1. data definitions
@@ -58,7 +58,7 @@ DATA (list of all data items: definition, data type, formatting, or any other sp
 ***store the names checking for duplciates and blank spaces
 50 open file named as inputFileName
 55 if file has errors skip to 999
-60 if the end-of-file is reached OR nNames >= 5 then skip to 110
+60 if the end-of-file is reached OR nNames >= 5 then skip to 106
 65 set lineFromFile to the next line from file
 66 if lineFromFile lenght = 0 then skip to 105
 70 set i = 0
@@ -69,6 +69,7 @@ DATA (list of all data items: definition, data type, formatting, or any other sp
 90 if noDuplicate is true then set name[nNames] = lineFromFile
 100 nNames = nNames + 1
 105 go back to 60
+106 close file
 ***sort alphabetically
 110 set i = 0
 115 if i >= Nnames - 1 then skip to 155
@@ -264,7 +265,7 @@ Test case #3:
 -->input files: myFriends.txt [empty]
 -->expected console output:
 Enter the name of the file containing names: myFriends.txt
---> comments: for future version console should let the user know the file is empty
+--> comments:THIS VALIDATION WAS NOT REQUIRED BY THE GUIDELINES.. BUT for future version console should let the user know the file is empty
 
 Test case #4: 
 --> purpose: test if the program is able to validate input
@@ -290,6 +291,3 @@ beth
 Carl
 Pat
 Sasha
-
-
-

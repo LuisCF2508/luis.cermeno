@@ -11,7 +11,8 @@
 			"iostream": "cpp",
 			"algorithm": "cpp",
 			"cctype": "cpp",
-			"string": "cpp"
+			"string": "cpp",
+			"typeinfo": "cpp"
 		}
 	}
 }

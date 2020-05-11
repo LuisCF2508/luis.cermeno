@@ -76,8 +76,8 @@ int main()
       if (noDuplicate) name[nNames] = lineFromFile;
     nNames++;
     }
-    
   }//while fin.good
+  fin.close();
 
   //sort alphabetically
   for (i = 0; i < (nNames - 1); i++)

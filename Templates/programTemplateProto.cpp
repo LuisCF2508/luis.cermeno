@@ -46,7 +46,7 @@ void introduction(string obj)//user introduction
   cout << obj; 
   cout << "Programmer: Luis Cermeno-Farro\n"; 
   cout << "Editor(s) used: TextEdit\n"; 
-  cout << "Compiler(s) used: Xcode\n"; 
+  cout << "Compiler(s) used: Apple clang version 11.0.3 (clang-1103.0.32.59)\n"; 
   cout << "File: " << __FILE__ << endl; 
   cout << "Complied: " << __DATE__ << " at " << __TIME__ << endl << endl; 
 
