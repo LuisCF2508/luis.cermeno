@@ -1,0 +1,426 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Faculty & Staff Directory</title>
+<style>
+A {text-decoration:none;}
+A:Hover {text-decoration:underline}
+</style>
+<meta name="Microsoft Border" content="none">
+</head>
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" marginheight="0" marginwidth="0" background="/images/subpage/subbackgrnd.gif" link="#0000FF"  vlink="#0000FF" alink="#0000FF"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" height="1">
+  <tr>
+    <td width="100%" bgcolor="#000000" height="1">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" height="1">
+        <tr>
+          <td width="20" height="1" valign="middle">
+            <p align="left">
+      <img border="0" src="/images/subpage/subbanner.gif" alt="Diablo Valley College">
+ </p>
+          </td>
+          <td width="68%" valign="middle" height="1">
+            <p align="right">
+            <a><map name="FPMap0">
+                    <area href="http://www.dvc.edu/index.htm" alt="Home" coords="8, 5, 45, 20" shape="rect">
+                    <area href="http://www.dvc.edu/contact/" alt="Contact Us" shape="rect" coords="59, 6, 128, 18">
+                    <area href="http://www.dvc.edu/site/" alt="A-Z Index" shape="rect" coords="138, 5, 200, 20">
+                    <area href="/search" shape="rect" alt="Search" coords="206, 7, 266, 21"></map><img border="0" src="http://192.235.0.6/images/subpage/navigation.gif" usemap="#FPMap0" alt="navigation" width="267" height="22"><font face="Verdana" size="1">&nbsp;&nbsp;&nbsp;</font></a></p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+</td></tr></table><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td valign="top" width="1%">
+
+<table border="0" width="175" cellspacing="0" cellpadding="5">
+  <tr>
+    <td align="left" width="8" valign="top">
+      <b><font size="2" face="Verdana">&nbsp;&nbsp;&nbsp;</font></b>
+    </td>
+    <td align="left" width="142" valign="top">
+<br></br>
+<b>
+  <font size="2" face="Verdana"><a href="/facultyhq/search.asp"><font color="#000000">Search Home Pages</font></a></font></b>
+<p><b><font size="2" face="Verdana"><a href="/faculty/directory"><font color="#000000">Faculty & Staff Directory</font></a></font></b>
+<p><b><font size="2" face="Verdana"><a href="/contact/comments.asp"><font color="#000000">Comments & Feedback</font></a></font></b>      
+<p><b><font size="2" face="Verdana"><a href="/contact"><font color="#000000">Contact Us</font></a></font></b>
+    </td>
+  </tr>
+</table>
+
+</td><td valign="top" width="24"></td><td valign="top">
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td valign="top">
+      &nbsp;&nbsp;&nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">
+      <font face="Verdana" size="4">Faculty &amp; Staff Directory</font>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">
+
+
+
+  </table>
+  <p>&nbsp;</p>
+
+<table border="1" cellpadding="3" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" id="AutoNumber1">
+	<tr>
+		<td><b><font face="Verdana" size="1">Last Name</font></b></td>
+		<td><b><font face="Verdana" size="1">First Name</font></b></td>
+		<td><b><font face="Verdana" size="1">Extension</font></b></td>
+		<td><b><font face="Verdana" size="1">Email Address</font></b></td>
+		<td><b><font face="Verdana" size="1">Division</font></b></td>
+		<td><b><font face="Verdana" size="1">Department</font></b></td>
+	</tr>
+	  <tr>
+    <td><font face='Verdana' size='1'>Bach</font></td>
+    <td><font face='Verdana' size='1'>Dan</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2800</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:DBach@dvc.edu'>DBach@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Brecha</font></td>
+    <td><font face='Verdana' size='1'>Jane</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2801</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:JBrecha@dvc.edu'>JBrecha@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Burns</font></td>
+    <td><font face='Verdana' size='1'>Robert</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2610</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:RBurns@dvc.edu'>RBurns@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Computer Science</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Christian</font></td>
+    <td><font face='Verdana' size='1'>Suzanne</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2830</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:SCMiller@dvc.edu'>SCMiller@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Collazo</font></td>
+    <td><font face='Verdana' size='1'>Monte</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2806</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:MCollazo@dvc.edu'>MCollazo@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Duke</font></td>
+    <td><font face='Verdana' size='1'>Carla</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2807</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:CDuke@dvc.edu'>CDuke@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Eckel</font></td>
+    <td><font face='Verdana' size='1'>Dick</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2810</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:DEckel@dvc.edu'>DEckel@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Edwards</font></td>
+    <td><font face='Verdana' size='1'>Karen</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2852</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:KEdwards@dvc.edu'>KEdwards@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Farmer</font></td>
+    <td><font face='Verdana' size='1'>Phillip</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2812</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:PFarmer@dvc.edu'>PFarmer@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Fratessa</font></td>
+    <td><font face='Verdana' size='1'>Lindsey</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2850</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:LFratessa@dvc.edu'>LFratessa@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Freidenreich</font></td>
+    <td><font face='Verdana' size='1'>Eric</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2805</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:EFreiden@dvc.edu'>EFreiden@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Haynes</font></td>
+    <td><font face='Verdana' size='1'>Cheryl</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2608</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:CHaynes@dvc.edu'>CHaynes@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science Division Office</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Johnson</font></td>
+    <td><font face='Verdana' size='1'>Dave</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2817</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:DJohnson@dvc.edu'>DJohnson@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Keating</font></td>
+    <td><font face='Verdana' size='1'>Katrina</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2813</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:KKeating@dvc.edu'>KKeating@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Khaja</font></td>
+    <td><font face='Verdana' size='1'>Gene</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2733</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:GKhaja@dvc.edu'>GKhaja@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Computer Science</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Knight</font></td>
+    <td><font face='Verdana' size='1'>Lynn</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2821</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:LKnight@dvc.edu'>LKnight@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Kow</font></td>
+    <td><font face='Verdana' size='1'>Helen</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2540</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:HKow@dvc.edu'>HKow@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Computer Science</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Kresch</font></td>
+    <td><font face='Verdana' size='1'>Holly</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2825</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:HaKresch@dvc.edu'>HaKresch@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Leitner</font></td>
+    <td><font face='Verdana' size='1'>Patty</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2826</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:PLeitner@dvc.edu'>PLeitner@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Levy</font></td>
+    <td><font face='Verdana' size='1'>Tina</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2827</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:TLevy@dvc.edu'>TLevy@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Lin</font></td>
+    <td><font face='Verdana' size='1'>Liling</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2623</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:LLin@dvc.edu'>LLin@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Lokke</font></td>
+    <td><font face='Verdana' size='1'>Carol</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2307</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:CLokke@dvc.edu'>CLokke@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Computer Science</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Lou</font></td>
+    <td><font face='Verdana' size='1'>Paul</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2361</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:PLou@dvc.edu'>PLou@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Computer Science</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Magee</font></td>
+    <td><font face='Verdana' size='1'>James</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2828</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:JMagee@dvc.edu'>JMagee@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Moore</font></td>
+    <td><font face='Verdana' size='1'>Susan</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2814</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:SMoore@dvc.edu'>SMoore@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Moran</font></td>
+    <td><font face='Verdana' size='1'>James</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2836</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:JMoran@dvc.edu'>JMoran@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Mowry</font></td>
+    <td><font face='Verdana' size='1'>Tom</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2837</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:TMowry@dvc.edu'>TMowry@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Needham</font></td>
+    <td><font face='Verdana' size='1'>Sam</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2839</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:SNeedham@dvc.edu'>SNeedham@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Nirgiotis</font></td>
+    <td><font face='Verdana' size='1'>Ted</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2841</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:TNirgiotis@dvc.edu'>TNirgiotis@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Osborne</font></td>
+    <td><font face='Verdana' size='1'>Beatrice</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2842</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:BOsborne@dvc.edu'>BOsborne@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Parks</font></td>
+    <td><font face='Verdana' size='1'>Will</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2854</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:WParks@dvc.edu'>WParks@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Prapavessi</font></td>
+    <td><font face='Verdana' size='1'>Despina</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2845</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:DPrapave@dvc.edu'>DPrapave@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Reynolds</font></td>
+    <td><font face='Verdana' size='1'>Margie</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2094</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:MReynold@dvc.edu'>MReynold@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Sarkis</font></td>
+    <td><font face='Verdana' size='1'>Schubert</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2846</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:SSarkis@dvc.edu'>SSarkis@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Smith</font></td>
+    <td><font face='Verdana' size='1'>Jenny</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2302</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:JeSmith@dvc.edu'>JeSmith@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Stallings</font></td>
+    <td><font face='Verdana' size='1'>Kenley</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2309</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:KStallin@dvc.edu'>KStallin@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Computer Science</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Westcott</font></td>
+    <td><font face='Verdana' size='1'>Alan</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2849</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:AWestcott@dvc.edu'>AWestcott@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Westlake</font></td>
+    <td><font face='Verdana' size='1'>Rachel</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2609</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:RWestlake@dvc.edu'>RWestlake@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science Division Office</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Wilcox</font></td>
+    <td><font face='Verdana' size='1'>Cheryl</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2847</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:CWilcox@dvc.edu'>CWilcox@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+  <tr>
+    <td><font face='Verdana' size='1'>Willett</font></td>
+    <td><font face='Verdana' size='1'>Peter</font></td>
+    <td><font face='Verdana' size='1'>(925) 685-1230 x2851</font></td>
+    <td><font face='Verdana' size='1'><a href='mailto:PWillett@dvc.edu'>PWillett@dvc.edu</font></td>
+    <td><font face='Verdana' size='1'>Math and Computer Science</font></td>
+    <td><font face='Verdana' size='1'>Mathematics</font></td>
+  </tr>
+
+</table>
+</table>
+</table>
+
+<hr size="1" color="#000000" align="right">
+<p align="left"><a href="http://www.dvc.edu/index.htm"><img border="0" src="/images//subpage/footer.gif" hspace="5" alt="Diablo Valley College" align="left" width="161" height="58"></a><i><font face="Verdana" size="2"><a href="http://www.dvc.edu/index.htm">Home</a>
+| <a href="http://www.dvc.edu/contact">Contact Us</a>
+ | <a href="http://www.dvc.edu/site">A-Z Index</a>
+ | <a href="http://www.dvc.edu/search/">Search<br>
+      </a>
+      <font color="#7A7A7A">©Copyright 2003-2006 Diablo Valley College<br>
+      321 Golf Club Road, Pleasant Hill, Ca, 94523, (925) 685-1230</font></font></i>
+
+
+
+
+</body></html>

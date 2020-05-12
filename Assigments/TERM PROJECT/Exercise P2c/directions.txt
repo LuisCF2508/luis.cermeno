@@ -1,0 +1,76 @@
+1. Modify email2-algorithm.txt to create email3-algorithm.txt to prompt the user for the input and output filenames, and then output to the console every valid email address as it is found. There is NO file output in this version.
+
+2. Write email3.cpp from email3-algorithm.txt
+
+Email addresses consist of the characters A-Z, a-z, 0-9, underscore, dot, hyphen, and plus. Also, they must have exactly one '@' followed by at least one '.'
+
+
+The program should prompt the user for the input and output filenames, open and read the input file, and output to the console the valid email addresses as they are found. If a line contains the character @, create the variables s, e, and hasDot, and use loops to find their values, per the lectures. If the values for these three indicate that the @ is inside a valid email address, output to the console that address. Repeat for each @ in a line.
+
+Do not deal with lists or duplicates at this point.
+
+Here are some guidelines:
+
+need subprograms for:
+
+void introduction(string obj); //program introduction and user instructions
+bool isValidEmailChar (char c); //Returns true if c is a valid email address character, else false
+string getFileName (string fileType, string dFileName); //outputs variable prompt with default filename and gets a filename (either input or output) using input validation and returns the fileName depending on user input. fileType = "input" or "output". This function is called TWICE: 1st. input file name then 2nd: output file name.
+int processLine(string lineFromFile); //has the 3 loops to find an @, then find the start of an email address, then find the end of an email address and extract an email address if i is pointing to an @, s < i, e > i, hasDot = true, dotPos > i + 1.  function processLine(string lineFromFile) returns number of valid email addresses found in that one line.
+void readFile (string iFileName); //reads input file until EOF and outputs valid email addresses and number of valid email addresses
+
+If you open the output file, you are not doing this right.
+If your e-loop is NOT after your s-loop, you are not doing this right.
+If your s- and e-loops are not contained in the code block of an if-statement that tests for the character @, you are not doing this right.
+If you do not using the substring function, you are not doing this right.
+If you do not create your own input files with which to test your program, you are not doing this right.
+
+if you are not using variables i, s, e, dotPos, hasDot, anEmail, nEmails
+
+if you do not output to the screen each valid email address with a "; " at the end 
+If you do not test your program with the ten .txt files provided in the project writeup, and see duplicate email addresses outputed, you are not doing this right.
+Compile and run the program. Submit the source file to the class website for credit.
+
+Test files:
+
+0.txtPreview the document
+
+1.txtPreview the document
+
+2.txtPreview the document
+
+3.txtPreview the document
+
+4.txtPreview the document
+
+5.txtPreview the document
+
+6.txtPreview the document
+
+7.txtPreview the document
+
+8.txtPreview the document
+
+9.txtPreview the document
+
+math1.txtPreview the document
+
+
+Example. Your program's console I/O should look something like this, excluding your identifying information:
+
+Enter input filename [default: fileContainingEmails.txt]: x.txt
+Enter output filename [default: x.txt]: y.txt
+
+Input file name is x.txt
+Output file name is y.txt
+
+Please press Enter key to continue:
+
+RBurns@dvc.edu
+RBurns@dvc.edu
+
+Number of valid email addresses is 2
+
+3. Please submit the following files:
+email3-algorithm.txt
+email3.cpp 
