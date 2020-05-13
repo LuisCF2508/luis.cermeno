@@ -2,7 +2,8 @@
 
 2. Write email3.cpp from email3-algorithm.txt
 
-Email addresses consist of the characters A-Z, a-z, 0-9, underscore, dot, hyphen, and plus. Also, they must have exactly one '@' followed by at least one '.'
+Email addresses consist of the characters A-Z(65-90), a-z(97-122), 0-9 (48-57), underscore (95), dot(46), hyphen(45), and plus(43). Also, they must have exactly one '@'(64) followed by at least one '.'
+
 
 
 The program should prompt the user for the input and output filenames, open and read the input file, and output to the console the valid email addresses as they are found. If a line contains the character @, create the variables s, e, and hasDot, and use loops to find their values, per the lectures. If the values for these three indicate that the @ is inside a valid email address, output to the console that address. Repeat for each @ in a line.
