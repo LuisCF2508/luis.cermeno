@@ -74,7 +74,7 @@ void introduction(string obj)//user introduction
 }//introduction function
 
 
-//input function (for either input or output)
+//input function: for either input or output)
 string getFileName(string filetype, string dFileName)
 {
   //Data
@@ -107,10 +107,10 @@ string getFileName(string filetype, string dFileName)
     }
   }
   return userInput;
-}//input function (for either input or output)
+}//input function
 
 
-//reads input file until EOF that calls function processLine for each line read from the input file
+//function readFile: reads input file until EOF that calls function processLine for each line read from the input file
 void readFile(string iFileName)
 {
   //Data
@@ -132,19 +132,22 @@ void readFile(string iFileName)
       nLines++;
     }//while fin.good
   fin.close();
-}//reads input file until EOF that calls function processLine for each line read from the input file
+}//reads readFile
 
+
+//function processLine: function to find a @, then find the start of an email addres, then find the end of the email and extract
 int processLine(string lineFromFile)
 {
+  //Data
   int i; //(integer) is a counter used to process each character of the line and find an '@' 
   int aChar; //(integer) is a counter used to process each character of the line and find the start and the end of an email
-  bool validChars = true; //(boolean) is true if the email is valid an ready to outpur
   int nEmails = 0; // (integer) number of valid Email adresses found, value returned to main program
   int s; //(integer) is the character position in lineFromFile for the start of a possible email
   int e; //(integer) is the character position in lineFromFile for the end of a possible email
   bool hasDot; //(integer) is true if the possible email has a dot on their characters
   int dotPos; //(integer) is the character number of lineFromFile in which the dot is
 
+  //Traverse the whole lineFromFile string
   for (i = 0; i < lineFromFile.length() ; i++)
   {
     //Look for @
@@ -152,17 +155,15 @@ int processLine(string lineFromFile)
     {
       s = 0; //s starts in the first character in case the line begins with the email
       e = lineFromFile.length() - 1; //e starts in the last character in the case the line ends with the email
-      validChars = true; // validChars is initialized as true, it changes in case an in valid char is finded
       cout << "@ has been foun found in position " << i << endl;
-      //Look for start
-      for (aChar = 0; aChar < i; aChar++) if (!(isValidEmailChar(lineFromFile[aChar])))  s = aChar + 1; //starting from the beginning of lineFromFile compare each character with ASCII32 or ASCII9 which is a space and tab respectively.
-      //Loof for end
-      for (aChar = lineFromFile.length() - 1; i < aChar; aChar--) if (!(isValidEmailChar(lineFromFile[aChar]))) e = aChar - 1;//starting from the end of lineFromFile compare each character with ASCII32 which is a space
+      //Traverse lineFromFile from the beginning until '@' and look for start of email
+      for (aChar = 0; aChar < i; aChar++) if (!(isValidEmailChar(lineFromFile[aChar])))  s = aChar + 1; //compare each character with ASCII32 or ASCII9 which is a space and tab respectively.
+      //Traverse lineFromFile from the end until '@' and look for end of email
+      for (aChar = lineFromFile.length() - 1; i < aChar; aChar--) if (!(isValidEmailChar(lineFromFile[aChar]))) e = aChar - 1;//compare each character with ASCII32 which is a space
       cout << "start and end found:" << s << " and " << e << endl;
-      //Look for invalid character
+      //Look for dot and its position
       for (aChar = s; aChar <= e; aChar++) 
       {
-        if ( (aChar != i) && !(isValidEmailChar(lineFromFile[aChar])) ) {validChars = false; cout <<"NO SHOW: invalid char" << endl;} else cout << "CHAR APROVED" << endl;
         //Look for dot and its position
         if (lineFromFile[aChar] == 46) //compare each character with ASCII46 which is '@'
         {
@@ -172,7 +173,7 @@ int processLine(string lineFromFile)
         }
       }
       //Make the decision to extract the email
-      if ((validChars) && (s < i) && (e > i) && (hasDot) && (dotPos > i + 1) ) 
+      if ((s < i) && (e > i) && (hasDot) && (dotPos > i + 1) ) 
       {
           cout << "EMAIL APPROVED..DISPLAYING:";  
           for (aChar = s; aChar <= e; aChar++) cout << lineFromFile[aChar];
@@ -183,9 +184,10 @@ int processLine(string lineFromFile)
     }
   }//loop to look for an '@'
   return nEmails;
-}
+}//function processLine
 
 
+//function is ValidEmailChar: Returns true if c is a valid email address character, else false
 bool isValidEmailChar(char c)
 {
   bool validChar = true;
@@ -193,4 +195,4 @@ bool isValidEmailChar(char c)
   // traslated: if( !(c is A - Z)  && !(c is a-z) && !(c is 0-9)  && (c != '_') && (c != '.') && (c != '-') && (c != '+'))
   if( !( (65 <= c) && (c <= 90) )  && !( (97 <= c) && (c <= 122) ) && !(  (48 <= c) && (c <= 57)  ) && (c != 95) && (c != 46) && (c != 45) && (c != 43)) validChar = false;
   return validChar;
-}
+}//function is ValidEmailChar
