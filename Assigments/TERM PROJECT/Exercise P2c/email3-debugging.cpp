@@ -126,8 +126,9 @@ void readFile(string iFileName)
     {
       getline(fin, lineFromFile);
       //Process lineFromFile to check for '@'
+      cout << endl << "LINE READ:" << lineFromFile << endl;
       nEmails = processLine(lineFromFile);
-      cout << nEmails;
+      cout << "Emails found:" << nEmails;
       nLines++;
     }//while fin.good
   fin.close();
@@ -154,9 +155,9 @@ int processLine(string lineFromFile)
       validChars = true; // validChars is initialized as true, it changes in case an in valid char is finded
       cout << "@ has been foun found in position " << i << endl;
       //Look for start
-      for (aChar = 0; aChar < i; aChar++) if (lineFromFile[aChar] == 32) s = aChar + 1; //starting from the beginning of lineFromFile compare each character with ASCII32 which is a space
+      for (aChar = 0; aChar < i; aChar++) if (!(isValidEmailChar(lineFromFile[aChar])))  s = aChar + 1; //starting from the beginning of lineFromFile compare each character with ASCII32 or ASCII9 which is a space and tab respectively.
       //Loof for end
-      for (aChar = lineFromFile.length() - 1; i < aChar; aChar--) if (lineFromFile[aChar] == 32) e = aChar - 1;//starting from the end of lineFromFile compare each character with ASCII32 which is a space
+      for (aChar = lineFromFile.length() - 1; i < aChar; aChar--) if (!(isValidEmailChar(lineFromFile[aChar]))) e = aChar - 1;//starting from the end of lineFromFile compare each character with ASCII32 which is a space
       cout << "start and end found:" << s << " and " << e << endl;
       //Look for invalid character
       for (aChar = s; aChar <= e; aChar++) 
@@ -193,4 +194,3 @@ bool isValidEmailChar(char c)
   if( !( (65 <= c) && (c <= 90) )  && !( (97 <= c) && (c <= 122) ) && !(  (48 <= c) && (c <= 57)  ) && (c != 95) && (c != 46) && (c != 45) && (c != 43)) validChar = false;
   return validChar;
 }
-

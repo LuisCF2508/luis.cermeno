@@ -152,9 +152,9 @@ int processLine(string lineFromFile)
       e = lineFromFile.length() - 1; //e starts in the last character in the case the line ends with the email
       validChars = true; // validChars is initialized as true, it changes in case an in valid char is finded
       //Look for start
-      for (aChar = 0; aChar < i; aChar++) if (lineFromFile[aChar] == 32) s = aChar + 1; //starting from the beginning of lineFromFile compare each character with ASCII32 which is a space
+      for (aChar = 0; aChar < i; aChar++) if (!(isValidEmailChar(lineFromFile[aChar])))  s = aChar + 1; //starting from the beginning of lineFromFile check each character until finding an invalid one, the inmediate next will be the start of the email
       //Loof for end
-      for (aChar = lineFromFile.length() - 1; i < aChar; aChar--) if (lineFromFile[aChar] == 32) e = aChar - 1;//starting from the end of lineFromFile compare each character with ASCII32 which is a space
+      for (aChar = lineFromFile.length() - 1; i < aChar; aChar--) if (lineFromFile[aChar] == 32 || lineFromFile[aChar] == 9 ||  !(isValidEmailChar(lineFromFile[aChar])) ) e = aChar - 1;//starting from the end of lineFromFile check each character until finding an invalid one, the inmediate preveios will be the end of the email
       //Look for invalid character
       for (aChar = s; aChar <= e; aChar++) 
       {
@@ -175,7 +175,6 @@ int processLine(string lineFromFile)
       }
     }
   }//loop to look for an '@'
-  cout << endl;
   return nEmails;
 }
 
