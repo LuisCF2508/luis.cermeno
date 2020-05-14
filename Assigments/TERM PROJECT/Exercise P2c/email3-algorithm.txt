@@ -3,20 +3,20 @@ Luis Cermeno-Farro 1837034:
 Course and section: COMSC-110-8076
 
 1. Objective (1 sentence brief description of what this will do): 
-Read user selected input file line by line and output each line as many times for each @ in that line.
+Read user selected input file line by line and output to the console every valid email address as it is found.
 
 2. Requirements (any and all requirements organized by input, processing, output, data):
 INPUT (any data items to be input): 
 -iFileName
 -oFileName
--enterKey
+-wait
 
 PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
 1. data definitions
 2. user introduction
 3. input filenames (input and output) using variable prompts and default filenames and input validation
 4. output filenames and pause program execution until user presses enter key
-5. read input file and output lines with @
+5. read input file and output emails
 
 OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
 -user introduction: introduction of objective, author, "This program will prompt you for two text file names, an input and an output file. The program will read you input file and then show the lines containing the character '@'.Please filetype the name of each file correctly including the extension .txt. No other file extension is yet supported.".
@@ -29,7 +29,7 @@ DATA (list of all data items: definition, data filetype, formatting, or any othe
 -iFileName // (text) :  is the input file name <main>
 -oFileName // (text) :  is the output file name <main>
 -dFileName // (text) : is the default file name <main>
--enterKey // (text) : just a variable to read the ENTER key at the end of the program. <main>
+-wait // (text) : just a variable to read the ENTER key at the end of the program. <main>
 
 -filetype // (text): is either "input" or "output" choice given to the subprogram "getFileName" <getFileName>
 -dFileName // (text) : is the default file name given to the subprogram "getFileName" <getFileName>
@@ -39,12 +39,17 @@ DATA (list of all data items: definition, data filetype, formatting, or any othe
 -iFileName // (text): is the name of the input file given to the subprogram "readFile" <readFile>
 -nLines // (integer) number of lines of the file <readFile>
 -lineFromFile //(text) is a line read from the input file <readFile>
--nATs // (integer) number of '@' character found in each line, returned to readFile subprogram <readFile>
+-nEmails // (integer) number of valid Email adresses in each line  <readFile>
 -i //(integer) is a counter used to output i number of times lineFromFile <readFile>
 
 -lineFromFile //(text) each line in the text file, is given to the subprogram <processLine>
 -i //(integer) is a counter used to each character of the line <processLine>
--nATs // (integer) number of '@' character found in each line, returned to readFile subprogram <processLine>
+-anEmail //(integer) is a counter used to process each character of the line and find the start and the end of an email <processLine>
+-s //(integer) is the character position in lineFromFile for the start of a possible email <processLine>
+-e //(integer) is the character position in lineFromFile for the end of a possible email <processLine>
+-dotPos //(integer) is the character number of lineFromFile in which the dot is <processLine>
+-hasDot //(integer) is true if the possible email has a dot on their characters <processLine>
+-nEmails // (integer) number of valid Email adresses found, value returned to subprogram readFile program <processLine>
 
 
 3. Algorithm instructions (recipe)
@@ -97,7 +102,7 @@ DATA (list of all data items: definition, data filetype, formatting, or any othe
 50 output label for the input file name, and iFileName
 55 output label for the output file name, and oFileName
 60 output a prompt to press ENTER key to continue
-65 input enterKey
+65 input wait
 70 go to subprogram readFile (give the value of iFileName as iFileName)
 999 END
 

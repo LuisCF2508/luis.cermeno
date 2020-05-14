@@ -30,11 +30,11 @@ bool isValidEmailChar(char c); //Returns true if c is a valid email address char
 int main()
 {
   //Data definitions
-  string objective = "Objective: Create a program to identify '@' characters and output the lines containing them for the term project.\n";
+  string objective = "Objective: Read user selected input file line by line and output to the console every valid email address as it is found.\n";
   string iFileName; // (text) :  is the input file name
   string oFileName; // (text) :  is the output file name
   string dFileName = "fileContainingEmails.txt"; // (text) :  is the default file name
-  string enterKey; // (text) : just a variable to read the ENTER key at the end of the program.
+  string wait; // (text) : just a variable to read the ENTER key at the end of the program.
 
   //User introduction
   introduction(objective);
@@ -49,7 +49,7 @@ int main()
   cout << "-> Input file: " << iFileName << endl;
   cout << "-> Output file: " << oFileName << endl;
   cout << "Press ENTER key to continue:";
-  getline(cin,enterKey);
+  getline(cin,wait);
 
   //Read input file and output lines with @
   readFile(iFileName);
@@ -138,12 +138,13 @@ int processLine(string lineFromFile)
 {
   //Data
   int i; //(integer) is a counter used to process each character of the line and find an '@' 
-  int anEmail; //(integer) is a counter used to process each character of the line and find the start and the end of an email
-  int nEmails = 0; // (integer) number of valid Email adresses found, value returned to main program
+  int nEmails = 0; // (integer) number of valid Email adresses found, value returned to subprogram readFile program
   int s; //(integer) is the character position in lineFromFile for the start of a possible email
   int e; //(integer) is the character position in lineFromFile for the end of a possible email
   int dotPos; //(integer) is the character number of lineFromFile in which the dot is
   bool hasDot; //(integer) is true if the possible email has a dot on their characters
+  string anEmail; //(integer) is an sub string of lineFromFile that stores a complete valid email
+
 
   //Main loop to traverse the whole lineFromFile
   for (i = 0; i < lineFromFile.length() ; i++)
@@ -153,24 +154,30 @@ int processLine(string lineFromFile)
     {
       s = 0; //s starts in the first character in case the line begins with the email
       e = lineFromFile.length() - 1; //e starts in the last character in the case the line ends with the email
-      //Traverse lineFromFile from the beginning until '@' and look for start of email
-      for (anEmail = 0; anEmail < i; anEmail++) if (!(isValidEmailChar(lineFromFile[anEmail])))  s = anEmail + 1; //check each character until finding an invalid one, the inmediate next will be the start of the email
-      //Traverse lineFromFile from the end until '@' and look for end of email
-      for (anEmail = lineFromFile.length() - 1; i < anEmail; anEmail--) if (lineFromFile[anEmail] == 32 || lineFromFile[anEmail] == 9 ||  !(isValidEmailChar(lineFromFile[anEmail])) ) e = anEmail - 1;//check each character until finding an invalid one, the inmediate preveios will be the end of the email
-      //Traverse lineFromFile from s until e and look for dot and its position
-      for (anEmail = s; anEmail <= e; anEmail++) 
-      {
-        if (lineFromFile[anEmail] == 46) //compare each character with ASCII46 which is '.'
+      //Loop to traverse lineFromFile from the character @ to the left
+      for (s = i - 1; s >= 0; s--) 
+        if (!(isValidEmailChar(lineFromFile[s])))  //check each character until finding an invalid one
+          {
+            s = s + 1;
+            break; 
+          }
+      //Loop to traverse lineFromFile from the character @ to the right
+      for (e = i + 1; e < lineFromFile.length(); e++) 
+        if (!(isValidEmailChar(lineFromFile[e]))) //check each character until finding an invalid one
+        {
+          e = e - 1;
+          break;
+        }
+        else if (lineFromFile[e] == 46) //compare each character with ASCII46 which is '.'
         {
           hasDot = true;
-          dotPos = anEmail;
+          dotPos = e;
         }
-      }
       //Decide whether to output the email
       if ( (s < i) && (e > i) && (hasDot) && (dotPos > i + 1) ) 
       {
-          for (anEmail = s; anEmail <= e; anEmail++) cout << lineFromFile[anEmail];
-          cout << "; ";
+          anEmail = lineFromFile.substr(s,e - s);
+          cout << anEmail << "; ";
           nEmails++;
       }
     }
