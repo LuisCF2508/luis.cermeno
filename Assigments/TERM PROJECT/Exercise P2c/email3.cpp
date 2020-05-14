@@ -119,7 +119,7 @@ void readFile(string iFileName)
   int nEmails; // (integer) number of valid Emails found in each line, returned to main program
   int i; //(integer) is a counter used to process the line read a look for '@'s
 
-  //Open and read the file
+  //Read each line in the file and find each @
   fin.open(iFileName.c_str());
   if (!(fin.good())) throw "I/O error";
   while (fin.good())
@@ -143,7 +143,7 @@ int processLine(string lineFromFile)
   int e; //(integer) is the character position in lineFromFile for the end of a possible email
   int dotPos; //(integer) is the character number of lineFromFile in which the dot is
   bool hasDot; //(integer) is true if the possible email has a dot on their characters
-  string anEmail; //(integer) is an sub string of lineFromFile that stores a complete valid email
+  string anEmail; //(string) is an sub string of lineFromFile that stores a complete valid email
 
 
   //Main loop to traverse the whole lineFromFile
@@ -189,9 +189,9 @@ int processLine(string lineFromFile)
 //function isValidEmail
 bool isValidEmailChar(char c)
 {
-  bool validChar = true;
+  bool result = true;
   //check for the valid characters using ascii equivalents
   // traslated: if( !(c is A - Z)  && !(c is a-z) && !(c is 0-9)  && (c != '_') && (c != '.') && (c != '-') && (c != '+'))
   if( !( (65 <= c) && (c <= 90) )  && !( (97 <= c) && (c <= 122) ) && !(  (48 <= c) && (c <= 57)  ) && (c != 95) && (c != 46) && (c != 45) && (c != 43)) validChar = false;
-  return validChar;
+  return result;
 } //Funcion isValidEmail

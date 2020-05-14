@@ -14,9 +14,10 @@ INPUT (any data items to be input):
 PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
 1. data definitions
 2. user introduction
-3. input filenames (input and output) using variable prompts and default filenames and input validation
+3. get filenames (input and output) using variable prompts and default filenames and input validation
 4. output filenames and pause program execution until user presses enter key
 5. read input file and output emails
+
 
 OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
 -user introduction: introduction of objective, author, "This program will prompt you for two text file names, an input and an output file. The program will read you input file and then show the lines containing the character '@'.Please filetype the name of each file correctly including the extension .txt. No other file extension is yet supported.".
@@ -42,14 +43,13 @@ DATA (list of all data items: definition, data filetype, formatting, or any othe
 -nEmails // (integer) number of valid Email adresses in each line  <readFile>
 -i //(integer) is a counter used to output i number of times lineFromFile <readFile>
 
--lineFromFile //(text) each line in the text file, is given to the subprogram <processLine>
--i //(integer) is a counter used to each character of the line <processLine>
--anEmail //(integer) is a counter used to process each character of the line and find the start and the end of an email <processLine>
+-i; //(integer) is a counter used to process each character of the line and find an '@' <processLine>
+-nEmails = 0 // (integer) number of valid Email adresses found, value returned to subprogram readFile program <processLine>
 -s //(integer) is the character position in lineFromFile for the start of a possible email <processLine>
 -e //(integer) is the character position in lineFromFile for the end of a possible email <processLine>
 -dotPos //(integer) is the character number of lineFromFile in which the dot is <processLine>
 -hasDot //(integer) is true if the possible email has a dot on their characters <processLine>
--nEmails // (integer) number of valid Email adresses found, value returned to subprogram readFile program <processLine>
+-anEmail //(string) is an sub string of lineFromFile that stores a complete valid email <processLine>
 
 
 3. Algorithm instructions (recipe)
@@ -94,7 +94,7 @@ DATA (list of all data items: definition, data filetype, formatting, or any othe
 10 set dFileName = "fileContainingEmails.txt"
 ***introduction 
 20 output introduction: objective, author, instructions/rules
-***prompt user for file name, check for default and valid input
+***get filenames (input and output) using variable prompts and default filenames and input validation
 30 set iFileName = fileName from subprogram "getFileName" (give the values of "input" as filetype and dFileName as dFileName)
 35 if iFileName = dFileName then dFileName = "copyPasteMyEmails.txt", else dFileName = iFileName
 40 set oFileName = fileName from subprogram "getFileName" (give the values of "output" as filetype and dFileName as dFileName)
@@ -103,12 +103,66 @@ DATA (list of all data items: definition, data filetype, formatting, or any othe
 55 output label for the output file name, and oFileName
 60 output a prompt to press ENTER key to continue
 65 input wait
+***read input file and output emails
 70 go to subprogram readFile (give the value of iFileName as iFileName)
 999 END
 
 
 4. Test cases (list purpose of each test case, any input values, and expected results)
 
+Test case #1
+-->purpose: test essential given test case
+-->input for processLine function:
+lineFromFile="rburns@dvc.edu";
+              01234567891123
+i=6
+s=0
+e=14
+dotPos=10
+hasDot=true
+anEmail="rburns@dvc.edu"
+nEmails=1
+
+Essential test case #2
+-->purpose: test essential given test case
+-->input for processLine function:
+lineFromFile="rburns@dvc.edu vcolber@dvc.edu";
+              012345678911234567890123456789
+-->variables after main loop for @ found in i=6:
+i=6
+s=0
+e=14
+dotPos=10
+hasDot=true
+anEmail="rburns@dvc.edu"
+nEmails=1
+-->varables after main loop for @ found in i=22:
+i=22
+s=15
+e=30
+dotPos=26
+hasDot=true
+anEmail="vcolber@dvc.edu"
+nEmails=2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------TEST CASES FROM VERSION P2B-------------
 Test case #1: 
 -->purpose: simplest given test case
 -->input file: 0.txt
@@ -128,200 +182,6 @@ press ENTER key to continue:
 @x
 x@
 x@x
--->execution:
-***data
-10 dFileName = "fileContainingEmails.txt"
-***introduction 
-20 user introduction output
-***prompt user for file name, check for default and valid input.
-30 going to subprogram getFileName
-<getFileName>
-1010 fileName = "No name"
-1015 Enter input filename [Press ENTER for default: fileContainingEmails.txt]:
-1020 0.txt
-1025 False
-1030 valid = false
-1035 False
-1040 True, skipping to 1050
-1050 returning fileName
-<main>
-30 set iFileName = fileName = 0.txt
-35 False, dFileName = iFileName
-40 going to subprogram getFileName
-<getFileName>
-1010 fileName = "y.txt"
-1015 Enter input filename [Press ENTER for default: fileContainingEmails.txt]:
-1020 y.txt
-1025 False
-1030 valid = false
-1035 False
-1040 True, skipping to 1050
-1050 returning fileName
-<main>
-40 set oFileName = fileName = y.txt
-***output file names
-50 Input file: 0.txt
-55 Output file: y.txt
-60 press ENTER key to continue:
-65 ENTER KEY
-70 going to subprogram readFile (give the value of 0.txt as iFileName)
-
-<readFile>
-2010 nLines = 0
-2015 0.txt opened
-2020 False, no errors
-
-2025 False, EOF not yet reached
-2030 lineFromFile = Nothing
-2035 going to subprogram processLine (give the value of Nothing as lineFromFile)
-<processLine>
-3010 nATs = 0
-3015 i = 0
-3020 False, i is not => 7
-3025 False
-3030 i = 0 + 1 = 1
-3020 False, i is not => 7
-3025 False
-3030 i = 1 + 1 = 2
-3020 False, i is not => 7
-3025 False
-3030 i = 2 + 1 = 3
-3020 False, i is not => 7
-3025 False
-3030 i = 3 + 1 = 4
-3020 False, i is not => 7
-3025 False
-3030 i = 4 + 1 = 5
-3020 False, i is not => 7
-3025 False
-3030 i = 5 + 1 = 6
-3020 False, i is not => 7
-3025 False
-3030 i = 6 + 1 = 7
-3020 True, i => 7
-3045 returning nATs = 0 to readFile subprogram
-<readFile>
-2035 nATs = 0
-2040 i = 0
-2045 False, skipping to 2060
-2060 nLines = 0 + 1 + 1
-2065 going back to 2025
-
-2025 False, EOF not yet reached
-2030 lineFromFile = here
-2035 going to subprogram processLine (give the value of here as lineFromFile)
-<processLine>
-3010 nATs = 0
-3015 i = 0
-3020 False, i is not => 4
-3025 False
-3030 i = 0 + 1 = 1
-3020 False, i is not => 4
-3025 False
-3030 i = 1 + 1 = 2
-3020 False, i is not => 4
-3025 False
-3030 i = 2 + 1 = 3
-3020 False, i is not => 4
-3025 False
-3030 i = 3 + 1 = 4
-3020 True, i => 4
-3045 returning nATs = 0 to readFile subprogram
-<readFile>
-2035 nATs = 0
-2040 i = 0
-2045 False, skipping to 2060
-2060 nLines = 1 + 1 + 2
-2065 going back to 2025
-
-2025 False, EOF not yet reached
-2030 lineFromFile = @
-2035 going to subprogram processLine (give the value of @ as lineFromFile)
-<processLine>
-3010 nATs = 0
-3015 i = 0
-3020 False, i is not => 4
-3025 True, nATs = 0 + 1 = 1
-3030 i = 0 + 1 = 1
-3020 True, i => 1
-3045 returning nATs = 1 to readFile subprogram
-<readFile>
-2035 nATs = 1
-2040 i = 0
-2045 True, "@"
-2060 nLines = 2 + 1 + 3
-2065 going back to 2025
-
-2025 False, EOF not yet reached
-2030 lineFromFile = @x
-2035 going to subprogram processLine (give the value of @x as lineFromFile)
-<processLine>
-3010 nATs = 0
-3015 i = 0
-3020 False, i is not => 2
-3025 True, nATs = 0 + 1 = 1
-3030 i = 0 + 1 = 1
-3020 False, i is not => 2
-3025 False
-3030 i = 1 + 1 = 2
-3020 True, i => 2
-3045 returning nATs = 1 to readFile subprogram
-<readFile>
-2035 nATs = 1
-2040 i = 0
-2045 True, @x
-2060 nLines = 3 + 1 + = 4
-2065 going back to 2025
-
-2025 False, EOF not yet reached
-2030 lineFromFile = x@
-2035 going to subprogram processLine (give the value of @x as lineFromFile)
-<processLine>
-3010 nATs = 0
-3015 i = 0
-3020 False, i is not => 2
-3025 False
-3030 i = 0 + 1 = 1
-3020 False, i is not => 2
-3025 True, nATs = 0 + 1 = 1
-3030 i = 1 + 1 = 2
-3020 True, i => 2
-3045 returning nATs = 1 to readFile subprogram
-<readFile>
-2035 nATs = 1
-2040 i = 0
-2045 True, x@
-2060 nLines = 4 + 1 + = 5
-2065 going back to 2025
-
-2025 False, EOF not yet reached
-2030 lineFromFile = x@
-2035 going to subprogram processLine (give the value of @x as lineFromFile)
-<processLine>
-3010 nATs = 0
-3015 i = 0
-3020 False, i is not => 3
-3025 False
-3030 i = 0 + 1 = 1
-3020 False, i is not => 3
-3025 True, nATs = 0 + 1 = 1
-3030 i = 1 + 1 = 2
-3020 False, i is not => 3
-3025 False
-3030 i = 1 + 1 = 3
-3020 True, i => 3
-3045 returning nATs = 1 to readFile subprogram
-<readFile>
-2035 nATs = 1
-2040 i = 0
-2045 True, x@x
-2060 nLines = 5 + 1 + = 6
-2065 going back to 2025
-
-2025 True, EOF reached, skipping to 2080
-2080 returning to main program
-<main>
-999 END
 -->comments: execution succesfully completed, got expected results
 
 Test case #2 : 
