@@ -1,0 +1,18 @@
+1. Write myFibonacci-algorithm.txt to calculate a value in the "Fibonacci number" series. This series is: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34,.., where 0 is the zeroth number in the series, 1 is
+the first, 1 is the second, and so on. Note that for each number after the opening 0 and 1, the value equals the sum of the two values that precede it. For example, 13 + 21 = 34.
+Input from the console keyboard: one number, a sequence number equal to zero or greater. Output: all the numbers in the Fibonacci sequence up to and including the sequence number separated by a space, and on a second line output the Fibonacci number corresponding to the sequence number input.
+
+2. Write myFibonacci.cpp from myFibonacci-algorithm.txt using recursion.
+So here's what we know: the Fibonacci number for index 0 or 1 equals the index. There are no negative index values -- you can ignore that possibility. The Fibonacci number for any other index
+equals the sum of the Fibonacci numbers for the index-1 and the index-2.
+The program should prompt the user for an series index (greater or equal to zero) and print the
+Fibonacci number corresponding to that index.
+
+For example your program's partial console input and output should look something like this:
+Enter an index [0 or greater]: 6
+0 1 1 2 3 5 8 
+The Fibonacci number at index 6 is 8.
+3. Please submit the following files:
+
+myFibonacci-algorithm.txt
+myFibonacci.cpp

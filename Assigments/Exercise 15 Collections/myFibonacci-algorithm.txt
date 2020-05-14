@@ -1,0 +1,147 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+Display all the numbers of a Fibonacci series with index chosen by the user
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-index
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. prompt the user for index
+4. output fibonacci series and the number at the position of the index
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: "This program will prompt you to input an index for a Fibonacci series, please enter on whole numbers greater than 0"
+-user
+-prompt "Enter an index [0 or greater]: "
+-output  "Invalid input, please try again.." 
+-output each element of fibonacci series up to index
+-output "The fibonacci number at index " and value of index "is " and value of term
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-index // (integer) is the index for the fibonacci serios input by the user, has to be equal to zero or greater<main>
+-i // (integer) a counter to output each term of the fibonacci series <main>
+
+-term// (integer) a term in the fibonacci series <outputFibonacci>
+-a// (integer) the term 2 positions before term <outputFibonacci>
+-b// (integer) the term 1 positions before term <outputFibonacci>
+
+
+3. Algorithm instructions (recipe)
+
+<algorithm for outputFibonacci subprogram>
+1010 set a = 0
+1020 set b = 1
+1030 set i = 0
+1040 if i > index then skip to 1120
+1050 if i is 0 the ouput value of a , set i = i + 1 and go back to line 1040
+1060 if i is 1 then output value of b , set i = i + 1 and go back to line 1040
+1070 term = a + b
+1080 a = b
+1090 b = term
+1100 output value of term, and set i = i + 1
+1110 go back to line 1040
+1120 output "The fibonacci number at index " and value of index "is " and value of term
+1130 return the value of term to main program
+
+
+<algorithm for main program>
+***data definitions
+10 define index and i
+***introduction 
+20 output introduction: objective, author, instructions/rules
+***prompt user for index
+30 output "Enter an index [0 or greater]: "
+40 input index
+50 if index < 0 output "Invalid input, please try again.." and go back to 30
+***output fibonacci series and the number at the position of the index
+60 go to subroogram outputFibonacci giving it the value of index
+999 END
+
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: 
+-->purpose: test the simplest given test case
+-->input values: index = 6
+-->expected console execution:
+Enter an index [0 or greater]: 6
+0 1 1 2 3 5 8 
+The Fibonacci number at index 6 is 8.
+-->execution:
+]10 definition of index and i here...
+20 introduction here..
+30 "Enter an index [0 or greater]: "
+40 6
+50 False
+60 going to subroogram outputFibonacci giving it the value of index = 6
+<outputFibonacci subprogram>
+1010 a = 0
+1020 b = 1
+1030 i = 0
+1040 False
+1050 True, "0", i = 0 + 1 = 1, going back to line 1040
+1040 False
+1050 False
+1060 True, "1", i = 1 + 1 = 2, going back to line 1040
+1040 False
+1050 False
+1060 False
+1070 term = 0 + 1 = 1
+1080 a = 1
+1090 b = 1
+1100 "1", i = 2 + 1 = 3
+1110 go back to line 1040
+1040 False
+1050 False
+1060 False
+1070 term = 1 + 1 = 2
+1080 a = 1
+1090 b = 2
+1100 "2", i = 3 + 1 = 4
+1110 go back to line 1040
+1040 False
+1050 False
+1060 False
+1070 term = 1 + 2 = 3
+1080 a = 2
+1090 b = 3
+1100 "3", i = 4 + 1 = 5
+1110 go back to line 1040
+1040 False
+1050 False
+1060 False
+1070 term = 2 + 3 = 5
+1080 a = 3
+1090 b = 5
+1100 "5", i = 5 + 1 = 6
+1110 go back to line 1040
+1040 False
+1050 False
+1060 False
+1070 term = 3 + 5 = 8
+1080 a = 5
+1090 b = 8
+1100 "8", i = 6 + 1 = 7
+1110 go back to line 1040
+1040 True , i=7 > index=6, skippin to 1120
+1120 The fibonacci number at index 6 is 8
+1130 returning to main program
+<main>
+999 END
+-->comments: succesful execution 
+
+Test case #2: 
+-->purpose: test what happens if user enters an invalid input
+-->input values: index = -1, 6
+-->expected console execution:
+Enter an index [0 or greater]: -1
+"Invalid input, please try again.."
+Enter an index [0 or greater]: 6
+0 1 1 2 3 5 8 
+The Fibonacci number at index 6 is 8.
