@@ -25,7 +25,7 @@ OUTPUT (list of anything output: introduction, data items, labels, prompts) :
 -prompt "Enter output filename [Press ENTER for default: " and dFileName " ]: "
 -inputValidation for iFileName "Sorry, that is an invalid name. The file name must have the .txt extension. Try again please." 
 -output in case of no emails  "Sorry, no email addresses were found in the file" and value of iFileName
--output each value of anEmail.
+-output each value of anEmail and "; "
 
 DATA (list of all data items: definition, data filetype, formatting, or any other specifications):
 
@@ -92,28 +92,28 @@ DATA (list of all data items: definition, data filetype, formatting, or any othe
 **Loop to traverse lineFromFile from the character @ to the left
 3040 set s = i - 1
 3050 if s = 0 skip to 3100
-3060 go to subprogram isValidChar giving the value of lineFromFile[s], if value returned is true set s = s + 1 and skip to line 3100 
+3060 go to subprogram isValidChar giving the value of lineFromFile[s], if value returned is false set s = s + 1 and skip to line 3100 
 3070 s = s - 1
 3090 go back to 3050
 **Loop to traverse lineFromFile from the character @ to the right
 3100 set e = i + 1
-3110 if e = lineFromFile length skip to  3160
-3120 go to subprogram isValidChar giving the value of lineFromFile[e] as c , if value returned is true set e = e - 1 and skip to line 3160
+3110 if e = lineFromFile length, set e = lineFromFile length - 1 and  skip to  3160
+3120 go to subprogram isValidChar giving the value of lineFromFile[e] as c , if value returned is false set e = e - 1 and skip to line 3160
 3130 if lineFromFile[e] = '.' then set hasDot to true and dotPos to e
 3140 e = e + 1
 3150 go back to 3110
 **Decide whether to extract and output the email
 3160 if (s < i) AND (e > i) AND (hasDot) AND (dotPos > i + 1) then set anEmail to the extracted characters (s-e) from lineFromFile, otherwise skip to 3190
-3170 output anEmail
+3170 output anEmail and "; "
 3180 nEmails = nEmails + 1
 3190 i = i + 1
 3200 go back to 3020
 3210 return nEmails to subprogram readFile
 
 -->algorithm for subprogram "isValidChar"
-1010 set result true
-2010 if c is not in the range of A-Z AND not in the range of a-z AND not in the range of 0-9 AND is NOT '_' AND '.' AND '-' AND '+' then set result to false
-3010 return the value of result to subprogram processLine
+4010 set result true
+4020 if c is not in the range of A-Z AND not in the range of a-z AND not in the range of 0-9 AND is NOT '_' AND '.' AND '-' AND '+' then set result to false
+4030 return the value of result to subprogram processLine
 
 -->algorithm for "main" program
 ***data
@@ -141,6 +141,9 @@ Test case #1
 -->input for processLine function:
 lineFromFile="rburns@dvc.edu";
               01234567891123
+
+-->expected variables after processLine execution:              
+lineFromFile length = 14
 i=6
 s=0
 e=14
@@ -148,8 +151,206 @@ dotPos=10
 hasDot=true
 anEmail="rburns@dvc.edu"
 nEmails=1
+-->execution:
+3010 set nEmails = 0
+3015 set i = 0
+3020 False, i=0 is not >= 14
+3030 False, lineFromFile[0] = 'r' is not @ , skipping to 3190
+3190 i = 0 + 1 = 1
+3200 go back to 3020
 
-Essential test case #2
+3020 False, i=1 is not >= 14
+3030 False, lineFromFile[1] = 'b' is not @ , skipping to 3190
+3190 i = 1 + 1 = 2
+3200 go back to 3020
+
+3020 False, i=2 is not >= 14
+3030 False, lineFromFile[2] = 'u' is not @ , skipping to 3190
+3190 i = 2 + 1 = 3
+3200 go back to 3020
+
+3020 False, i=3 is not >= 14
+3030 False, lineFromFile[3] = 'r' is not @ , skipping to 3190
+3190 i = 3 + 1 = 4
+3200 go back to 3020
+
+3020 False, i=4 is not >= 14
+3030 False, lineFromFile[4] = 'n' is not @ , skipping to 3190
+3190 i = 4 + 1 = 5
+3200 go back to 3020
+
+3020 False, i=5 is not >= 14
+3030 False, lineFromFile[3] = 's' is not @ , skipping to 3190
+3190 i = 5 + 1 = 6
+3200 go back to 3020
+
+3020 False, i=6 is not >= 14
+3030 True, lineFromFile[6] = '@' is  @ 
+
+**Loop to traverse lineFromFile from the character @ to the left
+3040 set s = 6 - 1 = 5
+3050 False, s is not 0
+3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 's'
+<isValidChar>
+4010 result = true
+4020 False, 's' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3060 False, result is still true
+3070 s = 5 -1 = 4
+3090 going back to 3050
+
+3050 False, s is not 0
+3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'n'
+<isValidChar>
+4010 result = true
+4020 False, 'n' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3060 False, result is still true
+3070 s = 4 -1 = 3
+3090 going back to 3050
+
+3050 False, s is not 0
+3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'r'
+<isValidChar>
+4010 result = true
+4020 False, 'r' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3060 False, result is still true
+3070 s = 4 -1 = 3
+3090 going back to 3050
+
+3050 False, s is not 0
+3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'u'
+<isValidChar>
+4010 result = true
+4020 False, 'u' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3060 False, result is still true
+3070 s = 3 -1 = 2
+3090 going back to 3050
+
+3050 False, s is not 0
+3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'b'
+<isValidChar>
+4010 result = true
+4020 False, 'b' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3060 False, result is still true
+3070 s = 2 -1 = 1
+3090 going back to 3050
+
+3050 False, s is not 0
+3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'r'
+<isValidChar>
+4010 result = true
+4020 False, 'r' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3060 False, result is still true
+3070 s = 1 -1 = 0
+3090 going back to 3050
+
+3050 True, s is  0, skipping to 3100
+
+**Loop to traverse lineFromFile from the character @ to the right
+3100 set e = 6 + 1 = 7
+3110 False, e is not 14
+3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'd'
+<isValidChar>
+4010 result = true
+4020 False, 'd' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3120 False, result is still true
+3130 False, character is not dot
+3140 e = 7 + 1 = 8
+3150 going back to 3110
+
+3110 False, e is not 14
+3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'v'
+<isValidChar>
+4010 result = true
+4020 False, 'v' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3120 False, result is still true
+3130 False, character is not dot
+3140 e = 8 + 1 = 9
+3150 going back to 3110
+
+3110 False, e is not 14
+3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'c'
+<isValidChar>
+4010 result = true
+4020 False, 'c' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3120 False, result is still true
+3130 False, character is not dot
+3140 e = 9 + 1 = 10
+3150 going back to 3110
+
+3110 False, e is not 14
+3120 going to subprogram isValidChar giving the value of lineFromFile[s]= '.'
+<isValidChar>
+4010 result = true
+4020 False, '.' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3120 False, result is still true
+3130 True, character is dot, hasDot = true, dotPos = 10
+3140 e = 10 + 1 = 11
+3150 going back to 3110
+
+3110 False, e is not 14
+3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'e'
+<isValidChar>
+4010 result = true
+4020 False, 'e' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3120 False, result is still true
+3130 False, character is not dot
+3140 e = 11 + 1 = 12
+3150 going back to 3110
+
+3110 False, e is not 14
+3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'd'
+<isValidChar>
+4010 result = true
+4020 False, 'd' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3120 False, result is still true
+3130 False, character is not dot
+3140 e = 12 + 1 = 13
+3150 going back to 3110
+
+3110 False, e is not 14
+3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'u'
+<isValidChar>
+4010 result = true
+4020 False, 'u' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3120 False, result is still true
+3130 False, character is not dot
+3140 e = 13 + 1 = 14
+3150 going back to 3110
+
+3110 True, e is 14, e = 14 - 1 = 13, skipping to 3160
+3160 True, (s=0 < i= 6) AND (e=13 > i=6) AND (hasDot=true) AND (dotPos=10 > i+1= 7),anEmail = lineFromFile[0-13] = rburns@dvc.edu
+3170 "rburns@dvc.edu; "
+3180 nEmails = 0 + 1 = 1
+
+-->comments: variables were updated as expected, succesful execution.
+
+Test case #2
 -->purpose: test essential given test case
 -->input for processLine function:
 lineFromFile="rburns@dvc.edu vcolber@dvc.edu";
@@ -170,22 +371,6 @@ dotPos=26
 hasDot=true
 anEmail="vcolber@dvc.edu"
 nEmails=2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 --------TEST CASES FROM VERSION P2B-------------
