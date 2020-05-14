@@ -23,7 +23,9 @@ OUTPUT (list of anything output: introduction, data items, labels, prompts) :
 -user introduction: introduction of objective, author, "This program will prompt you for two text file names, an input and an output file. The program will read you input file and then show the lines containing the character '@'.Please filetype the name of each file correctly including the extension .txt. No other file extension is yet supported.".
 -prompt "Enter input filename [Press ENTER for default: " and dFileName " ]: "
 -prompt "Enter output filename [Press ENTER for default: " and dFileName " ]: "
--inputValidation "Sorry, that is an invalid name. The file name must have the .txt extension. Try again please." 
+-inputValidation for iFileName "Sorry, that is an invalid name. The file name must have the .txt extension. Try again please." 
+-output in case of no emails  "Sorry, no email addresses were found in the file" and value of iFileName
+-output each value of anEmail.
 
 DATA (list of all data items: definition, data filetype, formatting, or any other specifications):
 
@@ -38,18 +40,21 @@ DATA (list of all data items: definition, data filetype, formatting, or any othe
 -fileName // (text) : is the text entered by the user returned to the main program <getFileName>
 
 -iFileName // (text): is the name of the input file given to the subprogram "readFile" <readFile>
--nLines // (integer) number of lines of the file <readFile>
 -lineFromFile //(text) is a line read from the input file <readFile>
+-nLines // (integer) number of lines of the file <readFile>
 -nEmails // (integer) number of valid Email adresses in each line  <readFile>
--i //(integer) is a counter used to output i number of times lineFromFile <readFile>
 
--i; //(integer) is a counter used to process each character of the line and find an '@' <processLine>
+-lineFromFile // (text) is a line read from the input file <readFile>
+-i //(integer) is a counter used to process each character of the line and find an '@' <processLine>
 -nEmails = 0 // (integer) number of valid Email adresses found, value returned to subprogram readFile program <processLine>
 -s //(integer) is the character position in lineFromFile for the start of a possible email <processLine>
 -e //(integer) is the character position in lineFromFile for the end of a possible email <processLine>
 -dotPos //(integer) is the character number of lineFromFile in which the dot is <processLine>
 -hasDot //(integer) is true if the possible email has a dot on their characters <processLine>
 -anEmail //(string) is an sub string of lineFromFile that stores a complete valid email <processLine>
+
+-c // (character) is a character from the possible email
+-result // (boolean) is true if a character is a valid email character <isValidChar>
 
 
 3. Algorithm instructions (recipe)
@@ -67,27 +72,48 @@ DATA (list of all data items: definition, data filetype, formatting, or any othe
 
 -->algorithm for subprogram "readFile" : reads input file until EOF that calls function processLine for each line read from the input file
 2010 set nLines = 0
+2011 set nEmails = 0
+2012 set hasDot = false
 2015 open input file named as the value of iFileName
-2020 if the file contain errors, skip to line 2080
-2025 if end-of-file is reached skip to line 2080
+2020 if the file contain errors, skip to line 2060
+2025 if end-of-file is reached skip to line 2050
 2030 set lineFromFile = next line of the file
-2035 set nATs = value returned by subprogram processLine (give the value of lineFromFile as lineFromFile)
-2040 set i  = 0
-2045 if i < nATs then output lineFromFile, otherwise skip to 2060
-2050 set i = i + 1
-2055 go back to 2045
-2060 nLines = nLines + 1
-2065 go back to 2025
-2080 return to main program
+2035 go to subprogram processLine the set nEmails = value returned (give the value of lineFromFile as lineFromFile)
+2040 nLines = nLines + 1
+2045 go back to 2025
+2050 if nEmails = 0 output "Sorry, no email addresses were found in the file" and value of iFileName
+2060 return to main program
 
 -->algorithm for subprogram "processLine"
-3010 set nATs = 0
+3010 set nEmails = 0
 3015 set i = 0
-3020 if i => length of lineFromFile then skip to line 3045
-3025 if character i of lineFromFile is equal to '@' then nATs = nATs + 1
-3030 i = i + 1
-3035 go back to line 3020
-3045 return to readFile subprogram the value of nATs
+3020 if i >= lineFromFile length then skip to 3210
+3030 if lineFromFile[i] is not @ skip to 3190
+**Loop to traverse lineFromFile from the character @ to the left
+3040 set s = i - 1
+3050 if s = 0 skip to 3100
+3060 go to subprogram isValidChar giving the value of lineFromFile[s], if value returned is true set s = s + 1 and skip to line 3100 
+3070 s = s - 1
+3090 go back to 3050
+**Loop to traverse lineFromFile from the character @ to the right
+3100 set e = i + 1
+3110 if e = lineFromFile length skip to  3160
+3120 go to subprogram isValidChar giving the value of lineFromFile[e] as c , if value returned is true set e = e - 1 and skip to line 3160
+3130 if lineFromFile[e] = '.' then set hasDot to true and dotPos to e
+3140 e = e + 1
+3150 go back to 3110
+**Decide whether to extract and output the email
+3160 if (s < i) AND (e > i) AND (hasDot) AND (dotPos > i + 1) then set anEmail to the extracted characters (s-e) from lineFromFile, otherwise skip to 3190
+3170 output anEmail
+3180 nEmails = nEmails + 1
+3190 i = i + 1
+3200 go back to 3020
+3210 return nEmails to subprogram readFile
+
+-->algorithm for subprogram "isValidChar"
+1010 set result true
+2010 if c is not in the range of A-Z AND not in the range of a-z AND not in the range of 0-9 AND is NOT '_' AND '.' AND '-' AND '+' then set result to false
+3010 return the value of result to subprogram processLine
 
 -->algorithm for "main" program
 ***data
