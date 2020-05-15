@@ -1,0 +1,491 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+Read user selected input file line by line and output to the console every valid email address as it is found.
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-iFileName
+-oFileName
+-wait
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. get filenames (input and output) using variable prompts and default filenames and input validation
+4. output filenames and pause program execution until user presses enter key
+5. read input file and output emails
+
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, "This program will prompt you for two text file names, an input and an output file. The program will read you input file and then show the lines containing the character '@'.Please filetype the name of each file correctly including the extension .txt. No other file extension is yet supported.".
+-prompt "Enter input filename [Press ENTER for default: " and dFileName " ]: "
+-prompt "Enter output filename [Press ENTER for default: " and dFileName " ]: "
+-inputValidation for iFileName "Sorry, that is an invalid name. The file name must have the .txt extension. Try again please." 
+-output in case of no emails  "Sorry, no email addresses were found in the file" and value of iFileName
+-output each value of anEmail and "; "
+
+DATA (list of all data items: definition, data filetype, formatting, or any other specifications):
+
+-iFileName // (text) :  is the input file name <main>
+-oFileName // (text) :  is the output file name <main>
+-dFileName // (text) : is the default file name <main>
+-wait // (text) : just a variable to read the ENTER key at the end of the program. <main>
+
+-filetype // (text): is either "input" or "output" choice given to the subprogram "getFileName" <getFileName>
+-dFileName // (text) : is the default file name given to the subprogram "getFileName" <getFileName>
+-valid // (boolean) : is true when the input is already processed by validation function <getFileName>
+-fileName // (text) : is the text entered by the user returned to the main program <getFileName>
+
+-iFileName // (text): is the name of the input file given to the subprogram "readFile" <readFile>
+-lineFromFile //(text) is a line read from the input file <readFile>
+-nLines // (integer) number of lines of the file <readFile>
+-nEmails // (integer) number of valid Email adresses in each line  <readFile>
+
+-lineFromFile // (text) is a line read from the input file <readFile>
+-i //(integer) is a counter used to process each character of the line and find an '@' <processLine>
+-nEmails = 0 // (integer) number of valid Email adresses found, value returned to subprogram readFile program <processLine>
+-s //(integer) is the character position in lineFromFile for the start of a possible email <processLine>
+-e //(integer) is the character position in lineFromFile for the end of a possible email <processLine>
+-dotPos //(integer) is the character number of lineFromFile in which the dot is <processLine>
+-hasDot //(integer) is true if the possible email has a dot on their characters <processLine>
+-anEmail //(string) is an sub string of lineFromFile that stores a complete valid email <processLine>
+
+-c // (character) is a character from the possible email
+-result // (boolean) is true if a character is a valid email character <isValidChar>
+
+
+3. Algorithm instructions (recipe)
+
+-->algorithm for subprogram "getFileName" : prompts for input for either input or output file names, also checks for default input
+1010 set fileName = "No name"
+1015 if filetype = "input" then output "Enter input filename [Press ENTER for default: " and dFileName " ]: " , otherwise if filetype = "input" then output "Enter output filename [Press ENTER for default: " and dFileName " ]: "
+1020 input fileName
+1025 if fileName length is 0 then fileName = dFileName and skip to line 1040,
+1030 set valid to false
+1035 if fileName length < 5 OR (character "fileName length-1" of fileName is different from 't') OR (character "fileName length-2" of fileName is different from 'x') OR (character "fileName length-3" of fileName is different from 't') OR (character "fileName length-4" of fileName is different from '.') then output "Sorry, that is an invalid name. The file name must have the .txt extension. Try again please.", otherwise set valid to true
+1040 if valid = true the skip to line 1050
+1045 go back to line 1015
+1050 return to main program the value of fileName
+
+-->algorithm for subprogram "readFile" : reads input file until EOF that calls function processLine for each line read from the input file
+2010 set nLines = 0
+2011 set nEmails = 0
+2012 set hasDot = false
+2015 open input file named as the value of iFileName
+2020 if the file contain errors, skip to line 2060
+2025 if end-of-file is reached skip to line 2050
+2030 set lineFromFile = next line of the file
+2035 go to subprogram processLine the set nEmails = value returned (give the value of lineFromFile as lineFromFile)
+2040 nLines = nLines + 1
+2045 go back to 2025
+2050 if nEmails = 0 output "Sorry, no email addresses were found in the file" and value of iFileName
+2060 return to main program
+
+-->algorithm for subprogram "processLine"
+3010 set nEmails = 0
+3015 set i = 0
+3020 if i >= lineFromFile length then skip to 3210
+3030 if lineFromFile[i] is not @ skip to 3190
+**Loop to traverse lineFromFile from the character @ to the left
+3040 set s = i - 1
+3050 if s = 0 skip to 3100
+3060 go to subprogram isValidChar giving the value of lineFromFile[s], if value returned is false set s = s + 1 and skip to line 3100 
+3070 s = s - 1
+3090 go back to 3050
+**Loop to traverse lineFromFile from the character @ to the right
+3100 set e = i + 1
+3110 if e = lineFromFile length, set e = lineFromFile length - 1 and  skip to  3160
+3120 go to subprogram isValidChar giving the value of lineFromFile[e] as c , if value returned is false set e = e - 1 and skip to line 3160
+3130 if lineFromFile[e] = '.' then set hasDot to true and dotPos to e
+3140 e = e + 1
+3150 go back to 3110
+**Decide whether to extract and output the email
+3160 if (s < i) AND (e > i) AND (hasDot) AND (dotPos > i + 1) then set anEmail to the extracted characters (s-e) from lineFromFile, otherwise skip to 3190
+3170 output anEmail and "; "
+3180 nEmails = nEmails + 1
+3190 i = i + 1
+3200 go back to 3020
+3210 return nEmails to subprogram readFile
+
+-->algorithm for subprogram "isValidChar"
+4010 set result true
+4020 if c is not in the range of A-Z AND not in the range of a-z AND not in the range of 0-9 AND is NOT '_' AND '.' AND '-' AND '+' then set result to false
+4030 return the value of result to subprogram processLine
+
+-->algorithm for "main" program
+***data
+10 set dFileName = "fileContainingEmails.txt"
+***introduction 
+20 output introduction: objective, author, instructions/rules
+***get filenames (input and output) using variable prompts and default filenames and input validation
+30 set iFileName = fileName from subprogram "getFileName" (give the values of "input" as filetype and dFileName as dFileName)
+35 if iFileName = dFileName then dFileName = "copyPasteMyEmails.txt", else dFileName = iFileName
+40 set oFileName = fileName from subprogram "getFileName" (give the values of "output" as filetype and dFileName as dFileName)
+***output file names
+50 output label for the input file name, and iFileName
+55 output label for the output file name, and oFileName
+60 output a prompt to press ENTER key to continue
+65 input wait
+***read input file and output emails
+70 go to subprogram readFile (give the value of iFileName as iFileName)
+999 END
+
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1
+-->purpose: test essential given test case
+-->input for processLine function:
+lineFromFile="rburns@dvc.edu";
+              01234567891123
+
+-->expected variables after processLine execution:              
+lineFromFile length = 14
+i=6
+s=0
+e=14
+dotPos=10
+hasDot=true
+anEmail="rburns@dvc.edu"
+nEmails=1
+-->execution:
+3010 set nEmails = 0
+3015 set i = 0
+3020 False, i=0 is not >= 14
+3030 False, lineFromFile[0] = 'r' is not @ , skipping to 3190
+3190 i = 0 + 1 = 1
+3200 go back to 3020
+
+3020 False, i=1 is not >= 14
+3030 False, lineFromFile[1] = 'b' is not @ , skipping to 3190
+3190 i = 1 + 1 = 2
+3200 go back to 3020
+
+3020 False, i=2 is not >= 14
+3030 False, lineFromFile[2] = 'u' is not @ , skipping to 3190
+3190 i = 2 + 1 = 3
+3200 go back to 3020
+
+3020 False, i=3 is not >= 14
+3030 False, lineFromFile[3] = 'r' is not @ , skipping to 3190
+3190 i = 3 + 1 = 4
+3200 go back to 3020
+
+3020 False, i=4 is not >= 14
+3030 False, lineFromFile[4] = 'n' is not @ , skipping to 3190
+3190 i = 4 + 1 = 5
+3200 go back to 3020
+
+3020 False, i=5 is not >= 14
+3030 False, lineFromFile[3] = 's' is not @ , skipping to 3190
+3190 i = 5 + 1 = 6
+3200 go back to 3020
+
+3020 False, i=6 is not >= 14
+3030 True, lineFromFile[6] = '@' is  @ 
+
+**Loop to traverse lineFromFile from the character @ to the left
+3040 set s = 6 - 1 = 5
+3050 False, s is not 0
+3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 's'
+<isValidChar>
+4010 result = true
+4020 False, 's' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3060 False, result is still true
+3070 s = 5 -1 = 4
+3090 going back to 3050
+
+3050 False, s is not 0
+3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'n'
+<isValidChar>
+4010 result = true
+4020 False, 'n' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3060 False, result is still true
+3070 s = 4 -1 = 3
+3090 going back to 3050
+
+3050 False, s is not 0
+3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'r'
+<isValidChar>
+4010 result = true
+4020 False, 'r' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3060 False, result is still true
+3070 s = 4 -1 = 3
+3090 going back to 3050
+
+3050 False, s is not 0
+3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'u'
+<isValidChar>
+4010 result = true
+4020 False, 'u' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3060 False, result is still true
+3070 s = 3 -1 = 2
+3090 going back to 3050
+
+3050 False, s is not 0
+3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'b'
+<isValidChar>
+4010 result = true
+4020 False, 'b' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3060 False, result is still true
+3070 s = 2 -1 = 1
+3090 going back to 3050
+
+3050 False, s is not 0
+3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'r'
+<isValidChar>
+4010 result = true
+4020 False, 'r' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3060 False, result is still true
+3070 s = 1 -1 = 0
+3090 going back to 3050
+
+3050 True, s is  0, skipping to 3100
+
+**Loop to traverse lineFromFile from the character @ to the right
+3100 set e = 6 + 1 = 7
+3110 False, e is not 14
+3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'd'
+<isValidChar>
+4010 result = true
+4020 False, 'd' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3120 False, result is still true
+3130 False, character is not dot
+3140 e = 7 + 1 = 8
+3150 going back to 3110
+
+3110 False, e is not 14
+3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'v'
+<isValidChar>
+4010 result = true
+4020 False, 'v' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3120 False, result is still true
+3130 False, character is not dot
+3140 e = 8 + 1 = 9
+3150 going back to 3110
+
+3110 False, e is not 14
+3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'c'
+<isValidChar>
+4010 result = true
+4020 False, 'c' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3120 False, result is still true
+3130 False, character is not dot
+3140 e = 9 + 1 = 10
+3150 going back to 3110
+
+3110 False, e is not 14
+3120 going to subprogram isValidChar giving the value of lineFromFile[s]= '.'
+<isValidChar>
+4010 result = true
+4020 False, '.' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3120 False, result is still true
+3130 True, character is dot, hasDot = true, dotPos = 10
+3140 e = 10 + 1 = 11
+3150 going back to 3110
+
+3110 False, e is not 14
+3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'e'
+<isValidChar>
+4010 result = true
+4020 False, 'e' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3120 False, result is still true
+3130 False, character is not dot
+3140 e = 11 + 1 = 12
+3150 going back to 3110
+
+3110 False, e is not 14
+3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'd'
+<isValidChar>
+4010 result = true
+4020 False, 'd' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3120 False, result is still true
+3130 False, character is not dot
+3140 e = 12 + 1 = 13
+3150 going back to 3110
+
+3110 False, e is not 14
+3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'u'
+<isValidChar>
+4010 result = true
+4020 False, 'u' is valid character
+4030 return result = true to subprogram processLine
+<processLine>
+3120 False, result is still true
+3130 False, character is not dot
+3140 e = 13 + 1 = 14
+3150 going back to 3110
+
+3110 True, e is 14, e = 14 - 1 = 13, skipping to 3160
+3160 True, (s=0 < i= 6) AND (e=13 > i=6) AND (hasDot=true) AND (dotPos=10 > i+1= 7),anEmail = lineFromFile[0-13] = rburns@dvc.edu
+3170 "rburns@dvc.edu; "
+3180 nEmails = 0 + 1 = 1
+
+-->comments: variables were updated as expected, succesful execution.
+
+Test case #2
+-->purpose: test essential given test case
+-->input for processLine function:
+lineFromFile="rburns@dvc.edu vcolber@dvc.edu";
+              012345678911234567890123456789
+-->variables after main loop for @ found in i=6:
+i=6
+s=0
+e=14
+dotPos=10
+hasDot=true
+anEmail="rburns@dvc.edu"
+nEmails=1
+-->varables after main loop for @ found in i=22:
+i=22
+s=15
+e=30
+dotPos=26
+hasDot=true
+anEmail="vcolber@dvc.edu"
+nEmails=2
+
+
+--------TEST CASES FROM VERSION P2B-------------
+Test case #1: 
+-->purpose: simplest given test case
+-->input file: 0.txt
+Nothing
+here
+@
+@x
+x@
+x@x
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: 0.txt 
+Enter output filename [default: 0.txt]: y.txt 
+Input file: 0.txt
+Output file: y.txt
+press ENTER key to continue:
+@
+@x
+x@
+x@x
+-->comments: execution succesfully completed, got expected results
+
+Test case #2 : 
+-->purpose: test what if there are more than 1 @'s
+-->input file: 0.txt
+Nothing
+here
+@
+@x@
+x@x@x@
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: 0.txt 
+Enter output filename [default: 0.txt]: y.txt 
+Input file: 0.txt
+Output file: y.txt
+press ENTER key to continue:
+@
+@x@
+@x@
+x@x@x@
+x@x@x@
+x@x@x@
+
+Test case #3 : 
+-->purpose: test what if there are no lines in the text file
+-->input file: 0.txt (empty)
+
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: 0.txt 
+Enter output filename [default: 0.txt]: y.txt 
+Input file: 0.txt
+Output file: y.txt
+press ENTER key to continue:
+-comments: for future versions program should alert user about this issue
+
+Test case #4 test what if the input file does not exist: 
+-->purpose: simplest given test case
+-->input file: 0.txt (does not exist)
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: 0.txt 
+Enter output filename [default: 0.txt]: y.txt 
+Input file: 0.txt
+Output file: y.txt
+press ENTER key to continue:
+999 END
+-comments: for future versions program should alert user about this issue
+
+--------TEST CASES FROM VERSION P2A-------------
+Test case #1: given test case (no default choices)
+-->purpose: what if user enters two default choices
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: x.txt 
+Enter output filename [default: x.txt]: y.txt 
+Input file: x.txt
+Output file: y.txt
+press ENTER key to continue:
+
+Test case #2:
+-->purpose: what if user enters default choice for inputfile
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: x.txt 
+Enter output filename [default: x.txt]: 
+Input file: x.txt
+Output file: x.txt
+press ENTER key to continue:
+
+Test case #3: 
+-->purpose: what if user enters default choice for outputfile
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: 
+Enter output filename [default: copyPasteMyEmails.txt]: y.txt 
+Input file: fileContainingEmails.txt
+Output file: y.txt
+press ENTER key to continue:
+
+Test case #4: given test case (no default choices)
+-->purpose: what if user enters two default choices
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: x.txt 
+Enter output filename [default: x.txt]: y.txt 
+Input file: x.txt
+Output file: y.txt
+press ENTER key to continue:
+
+Test case #5: 
+-->purpose: test if program is able to detect an invalid input
+-->expected console I/O execution:
+Enter input filename [default: fileContainingEmails.txt]: .txt 
+Sorry, that is an invalid name. The file name must have the .txt extension. Try again please. 
+Enter input filename [default: fileContainingEmails.txt]: x.doc
+Sorry, that is an invalid name. The file name must have the .txt extension. Try again please. 
+Enter input filename [default: fileContainingEmails.txt]: x.txt
+Enter output filename [default: x.txt]: y.txt  
+Input file: x.txt
+Output file: y.txt
+press ENTER key to continue:

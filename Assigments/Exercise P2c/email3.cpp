@@ -160,11 +160,7 @@ int processLine(string lineFromFile)
           }
       //Loop to traverse lineFromFile from the character @ to the right
       for (e = i + 1; e < lineFromFile.length(); e++) 
-        if (!(isValidEmailChar(lineFromFile[e]))) //check each character until finding an invalid one
-        {
-          e = e - 1;
-          break;
-        }
+        if (!(isValidEmailChar(lineFromFile[e]))) break;//check each character until finding an invalid one
         else if (lineFromFile[e] == 46) //compare each character with ASCII46 which is '.'
         {
           hasDot = true;
