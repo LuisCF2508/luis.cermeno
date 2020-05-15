@@ -34,7 +34,7 @@ class toLower { public: char operator() (char c) const {return tolower(c);} }; /
 void introduction(string obj);//user introduction
 string getFileName(string filetype, string dFileName);//input function (for either input or output)
 void readFile (deque<list>& nonDup, string iFileName);//reads input file until EOF that calls function processLine for each line read from the input file
-int processLine(deque<list>& nonDup, string lineFromFile);//function to find a @, then find the start of an email addres, then find the end of the email and extract
+void processLine(deque<list>& nonDup, string lineFromFile);//function to find a @, then find the start of an email addres, then find the end of the email and extract
 bool isValidEmailChar(char c); //Returns true if c is a valid email address character, else false
 void isDuplicate (deque<list>& nonDup, string aEmail); //checks anEmail whether it is a duplicate email address using case sensitive comparison to create list of non-duplicate email addresses
 string changeCase(string s); //converts string to all one case for case dependent comparisons
@@ -66,9 +66,7 @@ int main()
   //Read input file and store valid emails in the collection
   readFile(nonDup, iFileName);
 
-  //Output emails
-  int i;
-  for (i =0 ; i < nonDup.size(); i ++) cout << nonDup[i].email << "; ";
+  
 }//main
 
 //introduction function
@@ -124,14 +122,13 @@ string getFileName(string filetype, string dFileName)
   return userInput;
 }//input function (for either input or output)
 
-//reads input file until EOF that calls function processLine for each line read from the input file
+//function readFile: reads input file until EOF that calls function processLine for each line read from the input file
 void readFile (deque<list>& nonDup, string iFileName)
 {
   //Data
   string lineFromFile; //(text) is a line read from the input file
   int nLines = 0; // (integer) number of lines of the file
-  int nEmails = 0; // (integer) number of valid Emails found in each line, returned to main program
-
+  
   //Read each line in the file and find each @
   fin.open(iFileName.c_str());
   if (!(fin.good())) throw "I/O error";
@@ -139,18 +136,23 @@ void readFile (deque<list>& nonDup, string iFileName)
     {
       getline(fin, lineFromFile);
       //Process lineFromFile to check for '@'
-      nEmails = processLine(nonDup, lineFromFile);
+      processLine(nonDup, lineFromFile);
       nLines++;
     }//while fin.good
   fin.close();
-}//reads input file until EOF that calls function processLine for each line read from the input file
+
+  //Output emails
+  int i;
+  cout << endl;
+  for (i =0 ; i < nonDup.size(); i ++) cout << nonDup[i].email << endl;
+  cout << endl << "Number of valid email addresses is " << nonDup.size() << endl;
+}//function readFile
 
 //function processLine: to find a @, then find the start of an email addres, then find the end of the email and extract
-int processLine(deque<list>& nonDup, string lineFromFile)
+void processLine(deque<list>& nonDup, string lineFromFile)
 {
   //Data
   int i; //(integer) is a counter used to process each character of the line and find an '@' 
-  int nEmails = 0; // (integer) number of valid Email adresses found, value returned to subprogram readFile program
   int s; //(integer) is the character position in lineFromFile for the start of a possible email
   int e; //(integer) is the character position in lineFromFile for the end of a possible email
   int dotPos; //(integer) is the character number of lineFromFile in which the dot is
@@ -183,13 +185,9 @@ int processLine(deque<list>& nonDup, string lineFromFile)
       {
           anEmail = lineFromFile.substr(s,e - s); //extract email from lineFromFile and store in anEmail
           isDuplicate(nonDup, anEmail);
-          //cout << anEmail.email << "; "; //output anEmail
-          //nonDup.push_back(anEmail); // push anEmail to the back of the collection nonDup
-          nEmails++;
       }
     }// if to look for @
   }//main loop to traverse the whole lineFromFile
-  return nEmails;
 }//function processLine
 
 //function isValidEmail
