@@ -1,0 +1,11 @@
+George Washington
+17890
+3.25
+--------------
+John Adams
+12345
+4.0
+--------------
+George Washington
+10987
+3.52

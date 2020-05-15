@@ -1,0 +1,242 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+-Read scores [0-100] from input file and calculate the highest, lowest, average scores, 
+number of scores greater than the average, and number of perfect scores
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-text file scores.txt
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. Data definitions
+2. Introduction
+3. Read file, save valid scores to list, and output them unsorted
+4. Find number of scores greater that the avg, number of avg scores, and perfect scores
+6. Sort the list from lowest to highest score
+7. Output sorted list, highest, lowest, number of average scores, number of scores >averag and number of perfect scores
+ 
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-"Scores found: " Output all scores read from the file unsorted, separated by one space.  
+-Output highest, lowest, average scores, number of scores >average, number of scores=100 with appropriate labels.
+-"Scores sorted from lowest to highest: " and Output all valid scores on the list  sorted, separated by one space.
+-Output error message if input file is empty. "Sorry, no valid scores found in file."
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-MAX_SCORES // (integer) score list capacity 
+-nScores // (integer) counter to track how many scores are stored in the list so far  
+-score // (array of integers) list of scores
+-aScore //(integer) a valid score read from the file
+-i // (integer) counter to traverse file line by line
+-sum //(integer) sum of all scores stored in list
+-avg // (decimal) the average of all scores stored in list
+-nGreater //(integer) the number of scores greater than the average
+-nPerfect //(integer) the number of perfect scores (equal to 100)
+-score // (array of integers) list passed to the subprogram sort <sort>
+-nScores //(int) number of scores stored in the list <sort>
+-i// (integer) a counter to compare each character i with the rest <sort>
+-j// (integer) a counter to select a character j to compare with character i <sort>
+-temp //(integer) a tempory variable used when swaping elements from the list <sort>
+
+3. Algorithm instructions (recipe)
+<algorithm for subrogram sort>
+1010 set i = 0
+1020 if i >= nScores skip to 100
+1030 set j = i + 1
+1040 if j >= nScores skip to 80
+1050 if score[i] > score [j] set temp = score [i] then score[i]=score[j] then score[j]=temp
+1060 j = j + 1
+1070 go back to 40
+1080 i = i + 1
+1090 go back to 20
+1100 return to main program
+
+
+<algorithm for main>
+***data definitions
+10 set MAX_SCORES = 100
+20 set nScores = 0
+30 create list score with capacity of MAX_SCORES
+35 set sum = 0
+40 set nGreater = 0
+50 nPerfect = 0
+***introduction 
+60 output introduction: objective, author, instructions/rules
+***Read file, save valid scores to list, and output them unsorted
+70 open scores.txt
+75 output "Scores found : "
+80 if end of file is reached skip to 150
+90 set aScore to the next line from the file
+100 if nScores = MAX_SCORES OR aScore < 0 OR aScore > 100 OR aScore is a blank space then skip to line 140
+110 score[nScores] = aScore
+120 output aScore
+130 nScores = nScores + 1
+140 go back to 80
+150 close scores.txt
+160 if nScore = 0 then output "Sorry, no valid scores found in file." and skip to 999
+*** Sum all the scores and calculate average
+170 set i = 0
+180 if i >= nScores skip to 210
+190 sum = sum + score[i]
+195 i = i + 1
+200 go back to 180
+210 avg = sum / nScores
+***Find number of scores greater that the avg, number of avg scores, and perfect scores
+220 set i = 0
+230 if i >= nScores skip to 280
+240 if score[i] > avg then nGreater = nGreater + 1
+250 if score[i] = 100 then nPerfect = nPerfect + 1
+260 i = i + 1
+270 go back to 230
+***Sort the list from lowest to highest score
+280 go to subrogram sort, give the list score and the value of nScores
+***Output sorted list, highest, lowest, number of average scores, number of scores >averag and number of perfect scores
+290 output "Scores sorted from lowest to highest: " and  each value of score list
+300 output "The highest score is: " and value of score[0]
+305 output "The lowest score is: " and value of score[0]
+310 output "The average score is: " and value of avg
+320 output "The number of scores greater than the average is : " and value of nGreater
+330 output "The number of perfect scores is : " and value of nPerfect
+999 END
+
+
+4. Test cases (list purpose of each test case, any input values in scores.txt, and expected results)
+
+Test case #1: 
+-->purpose: test a file with valid scores between 0-100 but no perfect scores
+-->input values in scores.txt: 40 60 20
+-->expected console execution:
+Scores found: 40 60 20 
+Scores sorted from lowest to highest: 20 40 60 
+The highest score is: 60
+The lowest score is: 20
+The average score is: 40
+The number of scores greater than the average is : 1
+The number of perfect scores is : 0
+-->execution:
+***data definitions
+10 MAX_SCORES = 100
+20 nScores = 0
+30 list score created with capacity of 100
+35 sum = 0
+40 nGreater = 0
+50 nPerfect = 0
+***introduction 
+60 output introduction: objective, author, instructions/rules
+***Read file, save valid scores to list, and output them unsorted
+70 scores.txt opened
+75 "Scores found : "
+80 False, end of file is not reached
+90 aScore = 40
+100 False, score is valid
+110 score[0] = 40
+120 40 
+130 nScores = 0 + 1 = 1
+140 go back to 80
+80 False, end of file is not reached
+90 aScore = 60
+100 False, score is valid
+110 score[1] = 60
+120 60 
+130 nScores = 1 + 1 = 2
+140 go back to 80
+80 False, end of file is not reached
+90 aScore = 20
+100 False, score is valid
+110 score[2] = 20
+120 20
+130 nScores = 2 + 1 = 3
+140 go back to 80
+80 True, end of file is reached, skipping to 150
+150 scores.txt closed
+160 False
+*** Sum all the scores and calculate average
+170 i = 0
+180 False 
+190 sum = 0 + 60 = 60
+195 i = 0 + 1 = 1
+180 False 
+190 sum =  60 + 40 = 100
+195 i = 1 + 1 = 2
+200 go back to 180
+180 False 
+190 sum = 100 + 20 = 120
+195 i = 2 + 1 = 3
+180 True, skipping to 210 
+210 avg = 120 / 3 = 40
+***Find number of scores greater that the avg, number of avg scores, and perfect scores
+220 i = 0
+230 False
+240 True, score[0] = 60 > avg= 40 , nGreater = 0 + 1 = 1
+250 False
+260 i = 0 + 1 = 1
+270 going back to 230
+230 False
+240 False
+250 False
+260 i = 1 + 1 = 2
+270 going back to 230
+230 False
+240 False
+250 False
+260 i = 2 + 1 = 3
+270 going back to 230
+230 True, skipping to 280
+***Sort the list from lowest to highest score
+280 going to subprogram sort passing the list score= [60 40 20] and nScores = 3
+<sort>
+1010 set i = 0
+1020 if i >= nScores skip to 100
+1030 set j = i + 1
+1040 if j >= nScores skip to 80
+1050 if score[i] > score [j] set temp = score [i] then score[i]=score[j] then score[j]=temp
+1060 j = j + 1
+1070 go back to 40
+1080 i = i + 1
+1090 go back to 20
+1100 return to main program
+<main>
+***Output sorted list, highest, lowest, number of average scores, number of scores >averag and number of perfect scores
+290 Scores sorted from lowest to highest:  20 40 60
+300 The highest score is: 60
+305 The lowest score is: 20
+310 The average score is: 40
+320 The number of scores greater than the average is : 1
+330 The number of perfect scores is : 0
+999 END
+-->comments: succesful execution
+
+Test case #2: 
+-->purpose: test a file with valid scores with one or more perfect scores
+-->input values in scores.txt: 20 60 100 40 100 
+-->expected console execution:
+Scores found: 20 60 100 40 100 
+Scores sorted from lowest to highest: 20 40 60 100 100 
+The highest score is: 100
+The lowest score is: 20
+The average score is: 64
+The number of scores greater than the average is : 2
+The number of perfect scores is : 2
+
+Test case #3: 
+-->purpose: test a file with at least one invalid score
+-->input values in scores.txt: 20 60 100 -2 40 100
+-->expected console execution:
+Scores found: 20 60 100 40 100 
+Scores sorted from lowest to highest: 20 40 60 100 100 
+The highest score is: 100
+The lowest score is: 20
+The average score is: 64
+The number of scores greater than the average is : 2
+The number of perfect scores is : 2
+
+
+Test case #4: 
+-->purpose: test an empty file
+-->input values in scores.txt: EMPTY
+-->expected console execution:
+Scores found: Sorry, no valid scores found in file.

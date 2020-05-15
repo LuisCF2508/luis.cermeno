@@ -1,0 +1,26 @@
+1. write listFile-algorithm.txt :
+
+objective: read scores [0-100] from input file and calculate the highest, lowest, average scores, 
+number of scores greater than the average, and number of perfect scores
+Need to validate that scores read from file are between 0-100 before adding to the list
+Output: 
+highest, lowest, average scores, number of scores >average, number of scores=100 with appropriate labels. 
+Output all scores read from the file unsorted, separated by one space.  
+Output all valid scores on the list list sorted, separated by one space.
+Output error message if input file is empty.
+Test Cases:
+1. Just valid scores between 0-100 but no perfect scores
+2. Valid scores with one or more perfect scores
+3. At least one invalid score 100
+4. Empty file
+2. Copy the sortFileList.cpp program and download the scores.txt file from www.rdb3.com (Links to an external site.) chapter 13 example program into the program Template and get it to work.
+
+3. Modify the scores.txt file to miscellaneously add two 100 scores in different lines in the file and add some invalid scores.
+
+4. Modify sortFileList.cpp to create listFile.cpp from listFile-algorithm.txt with one additional requirement: need void function introduction to introduce the program and void function getStatistics that gets passed as input an array based list passed by reference and the number of valid scores on the list passed by value, and outputs everything but the empty file message.  Input the filename, open input file, read input file doing input validation and only call getStatistics function if file is not empty.  Need to write your own function to sort the list, not use the sort function from the algorithm library.
+
+5. Please submit the following files:
+
+listFile-algorithm.txt
+
+listFile.cpp

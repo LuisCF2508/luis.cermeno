@@ -1,0 +1,7 @@
+1. Modify studentLinkedList.cpp from www.rdb3.com (Links to an external site.) chapter 14 example program to use the programTemplateProto.cpp with a function prototype for the program introduction, and pass by value the program objective to the introduction function prototype.
+
+2. Modify the program to count the number of students and output that first before outputting the formatted table of students.
+
+3. Please submit the following files:
+
+studentLinkedList.cpp
