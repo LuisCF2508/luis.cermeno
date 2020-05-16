@@ -12,7 +12,10 @@
 			"algorithm": "cpp",
 			"cctype": "cpp",
 			"string": "cpp",
-			"typeinfo": "cpp"
+			"typeinfo": "cpp",
+			"deque": "cpp",
+			"fstream": "cpp",
+			"stack": "cpp"
 		}
 	}
 }

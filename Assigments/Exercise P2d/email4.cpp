@@ -27,23 +27,24 @@ class toLower { public: char operator() (char c) const {return tolower(c);} }; /
 //Special compiler dependent definitions
 //NONE
 
-//global constants/variables
+// global constants/variables
 //NONE
+
 
 //Programmer defined functions
 void introduction(string obj);//user introduction
-string getFileName(string filetype, string dFileName);//input function (for either input or output)
-void readFile (deque<list>& nonDup, string iFileName);//reads input file until EOF that calls function processLine for each line read from the input file
-void processLine(deque<list>& nonDup, string lineFromFile);//function to find a @, then find the start of an email addres, then find the end of the email and extract
+string getFileName(string filetype, string dFileName);//Input function (for either input or output)
+void readFile (deque<list>& nonDup, string iFileName);//Reads input file until EOF that calls function processLine for each line read from the input file
+void processLine(deque<list>& nonDup, string lineFromFile);//To find a @, then find the start of an email addres, then find the end of the email, and extract
 bool isValidEmailChar(char c); //Returns true if c is a valid email address character, else false
-void isDuplicate (deque<list>& nonDup, string aEmail); //checks anEmail whether it is a duplicate email address using case sensitive comparison to create list of non-duplicate email addresses
-string changeCase(string s); //converts string to all one case for case dependent comparisons
+void isDuplicate (deque<list>& nonDup, string aEmail); //Checks anEmail whether it is a duplicate email address using case sensitive comparison to create list of non-duplicate email addresses
+string changeCase(string s); //Converts string to all one case for case dependent comparisons
 
 //main program
 int main()
 {
   //Data definitions
-  string objective = "Objective: Read user selected input file line by line and output to the console every valid email address as it is found.\n";
+  string objective = "Objective: Read user selected input file line by line and output to the console every valid email address as it is found skipping case-independent duplicates.\n";
   string iFileName; // (text) :  is the input file name
   string oFileName; // (text) :  is the output file name
   string dFileName = "fileContainingEmails.txt"; // (text) :  is the default file name
@@ -80,13 +81,13 @@ void introduction(string obj)//user introduction
   cout << obj; 
   cout << "Programmer: Luis Cermeno-Farro\n"; 
   cout << "Editor(s) used: TextEdit\n"; 
-  cout << "Compiler(s) used: Xcode\n"; 
+  cout << "Compiler(s) used: Apple clang version 11.0.3\n"; 
   cout << "File: " << __FILE__ << endl; 
   cout << "Complied: " << __DATE__ << " at " << __TIME__ << endl << endl;
   cout << endl << "This program will prompt you for two text file names, an input and an output file. The program will read your input file and then show the lines containing the character '@'.Please filetype the name of each file correctly including the extension .txt. No other file extension is yet supported." << endl << endl;
 }//introduction function
 
-//input function (for either input or output)
+//function getFileName: Input function (for either input or output)
 string getFileName(string filetype, string dFileName)
 {
   //Data
@@ -120,15 +121,16 @@ string getFileName(string filetype, string dFileName)
     }
   }
   return userInput;
-}//input function (for either input or output)
+}//function getFileName
 
-//function readFile: reads input file until EOF that calls function processLine for each line read from the input file
+//function readFile: Reads input file until EOF that calls function processLine for each line read from the input file
 void readFile (deque<list>& nonDup, string iFileName)
 {
   //Data
   string lineFromFile; //(text) is a line read from the input file
   int nLines = 0; // (integer) number of lines of the file
-  
+  int i; //(integer) counter to traverse the collection of emails
+
   //Read each line in the file and find each @
   fin.open(iFileName.c_str());
   if (!(fin.good())) throw "I/O error";
@@ -142,13 +144,16 @@ void readFile (deque<list>& nonDup, string iFileName)
   fin.close();
 
   //Output emails
-  int i;
   cout << endl;
-  for (i =0 ; i < nonDup.size(); i ++) cout << nonDup[i].email << endl;
-  cout << endl << "Number of valid email addresses is " << nonDup.size() << endl;
+  if (nonDup.size() == 0) cout << "Sorry, no email addresses were found in the file " << iFileName << endl;
+  else 
+  {
+    for (i =0 ; i < nonDup.size(); i ++) cout << nonDup[i].email << endl;
+    cout << endl << "Number of valid email addresses is " << nonDup.size() << endl;
+  }
 }//function readFile
 
-//function processLine: to find a @, then find the start of an email addres, then find the end of the email and extract
+//function processLine: To find a @, then find the start of an email addres, then find the end of the email and extract
 void processLine(deque<list>& nonDup, string lineFromFile)
 {
   //Data
@@ -157,7 +162,7 @@ void processLine(deque<list>& nonDup, string lineFromFile)
   int e; //(integer) is the character position in lineFromFile for the end of a possible email
   int dotPos; //(integer) is the character number of lineFromFile in which the dot is
   bool hasDot = false; //(integer) is true if the possible email has a dot on their characters
-  string anEmail; //(string) is an sub string of lineFromFile that stores a complete valid email
+  string anEmail; //(string) is an sub string of lineFromFile that stores a complete possible email
 
   //Main loop to traverse the whole lineFromFile
   for (i = 0; i < lineFromFile.length() ; i++)
@@ -190,7 +195,7 @@ void processLine(deque<list>& nonDup, string lineFromFile)
   }//main loop to traverse the whole lineFromFile
 }//function processLine
 
-//function isValidEmail
+//function isValidEmail: Returns true if c is a valid email address character, else false
 bool isValidEmailChar(char c)
 {
   bool result = true; // (boolean) is true if a character is a valid email character
@@ -198,9 +203,9 @@ bool isValidEmailChar(char c)
   // traslated: if( !(c is A - Z)  && !(c is a-z) && !(c is 0-9)  && (c != '_') && (c != '.') && (c != '-') && (c != '+'))
   if( !( (65 <= c) && (c <= 90) )  && !( (97 <= c) && (c <= 122) ) && !(  (48 <= c) && (c <= 57)  ) && (c != 95) && (c != 46) && (c != 45) && (c != 43)) result = false;
   return result;
-} //Funcion isValidEmail
+} //funcion isValidEmail
 
-//function isDuplicate
+//function isDuplicate: Checks anEmail whether it is a duplicate email address using case sensitive comparison to create list of non-duplicate email addresses
 void isDuplicate (deque<list>& nonDup, string anEmail)
 {
   //Data
@@ -222,11 +227,11 @@ void isDuplicate (deque<list>& nonDup, string anEmail)
   }
 }//function isDuplicate
 
-//function changeCase
-string changeCase(string s) //converts string to all one case for case dependent comparisons
+//function changeCase: Converts string to all one case for case dependent comparisons
+string changeCase(string s) 
 {
   //Data
-  string lc_s = s; // (text) is a copy of s to be lowered and returned to isDuplicate subprogram
+  string lc_s = s; // (text) is a copy of s to be case lowered, value returned to subprogram isDuplicate
 
   //Conversion to lower case
   transform (lc_s.begin(), lc_s.end() , lc_s.begin(), toLower()); //transforming the lc_s to lower case

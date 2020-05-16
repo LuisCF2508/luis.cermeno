@@ -1,0 +1,46 @@
+1. Modify email3-algorithm to create email4-algorithm to prompt the user for the input and output filenames, and then output the valid email addresses found, skipping case-independent duplicates.
+
+2. Write email4.cpp from email4-algorithm.txt
+This program should have a list to store valid, non-duplicate email addresses. It should prompt the user for the input and output filenames, open and read the input file, and output to the console the valid email addresses, skipping duplicates. If a line contains the character @, create the variables s, e, and hasDot, and use loops to find their values, per the lecture on the term project. If the values for these three indicate that the @ is inside a valid email address, use a boolean search loop to see if that valid email address has already been found earlier in the file -- use case-independent comparisons. If it has not already been found, then add it to the list and output to the console screen.
+
+Here are some guidelines:
+
+need subprograms for:
+
+void introduction(string obj); //program introduction and user instructions
+bool isValidEmailChar (char c); //Returns true if c is a valid email address character, else false
+string getFileName (string fileType, string dFileName); //outputs variable prompt with default filename and gets a filename (either input or output) using input validation and returns the fileName depending on user input. fileType = "input" or "output". This function is called TWICE: 1st. input file name then 2nd: output file name.
+void processLine(list* nonDup, string lineFromFile)
+void readFile (list* nonDup, string iFileName); //reads input file until EOF and outputs valid email addresses and number of valid email addresses
+void isDuplicate (list* nonDup, string aEmail); //checks anEmail whether it is a duplicate email address using case sensitive comparison to create list of non-duplicate email addresses
+string changeCase(string s); //converts string to all one case for case dependent comparisons
+
+* or & pointer indicator for the list depends on which list data structure instructor selects.
+
+If you open the output file, you are not doing this right -- this step is only needed in the final version of the project.
+If you do not create your own input files, in addition to the input files you were provided, with which to test your program, you are not doing this right.
+If you do not test your program with the ten .txt files provided in the project writeup, and you see duplicate email addresses outputed, you are not doing this right.
+Compile and run the program. Submit the source file to the class website for credit.
+
+Remember in your final version of the project to remove the output of email addresses to the console screen as you add them to the list. In that version, output the email addresses after the EOF loop closes and you determine that the list of email addresses is not empty. Then you can output them in a loop that traverses the list -- one per line to the console, and semicolon-space delimited to the output file.
+
+Program I/O. The program should prompt the user for the input and output filenames, and then output the valid email addresses found, skipping case-independent duplicates.
+
+Example. Your program's console I/O should look something like this, excluding your introduction information:
+
+Enter input filename [default: fileContainingEmails.txt]: x.txt
+Enter output filename [default: x.txt]: y.txt
+
+Input file name is x.txt
+Output file name is y.txt
+
+Please press Enter key to continue:
+
+RBurns@dvc.edu
+vcolber@dvc.edu
+
+Number of valid email addresses is 2
+
+3. Please submit the following files:
+email4-algorithm.txt
+email4.cpp 
