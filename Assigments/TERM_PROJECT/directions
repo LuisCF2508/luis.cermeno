@@ -1,0 +1,73 @@
+1. Using email4-algorithm.txt, review the entire term project directions and requirements and make any modifications to that algorithm to create email-algorithm.txt.
+
+2. Write a program named email.cpp that opens and input from a text file and writes another text file. The purpose of the program is to extract email addresses embedded in the first (input) text file, and copy them to the second (output) text file. In computer science, this process is called "parsing". The application of the program is to make it easier to enter email addresses into an email message that is to be sent to a list of recipients, when those recipients are not already in a contacts list.
+For example, the DVC website (www.dvc.edu) has a Faculty and Staff Directory for each department (such as Computer Science). To send a single email message to everyone in the department, one has to copy/paste each email address individually from the directory into the "to", "cc", or "bcc" field of my email message. Using the new email.cpp program, save the web page containing the directory listing to a file, run the program, open its output file, and copy/paste the entire list from the file into the into the "to", "cc", or "bcc" field.
+
+Here's another example -- WebAdvisor provides a roster of students in each course. The roster is a table with names, email addresses, 7-digit student IDs, etc. I would like to save that page to a file, run the email.cpp program, open its output file, and copy/paste the entire list from the file into the "to", "cc", or "bcc" field of a message to be sent to all students in my class.
+
+You can probably think of many other possible applications for such a program.
+
+Here are the specifications for the program:
+There are to be two console inputs to the program, as explained below. For each input, there is to be a default value, so that the user can simply press ENTER to accept any default. (That means that string will be the best choice of data type for the console input for each option.)
+The two console inputs are the names of the input and output files. The default filenames are to be fileContainingEmails.txt for the input file, and copyPasteMyEmails.txt for the output file. The default location for these files is the working folder of the program (so do not specify a drive or folder for the default filenames). The actual names and locations of the files can be any valid filename for the operating system being used, and any existing drive and folder.
+It is okay for the user to select input and output names by the same name. If the user enters another name for the input file besides the default, then the default for the output file should change to be the same as that of the input file. So if the input and output filenames are the same, then the input file becomes replaced by the output file when the program is run.
+The output file should be overwritten, and not appended to. No warning is necessary when overwriting an already-existing file.
+
+use a programmer defined function named isValidEmailChar to determine whether a character is a valid email address character.
+
+use a programmer defined function named changeCase to convert any string to all lowercase to use when comparing case independent strings to ensure anEmail is not a duplicate email address and to sort email addresses.
+
+output each non-duplicate valid email address to the console in order when found, one email address per line.
+
+Sort the non-duplicate list of email addresses in alphabetical order not using a library function but your own programmer defined function called sortList.
+output each email address to the output file and the console (to show what is in the output file and before additional user instructions), separated by a semicolon and a space. Include nothing before the first email address, and nothing after the last. Include nothing in the file besides email addresses and semicolon+space separators.
+Do not allow duplicate email addresses to appear in the output file. Since you are supposed to preserve the case of email addresses, it is possible for an email address to appear more than once, cased differently -- like rburns@dvc.edu and RBurns@dvc.edu. In this case, store one of them in its originally-cased form -- it does not matter which one you choose as long as it is one of them and not some other casing. (So you will have to store each email in a list as you process the input file, checking to see if it is already in the list before adding it. Then use the list to write the output file after the input file has been fully processed and closed).
+Count the number of non-duplicate email addresses found in the input file, and list each on a separate line of console output. At the end of the list of email addresses on the console, output the total number of non-duplicate email addresses found. If the number of email addresses found is zero, do not write the output file. (That means, do not even open it.)
+In case an email address is split between two or more lines in the input file, ignore it. Valid email addresses must appear fully within one line of the input file. Also, each line of the input file may contain more than one email address.
+Include friendly, helpful labels on the console output. Instead of just output the number of email addresses found, say something like "16 email addresses were found, and copied to the file output.txt". Or if none were found, say something like "Sorry, no email addresses were found in the file input.txt".
+Include a message in the console output explaining to the user to open the output file and copy/paste its contents into the "to", "cc", or "bcc" field of any email message. But explain that it is best to use the "bcc" field so that everyone's email address does not appear in the message, to protect their privacy.
+Use only techniques taught in this class. Do not use regular expressions -- they are a great way to solve this problem, but we did not cover them. Do not use char arrays for strings -- they are used in C for text strings, and we are using C++. Do not use pointers other than the ways we used them for dynamic arrays, array parameters, and links. Do not use features of the STL that we did not use in class.
+
+Testing
+
+To test your program, get a faculty directory of your choosing from the DVC website. Be sure to test your program with at least one other data source -- search for one on the Internet, if you have to. You may share test input files with classmates, providing files to test each other's programs.
+Make sure that your file works with these two input files: math1.txt. The output from these should be the contents of this file: projectOutputSample.txt, in any order -- note that the file is in alphabetical order, but yours does not have to be so. But do note that the case of the email addresses in the sample output file preserve the case of the email addresses in the original input file. Of course, your program should work with any text file containing email addresses, but if it does not work with these, then something is wrong.
+
+The project will NOT be returned for corrections. This project is worth 50 points. Points will be deducted according to this schedule:
+if your program's code does not apply proper alignment and indenting, -1,
+if your program's code is not commented similarly to the course standards, -1,
+if either or both of the default input and output filenames (fileContainingEmails.txt and copyPasteMyEmails.txt) are not spelled correctly, -1,
+if your program does not show the default input filename in the prompt, -1,
+if your program does not show the default output filename correctly in the prompt, when the default input filename is selected, -1,
+if your program does not show the default output filename correctly in the prompt, when the default input filename is not selected, -1,
+if the user has to do more than to press ENTER to get the default input and/or output filename, -1,
+if your program does not have exactly two prompts under any circumstances, -1,
+if any quoted literal string containing a default input or output filename appears in the code more than once, instead of being stored in a variable, -1,
+if the email addresses are not listed to the console screen, one per line, -1,
+if the first email in the output file has a semicolon before it, -1,
+if the last email in the output file has a semicolon following it, -1,
+if your program writes an output file when zero email addresses are found in the input file, -1,
+if your program outputs the email addresses in converted case (e.g., fully uppercase or lowercase), -1,
+if your program outputs duplicates, regardless of case, -1,
+if your program does not correctly find all of the email addresses for any of the 10 input files provided below, -1 each in addition to any of the above deductions (note that you have to figure out what the results should be for these).
+if your program uses any system-specific code, such as system("PAUSE"), -1,
+An additional up to 10 points each may be deducted if your program ignores any of the specifications.
+
+How to get a zero:
+Do not just throw together code blocks together and expect to get any points at all. And do not turn in way-incomplete work expecting to get any points at all. For example, if you have 799 points and you need just one more point for a 'B' letter grade, you cannot just submit your term project class exercises and expect to receive any points. If your program does not at least open an input file and look for and find email addresses and write them in output form, zero points will be awarded.
+
+Failure to compile, etc:
+If your source file will not compile in either Windows, MacOSx, or Linux, 2 points will be deducted and you will be offered another chance to resubmit, as long as the deadline for late submissions has not past. Zero points will be awarded if your resubmitted source code does not compile and the deadline for late submissions has past. If you use techniques other than those taught in this class, the work will be treated as if it does not compile. If your program terminates abnormally, the work will be treated as if it does not compile.
+
+Hints:
+
+See lecture on term project for a procedure for "parsing" text to find embedded email addresses. Email addresses consist of the characters A-Z, a-z, 0-9, underscore, dot, hyphen, and plus. Also, they must have exactly one '@' followed by at least one '.'. Check out http://www.remote.org/jochen/mail/info/chars.html for a reference on valid email characters (only green marked "usable" allowed).
+The procedure basically involves input a line from a file as a text variable, and traversing the line of text to find a '@' character. If one is found, its position is saved. Then traverse backwards until an invalid email character found -- that is the position before the email address starts. Then traverse forwards from the '@' until an invalid email character is found -- that is the position after the email address ends Also count the number of '.'s found as you traverse forwards from '@' -- if any are found, then you can extract a copy of the email address as a substring. Continue from the position after the extracted email address, until no more '@'s are found.
+
+Input a line from the input file as string line. Traverse it, testing each line[i] until you find a '@'. Then look backwards in a loop until you find an invalid email address character, or run into the start of line. Then look forwards from the same '@' in another loop until you find an invalid email address character, or run into the end of line. When looking forwards, be sure to count the number of dots ('.') found -- there needs to be at least one in a valid email address.
+Use a deque to store found email addresses, because it’s capacity does not have to be specified. Each time you find a new email address, search this list using a "Boolean Search Loop" to avoid adding duplicate addresses.
+Write a value-returning function for testing a character to see if it is a valid email address character. For example, bool isValidEmailCharacter(char c). In it, test to see if "c" is >='A' and ='a' and ='0' and To see this in action, go to the Computer Science department web pages on the DVC website, and look for the "handy tools". There's an email parser there that applies the same logic that is required in this project!.
+
+3. Please submit the following files:
+email-algorithm.txt
+email.cpp

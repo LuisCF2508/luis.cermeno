@@ -1,0 +1,35 @@
+UPDATES TO EXERCISE P2D FOR FINAL TERM PROJECT:
+
+-Add more detailed directions.
+Say that if the user do not specify it outful file then its input will be overwritten
+
+-CONTINUE from the position after the extracted email address, until no more '@'s are found.
+
+-Output each non-duplicate valid email address to the console in order WHEN FOUND, one email address per line.
+
+-Sort the non-duplicate list of email addresses in alphabetical order not using a library function but your own programmer defined function called sortList.
+
+-Output each email address to the output file and the console (to show what is in the output file and before additional user instructions), SEPARATED BY A SEMICOLON AND SPACE. Include nothing before the first email address, and nothing after the last. Include nothing in the file besides email addresses and semicolon+space separators.
+
+-At the end of the list of email addresses on the console, output the total number of non-duplicate email addresses found. If the number of email addresses found is zero, DO NOT WRITE THE INPUT FILE. (That means, do not even open it.)
+
+-Include FRIENDLY, helpful labels on the console output. Instead of just output the number of email addresses found, say something like "16 email addresses were found, and copied to the file output.txt". Or if none were found, say something like "Sorry, no email addresses were found in the file input.txt".
+
+-Include a MESSAGE in the console output explaining to the user to open the output file and copy/paste its contents into the "to", "cc", or "bcc" field of any email message. But explain that it is best to use the "bcc" field so that everyone's email address does not appear in the message, to protect their privacy.
+
+TEST: 
+-get a faculty directory of your choosing from the DVC website
+-math1.txt --->projectOutputSample.txt
+-test on Windows.
+
+BEWARE:
+
+if the email addresses are not listed to the console screen, one per line, -1,
+if the first email in the output file has a semicolon before it, -1,
+if the last email in the output file has a semicolon following it, -1,
+if your program writes an output file when zero email addresses are found in the input file, -1,
+if your program outputs the email addresses in converted case (e.g., fully uppercase or lowercase), -1,
+if your program outputs duplicates, regardless of case, -1,
+if your program does not correctly find all of the email addresses for any of the 10 input files provided below, -1 each in addition to any of the above deductions (note that you have to figure out what the results should be for these).
+if your program uses any system-specific code, such as system("PAUSE"), -1,
+An additional up to 10 points each may be deducted if your program ignores any of the specifications.
