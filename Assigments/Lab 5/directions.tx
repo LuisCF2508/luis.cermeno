@@ -1,0 +1,52 @@
+1. Write overUnder5.cpp from overUnder3-algorithm.txt using a collection to store the guessed numbers.
+Example partial output:
+
+I'm thinking of a number between 1 and 100. Guess what it is: 50
+That's too high -- guess again: 25
+That's too low -- guess again: 37
+That's too high -- guess again: 31
+That's too high -- guess again: 25
+You already guessed 25 -- guess again: 28
+That's right -- it's 28
+
+
+2. Modify mp3Shuffler1-algorithm.txt to create mp3Shuffler2-algorithm.txt so Input: user enters Y to “play” a song, or N to exit. Output: a song title console screen, in
+response to every Y from the user. But remember the last 5 songs played. If the program selects a
+song that was played in the last 5, choose again. Keep choosing until a song that has not been
+played in the last 5 is found and “played”. This improves the MP3 player’s shuffle feature to make sure that a recently played song is not
+selected again so soon after it was last played.
+
+
+3. Write mp3Shuffler2.cpp from mp3Shuffler2-algorithm.txt
+Use a collection to remember the last 5 songs played. If the program selects a
+song that was played in the last 5, choose again. Keep choosing until a song that has not been
+played in the last 5 is found and “played”.
+Use a deque collection to store the last 5 played songs. Use .push_back() to add the last-played
+song to the list, and if the list size is then greater than 5, use .pop_front()to remove the oldest
+song from the list.
+This requires a validation loop after an index for the next song is randomly generated. Exit the
+validation loop only if the song is not in the deque.
+
+For example, part of your program's console input/output should look something like this:
+play a song [Y/N]?: y
+Hey Jude
+play a song [Y/N]?: y
+Imagine
+play a song [Y/N]?: y
+Johnny B. Goode
+play a song [Y/N]?: y
+Respect
+play a song [Y/N]?: y
+Good Vibrations
+play a song [Y/N]?: y
+Smells Like Teen Spirit
+play a song [Y/N]?: y
+Hey Jude
+play a song [Y/N]?: n
+
+4. Please submit:
+overUnder3-algorithm.txt 
+overUnder5.cpp 
+mp3Shuffler2-algorithm.txt
+mp3Shuffler2.cpp 
+

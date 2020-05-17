@@ -32,7 +32,7 @@ class toLower { public: char operator() (char c) const {return tolower(c);} }; /
 //NONE
 
 //Programmer defined functions
-void introduction(string obj);//user introduction
+void ibntroduction(string obj);//user introduction
 string getFileName(string filetype, string dFileName);//Input function (for either input or output)
 void readFile (deque<list>& nonDup, string iFileName);//Reads input file until EOF that calls function processLine for each line read from the input file
 void processLine(deque<list>& nonDup, string lineFromFile);//To find a @, then find the start of an email addres, then find the end of the email, and extract
