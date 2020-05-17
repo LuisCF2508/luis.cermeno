@@ -66,8 +66,6 @@ int main()
 
   //Read input file and store valid emails in the collection
   readFile(nonDup, iFileName);
-
-  
 }//main
 
 //introduction function
@@ -84,7 +82,10 @@ void introduction(string obj)//user introduction
   cout << "Compiler(s) used: Apple clang version 11.0.3\n"; 
   cout << "File: " << __FILE__ << endl; 
   cout << "Complied: " << __DATE__ << " at " << __TIME__ << endl << endl;
-  cout << endl << "This program will prompt you for two text file names, an input and an output file. The program will read your input file and then show the lines containing the character '@'.Please filetype the name of each file correctly including the extension .txt. No other file extension is yet supported." << endl << endl;
+  cout << "INSTRUCTIONS:" << endl;
+  cout << "This program will prompt you for two text file names, an input and an output file." << endl;
+  cout << "Then, the program will read your input file to extract and output the embedded emails within it." << endl;
+  cout << "Please filetype the name of each file correctly including the extension .txt. No other file extension is yet supported." << endl << endl;
 }//introduction function
 
 //function getFileName: Input function (for either input or output)

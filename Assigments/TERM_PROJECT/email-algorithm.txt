@@ -3,7 +3,7 @@ Luis Cermeno-Farro 1837034:
 Course and section: COMSC-110-8076
 
 1. Objective (1 sentence brief description of what this will do): 
-Read user selected input file line by line and output to the console every valid email address as it is found skipping case-independent duplicates.
+Extract email addresses embedded in an input text file, and copy them to an output text file.
 
 2. Requirements (any and all requirements organized by input, processing, output, data):
 INPUT (any data items to be input): 
@@ -21,30 +21,51 @@ PROCESSING (list of significant parts of the objective that will become the list
 7. search each line for @'s if 1st valid email address character of anEmail is before @, and 1st non-valid email address character is after @, and there is a dot at least 1 character beyond @, then extract a valid email address (subprogram processLine)
 8. change the case of a string for comparisions (subprogram changeCase)
 9. maintain list of non-duplicate email addresses by checking for case independent duplicate email addresses (subprogram isDuplicate)
+10. sort list of non-duplicate email alphabetically (subprogram sortList)
+11. output list of emails to output file and to console giving instructions on how to use it (subprogram outputList)
 
 OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
--user introduction: introduction of objective, author, "This program will prompt you for two text file names, an input and an output file. The program will read you input file and then show the lines containing the character '@'.Please filetype the name of each file correctly including the extension .txt. No other file extension is yet supported.".
+-user introduction: introduction of objective, author:
+                                          "WELCOME TO EMAIL.CPP"
+"This program is created to make it easier to send an email to multiple recipients when they are not already in your conctacts list."
+"When the list of your recipients are inside a webpage; for example, you would need to copy one by one into your 'to' field."
+"With email.cpp, you just need to copy the content of the webpage into a text file and select it as the input file for the program.
+"The program will automatically extract all emails embedded and write them into one line in your selected input file.  
+"Now its all ready to just copy paste that into your 'to' field. No more effort needed."
+"INSTRUCTIONS:"
+"This program will prompt you for two text file names, an input and an output file."
+"Please type the name of each file correctly including the extension .txt. No other file extension is yet supported."
+"If you do not specify your output file, your input file will be overwritten with the emails extracted."<<endl;
 -prompt "Enter input filename [Press ENTER for default: " and dFileName " ]: "
 -prompt "Enter output filename [Press ENTER for default: " and dFileName " ]: "
--inputValidation for iFileName "Sorry, that is an invalid name. The file name must have the .txt extension. Try again please." 
+-output in case of invalid input "Sorry, that is an invalid name. The file name must have the .txt extension. Try again please." 
 -output in case of no emails  "Sorry, no email addresses were found in the file" and value of iFileName
--output each value of nonDup
--output "Number of valid email addresses is " and the number of elements stored in collection nonDup
+-output "Sorry, it seems that the file " iFileName " cannot be opened. It might contain an error, not exist in local directory or be locked to access."
+-output "Emails found in the file " and value of iFileName
+-output each value of anEmail
+-output "SUCCESS! " and size of nonDup list " emails were found, and copied to the file " and value oFileName  " as follows:"
+-output each element of nonDup list
+-output "Now, you may open the file " and value of oFileName " and copy/paste its contents into the 'to', 'cc', or 'bcc' field of any email message."
+-output "In order to protect you recipients privacy, we suggest you to use 'bcc' field since it does not show the other recipients you have sent the email to."
+
 
 DATA (list of all data items: definition, data filetype, formatting, or any other specifications):
 -iFileName // (text) :  is the input file name <main>
 -oFileName // (text) :  is the output file name <main>
 -dFileName // (text) : is the default file name <main>
 -wait // (text) : just a variable to read the ENTER key at the end of the program. <main>
--nonDup //(collection of texts) is a collection of non duplicate emails
+-nonDup //(list of texts) is a list of non duplicate emails <main>
+
 -filetype // (text): is either "input" or "output" choice, value required by the subprogram "getFileName" <getFileName>
 -dFileName // (text) : is the default file name value required by the subprogram "getFileName" <getFileName>
 -valid // (boolean) : is true when the input is already processed by validation function <getFileName>
 -fileName // (text) : is the text entered by the user, value returned to main program <getFileName>
+
 -iFileName // (text): is the name of the input file, value required by the subprogram <readFile>
 -lineFromFile //(text) is a line read from the input file <readFile>
 -nLines // (integer) number of lines of the file <readFile>
--i //(integer) counter to traverse the collection of non emails <readFile>
+-i //(integer) counter to traverse the list of non emails <readFile>
+
 -lineFromFile // (text) is a line read from the input file, value required by the subprogram <processLine>
 -i //(integer) is a counter used to process each character of the line and find an '@' <processLine>
 -s //(integer) is the character position in lineFromFile for the start of a possible email <processLine>
@@ -52,20 +73,29 @@ DATA (list of all data items: definition, data filetype, formatting, or any othe
 -dotPos //(integer) is the character number of lineFromFile in which the dot is <processLine>
 -hasDot //(integer) is true if the possible email has a dot on their characters <processLine>
 -anEmail // (string) is an sub string of lineFromFile that stores a possible valid email <processLine>
+
 -c // (character) is a character from the possible email, value required by the subprogram <isValidChar>
 -result // (boolean) is true if a character is a valid email character, value returned to subprogram processLine <isValidChar>
+
 -anEmail // (string) is a possible valid email, value required by the subprogram <isDuplicate>
 -i // (integer) counter used to traverse the list of emails and check for duplicates <isDuplicate>
--duplicate // (bool) is true when a duplicate has been found in the collection <isDuplicate>
+-duplicate // (bool) is true when a duplicate has been found in the list <isDuplicate>
+
 -s // (text) is a line of text, value required by the subprogram <changeCase>
 -lc_s // (text) is a copy of s to be case lowered, value returned to subprogram isDuplicate <changeCase>
+
+-i // (integer) a counter to compare each email i with the rest, outer loop <sortList>
+-j // (integer) a counter to select an email j to compare with the email i, inner loop <sortList>
+-temp //(text) a tempory variable used when swaping email in the list <sortList>
+
+-i // (integer) a counter to traverse each email in the list <outputList>
 
 3. Algorithm instructions (recipe)
 
 -->algorithm for "main" program
 ***data
 10 set dFileName = "fileContainingEmails.txt"
-15 create empty collection of texts nonDup
+15 create empty list of texts nonDup
 ***introduction 
 20 output introduction: objective, author, instructions/rules
 ***get filenames (input and output) using variable prompts and default filenames and input validation
@@ -79,6 +109,11 @@ DATA (list of all data items: definition, data filetype, formatting, or any othe
 65 input wait
 ***read input file (subprogram readFile)
 70 go to subprogram readFile (give the value of iFileName as iFileName)
+***sort list of non-duplicate email alphabetically
+80 go to subprogram sortList
+***output list of emails to output file and to console giving instructions on how to use it 
+90 if size of nonDup list is 0 the output "Sorry, no email addresses were found in the file " and iFileName, then skip to 999
+100 go to subprogram outputList (give the value of oFileName)
 999 END
 
 -->algorithm for subprogram "getFileName" :
@@ -98,19 +133,19 @@ DATA (list of all data items: definition, data filetype, formatting, or any othe
 2010 set nLines = 0
 2012 set hasDot = false
 2015 open input file named as the value of iFileName
-2020 if the file contain errors, skip to line 2060
+2020 if the file contain errors, output "Sorry, it seems that the file " iFileName " cannot be opened. It might contain an error, not exist in local directory or be locked to access." , and skip to line 2060
 2025 if end-of-file is reached skip to line 2050
 2030 set lineFromFile = next line of the file
-2035 go to subprogram processLine (give the value of lineFromFile)
+2035 output "Emails found in the file " and value of iFileName, then go to subprogram processLine (give the value of lineFromFile)
 2040 nLines = nLines + 1
 2045 go back to 2025
 2050 if nEmails = 0 output "Sorry, no email addresses were found in the file" and value of iFileName, then skip to line 2060
 2051 set i = 0
-2052 if i >= size of nonDup collection skip to line 2060
+2052 if i >= size of nonDup list skip to line 2060
 2053 output nonDup[i]
 2054 i = i + 1
 2055 go back to 2052
-2060 output "Number of valid email addresses is " and the number of elements stored in collection nonDup
+2060 output "Number of valid email addresses is " and the number of elements stored in list nonDup
 2070 return to main program
 
 -->algorithm for subprogram "processLine"
@@ -135,6 +170,7 @@ DATA (list of all data items: definition, data filetype, formatting, or any othe
 **Decide whether to extract and output the email
 3160 if (s < i) AND (e > i) AND (hasDot) AND (dotPos > i + 1) then set anEmail to the extracted characters (s-e) from lineFromFile, otherwise skip to 3190
 3170 go to subprogram isDuplicate (give the value of anEmail)
+3180 i = e
 3190 i = i + 1
 3200 go back to 3020
 3210 return to subprogram readFile
@@ -145,29 +181,204 @@ DATA (list of all data items: definition, data filetype, formatting, or any othe
 4020 if c is not in the range of A-Z AND not in the range of a-z AND not in the range of 0-9 AND is NOT '_' AND '.' AND '-' AND '+' then set result to false
 4030 return the value of result to subprogram processLine
 
+-->algorithm for subprogram "isDuplicate"
+***maintain list of non-duplicate email addresses by checking for case independent duplicate email addresses
+5010 set duplicate = false
+5020 set i = 0
+5030 set anEmail to the value returned by the subprogram changeCase (give the value of anEmail as "s")
+5040 if i >= size of nonDup list skip to 5080
+5050 if anEmail = value returned by the subprogram changeCase (give the value of nonDup[i] as "s"), then set duplicate = true
+5060 i = i + 1
+5070 go back to 5040
+5080 if duplicate = false, store the value of anEmail in the back of the list nonDup and output its value console
+5090 return to subprogram processLine
+
 -->algorithm for subprogram "changeCase"
 ***change the case of a string for comparisions
 6010 set lc_s = s
 6020 convert all character of lc_s to lowercase
 6030 return lc_s to subprogram isDuplicate
 
--->algorithm for subprogram "isDuplicate"
-***maintain list of non-duplicate email addresses by checking for case independent duplicate email addresses
-5010 set duplicate = false
-5020 set i = 0
-5030 set anEmail to the value returned by the subprogram changeCase (give the value of anEmail as "s")
-5040 if i >= size of nonDup collection skip to 5080
-5050 if anEmail = value returned by the subprogram changeCase (give the value of nonDup[i] as "s"), then set duplicate = true
-5060 i = i + 1
-5070 go back to 5040
-5080 if duplicate = false, store the value of anEmail in the back of the collection nonDups
-5090 return to subprogram processLine
+-->algorithm for subprogram <sortList>
+***sort list of non-duplicate email alphabetically 
+7010 set i = 0
+7015 if i >= size of nonDup list then skip to 7055
+7020 set j = i + 1 
+7025 if j >= size of nonDup list then skip to 7045
+7030 if nonDup[i] > nonDup [j] then temp = nonDup[i], nonDup[i] = nonDup[i], nonDup[i] = temp
+7035 j = j + 1
+7040 go back to 7025
+7045 i = i + 1
+7050 go back to 7015
+7055 return to main program
 
+-->algorithm for subprogram <outputList>
+***output list of emails to output file and to console giving instructions on how to use it
+8010 output "SUCCESS! " and size of nonDup list " emails were found, and copied to the file " and value oFileName  " as follows:"
+8020 set i = 0
+8025 open text file named as oFileName, if it does not exist create it
+8030 if i >= size of nonDup list then go to 8050
+8040 Write nonDup[i] "; " to oFileName and output the same to console, if i = size of nonDup list, write and output without the semicolon and space.
+8045 i = i + 1
+8046 go back to 8030
+8050 output "Now, you may open the file " and value of oFileName " and copy/paste its contents into the 'to', 'cc', or 'bcc' field of any email message."
+8060 output "In order to protect you recipients privacy, we suggest you to use 'bcc' field since it does not show the other recipients you have sent the email to."
+8070 return to main program
 
 4. Test cases (list purpose of each test case, any input values, and expected results)
 
 Test case #1
--->purpose: test essential given test case
+-->purpose: test simplest case to see if program succesfully sort and outputs list of nonDup email leaving the email without a semicolon and space.
+-->value of nonDup list after readFile subprogram: nonDup = ["vcolber@dvc.edu" "rburns@dvc.edu"]
+-->expected console output:
+Enter input filename [Press ENTER for default: fileContainingEmails.txt]: x.txt
+Enter output filename [Press ENTER for default: x.txt]: y.txt
+-> Input file: x.txt
+-> Output file: y.txt
+Press ENTER key to continue:
+Emails found in the file x.txt: 
+vcolber@dvc.edu
+rburns@dvc.edu
+SUCCESS! 2 emails were found, and copied to the file y.txt as follows:
+rburns@dvc.edu; vcolber@dvc.edu
+Now, you may open the file y.txt and copy/paste its contents into the 'to', 'cc', or 'bcc' field of any email message.
+In order to protect you recipients privacy, we suggest you to use 'bcc' field since it does not show the other recipients you have sent the email to.
+-->expected file output: y.txt created and written with: "rburns@dvc.edu; vcolber@dvc.edu"
+-->execution
+<main>
+.
+.
+.
+***sort list of non-duplicate email alphabetically
+80 go to subprogram sortList
+<sortList>
+7010 set i = 0
+7015 False, i = 0 is not >= 2
+7020 set j = 0 + 1 = 1
+7025 False, j = 1 is not >= 2
+7030 True, 'v' > 'r' in ASCII code, temp = rburns@dvc.edu, nonDup[0] = vcolber@dvc.edu], nonDup[1] = rburns@dvc.edu
+7035 j = 1+ 1 = 2
+7040 going back to 7025
+7025 True, j = 2 is  >= 2, skipping to 7045
+7045 i = 0 + 1 = 1
+7050 going back to 7015
+7015 False, i = 1 is not >= 2
+7020 set j = 1 + 1 = 2
+7025 True, j = 2 is  >= 2, skipping to 7045
+7045 i = 1 + 1 = 2
+7050 going back to 7015
+7015 True, i = 2 is = >= 2, skipping to 7055
+7055 return to main program
+<main>
+***output list of emails to output file and to console giving instructions on how to use it 
+90 False, size of nonDup list is 2 not 0
+100 going to subprogram outputList (give the value of oFileName = y.txt)
+<outputList>
+8010 "SUCCESS! "2 emails were found, and copied to the file y.txt as follows:"
+8020 i = 0
+8025 y.txt created and opened
+8030 False, i = 0 is not >= 2
+8040 "rburns@dvc.edu; ", "rburns@dvc.edu; " written on y.txt 
+8045 i = 0 + 1 = 1
+8046 go back to 8030
+8030 False, i = 1 is not >= 2
+8040 "vcolber@dvc.edu", "rburns@dvc.edu" written on y.txt 
+8045 i = 1 + 1 = 2
+8046 go back to 8030
+8030 True, i = 2 is  >= 2, skipping  8050
+8050 "Now, you may open the file " and value of oFileName " and copy/paste its contents into the 'to', 'cc', or 'bcc' field of any email message."
+8060 "In order to protect you recipients privacy, we suggest you to use 'bcc' field since it does not show the other recipients you have sent the email to."
+8070 returning to main program
+<main>
+999 END
+-->comments: the program succesfully sorted the emails and output them to console and file. test passed.
+
+Test case #2
+-->purpose: test if program sorts emails case independently
+-->value of nonDup list after readFile subprogram: nonDup = ["rburns@dvc.edu" "vcolber@dvc.edu" "Trey@dvc.edu"]
+-->expected console output:
+Enter input filename [Press ENTER for default: fileContainingEmails.txt]: x.txt
+Enter output filename [Press ENTER for default: x.txt]: y.txt
+-> Input file: x.txt
+-> Output file: y.txt
+Press ENTER key to continue:
+Emails found in the file x.txt: 
+rburns@dvc.edu
+vcolber@dvc.edu
+Trey@dvc.edu
+SUCCESS! 3 emails were found, and copied to the file y.txt as follows:
+rburns@dvc.edu; Trey@dvc.edu; vcolber@dvc.edu
+Now, you may open the file y.txt and copy/paste its contents into the 'to', 'cc', or 'bcc' field of any email message.
+In order to protect you recipients privacy, we suggest you to use 'bcc' field since it does not show the other recipients you have sent the email to
+-->expected file output: y.txt created and written with: "rburns@dvc.edu; Trey@dvc.edu; vcolber@dvc.edu"
+
+Test case #3
+-->purpose: test whether the program fails by outputting duplicates regardless of case
+-->value of nonDup list after readFile subprogram: nonDup = ["rburns@dvc.edu" "vcolber@dvc.edu" "Trey@dvc.edu" "RBURNS@dvc.edu"]
+-->expected console output:
+Enter input filename [Press ENTER for default: fileContainingEmails.txt]: x.txt
+Enter output filename [Press ENTER for default: x.txt]: y.txt
+-> Input file: x.txt
+-> Output file: y.txt
+Press ENTER key to continue:
+Emails found in the file x.txt: 
+rburns@dvc.edu
+vcolber@dvc.edu
+Trey@dvc.edu
+SUCCESS! 3 emails were found, and copied to the file y.txt as follows:
+rburns@dvc.edu; Trey@dvc.edu; vcolber@dvc.edu
+Now, you may open the file y.txt and copy/paste its contents into the 'to', 'cc', or 'bcc' field of any email message.
+In order to protect you recipients privacy, we suggest you to use 'bcc' field since it does not show the other recipients you have sent the email to
+-->expected file output: y.txt created and written with: "rburns@dvc.edu; Trey@dvc.edu; vcolber@dvc.edu"
+
+Test case #4
+-->purpose: test whether the program fails by outputting converted case emails 
+-->value of nonDup list after readFile subprogram: nonDup = ["RBurns@dvc.edu" "rburns@dvc.edu" "vcolber@dvc.edu" "Trey@dvc.edu"]
+-->expected console output:
+Enter input filename [Press ENTER for default: fileContainingEmails.txt]: x.txt
+Enter output filename [Press ENTER for default: x.txt]: y.txt
+-> Input file: x.txt
+-> Output file: y.txt
+Press ENTER key to continue:
+Emails found in the file x.txt: 
+RBurns@dvc.edu
+vcolber@dvc.edu
+Trey@dvc.edu
+SUCCESS! 3 emails were found, and copied to the file y.txt as follows:
+RBurns@dvc.edu; Trey@dvc.edu; vcolber@dvc.edu
+Now, you may open the file y.txt and copy/paste its contents into the 'to', 'cc', or 'bcc' field of any email message.
+In order to protect you recipients privacy, we suggest you to use 'bcc' field since it does not show the other recipients you have sent the email to.
+-->expected file output: y.txt created and written with: "RBurns@dvc.edu; Trey@dvc.edu; vcolber@dvc.edu"
+
+Test case #5
+-->purpose: test whether the program recognizes that the input file does not exist, outputs an error message and terminates the program 
+-->user input: iFileName = x.txt [does not exist]
+-->expected console output:
+Enter input filename [Press ENTER for default: fileContainingEmails.txt]: x.txt
+Enter output filename [Press ENTER for default: x.txt]: y.txt
+-> Input file: x.txt
+-> Output file: y.txt
+Press ENTER key to continue:
+Sorry, it seems that the file x.txt cannot be opened. It might contain an error, not exist in local directory or be locked to access.
+-->expected file output: none
+
+Test case #6
+-->purpose: test whether the program recognizes that the input file is empty, outputs an message and DO NOT creates an output file 
+-->user input: iFileName = x.txt [empty], oFileName = y.txt
+-->expected console output:
+Enter input filename [Press ENTER for default: fileContainingEmails.txt]: x.txt
+Enter output filename [Press ENTER for default: x.txt]: y.txt
+-> Input file: x.txt
+-> Output file: y.txt
+Press ENTER key to continue:
+Emails found in the file x.txt: 
+Sorry, no email addresses were found in the file x.txt
+-->expected file output: none
+
+
+--------TEST CASES FROM VERSION P2D-------------
+Test case #1
+-->purpose: test essential given test case to see if program succesfully stores email in list
 -->input for processLine function:
 lineFromFile="rburns@dvc.edu vcolber@dvc.edu";
               012345678911234567890123456789
@@ -199,430 +410,6 @@ rburns@dvc.edu
 vcolber@dvc.edu
 
 Number of valid email addresses is 2
--->execution:
-<processLine>
-3010 set nEmails = 0
-3015 set i = 0
-3020 False, i=0 is not >= 30
-3030 False, lineFromFile[0] = 'r' is not @ , skipping to 3190
-3190 i = 0 + 1 = 1
-3200 go back to 3020
-
-3020 False, i=1 is not >= 30
-3030 False, lineFromFile[1] = 'b' is not @ , skipping to 3190
-3190 i = 1 + 1 = 2
-3200 go back to 3020
-
-3020 False, i=2 is not >= 30
-3030 False, lineFromFile[2] = 'u' is not @ , skipping to 3190
-3190 i = 2 + 1 = 3
-3200 go back to 3020
-
-3020 False, i=3 is not >= 30
-3030 False, lineFromFile[3] = 'r' is not @ , skipping to 3190
-3190 i = 3 + 1 = 4
-3200 go back to 3020
-
-3020 False, i=4 is not >= 30
-3030 False, lineFromFile[4] = 'n' is not @ , skipping to 3190
-3190 i = 4 + 1 = 5
-3200 go back to 3020
-
-3020 False, i=5 is not >= 30
-3030 False, lineFromFile[3] = 's' is not @ , skipping to 3190
-3190 i = 5 + 1 = 6
-3200 go back to 3020
-
-3020 False, i=6 is not >= 30
-3030 True, lineFromFile[6] = '@' is  @ 
-
-**Loop to traverse lineFromFile from the character @ to the left
-3040 set s = 6 - 1 = 5
-3050 False, s is not 0
-3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 's'
-<isValidChar>
-4010 result = true
-4020 False, 's' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3060 False, result is still true
-3070 s = 5 -1 = 4
-3090 going back to 3050
-
-3050 False, s is not 0
-3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'n'
-<isValidChar>
-4010 result = true
-4020 False, 'n' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3060 False, result is still true
-3070 s = 4 -1 = 3
-3090 going back to 3050
-
-3050 False, s is not 0
-3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'r'
-<isValidChar>
-4010 result = true
-4020 False, 'r' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3060 False, result is still true
-3070 s = 4 -1 = 3
-3090 going back to 3050
-
-3050 False, s is not 0
-3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'u'
-<isValidChar>
-4010 result = true
-4020 False, 'u' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3060 False, result is still true
-3070 s = 3 -1 = 2
-3090 going back to 3050
-
-3050 False, s is not 0
-3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'b'
-<isValidChar>
-4010 result = true
-4020 False, 'b' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3060 False, result is still true
-3070 s = 2 -1 = 1
-3090 going back to 3050
-
-3050 False, s is not 0
-3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'r'
-<isValidChar>
-4010 result = true
-4020 False, 'r' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3060 False, result is still true
-3070 s = 1 -1 = 0
-3090 going back to 3050
-
-3050 True, s is  0, skipping to 3100
-
-**Loop to traverse lineFromFile from the character @ to the right
-3100 set e = 6 + 1 = 7
-3110 False, e is not 30
-3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'd'
-<isValidChar>
-4010 result = true
-4020 False, 'd' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3120 False, result is still true
-3130 False, character is not dot
-3140 e = 7 + 1 = 8
-3150 going back to 3110
-
-3110 False, e is not 30
-3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'v'
-<isValidChar>
-4010 result = true
-4020 False, 'v' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3120 False, result is still true
-3130 False, character is not dot
-3140 e = 8 + 1 = 9
-3150 going back to 3110
-
-3110 False, e is not 30
-3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'c'
-<isValidChar>
-4010 result = true
-4020 False, 'c' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3120 False, result is still true
-3130 False, character is not dot
-3140 e = 9 + 1 = 10
-3150 going back to 3110
-
-3110 False, e is not 30
-3120 going to subprogram isValidChar giving the value of lineFromFile[s]= '.'
-<isValidChar>
-4010 result = true
-4020 False, '.' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3120 False, result is still true
-3130 True, character is dot, hasDot = true, dotPos = 10
-3140 e = 10 + 1 = 11
-3150 going back to 3110
-
-3110 False, e is not 30
-3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'e'
-<isValidChar>
-4010 result = true
-4020 False, 'e' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3120 False, result is still true
-3130 False, character is not dot
-3140 e = 11 + 1 = 12
-3150 going back to 3110
-
-3110 False, e is not 30
-3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'd'
-<isValidChar>
-4010 result = true
-4020 False, 'd' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3120 False, result is still true
-3130 False, character is not dot
-3140 e = 12 + 1 = 13
-3150 going back to 3110
-
-3110 False, e is not 30
-3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'u'
-<isValidChar>
-4010 result = true
-4020 False, 'u' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3120 False, result is still true
-3130 False, character is not dot
-3140 e = 13 + 1 = 30
-3150 going back to 3110
-
-3110 True, e is 30, e = 30 - 1 = 13, skipping to 3160
-3160 True, (s=0 < i= 6) AND (e=13 > i=6) AND (hasDot=true) AND (dotPos=10 > i+1= 7),anEmail = lineFromFile[0-13] = rburns@dvc.edu
-3170 going to subprogram isDuplicate giving the value of anEmail = "rburns@dvc.edu" 
-<isDuplicate>
-5010 duplicate = false
-5020 i = 0
-5030 going to subprogram changeCase (giving the value of anEmail =  as "s")
-<changeCase>
-6010 lc_s = s = rburns@dvc.edu
-6020 ls_s converted to "rburns@dvc.edu" 
-6030 returning lc_s to subprogram isDuplicate
-<isDuplicate>
-5030 anEmail = lc_s = "rburns@dvc.edu"
-5040 True, skipping to 5080
-5080 True, nonDup = ["rburns@dvc.edu"]
-
-<processLine>
-3190 i = 6 + 1 = 7
-.
-.
-.
-3190 i = 21 + 1 = 22
-3200 going back to 3020
-3020 False, i=22 is not >= 30
-3030 True, lineFromFile[6] = '@' is  @ 
-
-**Loop to traverse lineFromFile from the character @ to the left
-3040 set s = 22 - 1 = 21
-3050 False, s is not 0
-3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'r'
-<isValidChar>
-4010 result = true
-4020 False, 'r' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3060 False, result is still true
-3070 s = 21 -1 = 20
-3090 going back to 3050
-
-3050 False, s is not 0
-3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'e'
-<isValidChar>
-4010 result = true
-4020 False, 'e' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3060 False, result is still true
-3070 s = 20 -1 = 19
-3090 going back to 3050
-
-3050 False, s is not 0
-3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'b'
-<isValidChar>
-4010 result = true
-4020 False, 'b' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3060 False, result is still true
-3070 s = 19 -1 = 18
-3090 going back to 3050
-
-3050 False, s is not 0
-3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'l'
-<isValidChar>
-4010 result = true
-4020 False, 'l' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3060 False, result is still true
-3070 s = 18 -1 = 17
-3090 going back to 3050
-
-3050 False, s is not 0
-3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'o'
-<isValidChar>
-4010 result = true
-4020 False, 'o' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3060 False, result is still true
-3070 s = 17 -1 = 16
-3090 going back to 3050
-
-3050 False, s is not 0
-3060 going to subprogram isValidChar giving the value of lineFromFile[s]= 'c'
-<isValidChar>
-4010 result = true
-4020 False, 'c' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3060 False, result is still true
-3070 s = 16 -1 = 15
-3090 going back to 3050
-
-
-3050 False, s is not 0
-3060 going to subprogram isValidChar giving the value of lineFromFile[s]= ' '
-<isValidChar>
-4010 result = true
-4020 True, ' ' is an invalid character
-4030 return result = false to subprogram processLine
-<processLine>
-3060 True, result is false, s = 15 + 1 = 16
-
-**Loop to traverse lineFromFile from the character @ to the right
-3100 set e = 22 + 1 = 23
-3110 False, e is not 30
-3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'd'
-<isValidChar>
-4010 result = true
-4020 False, 'd' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3120 False, result is still true
-3130 False, character is not dot
-3140 e = 23 + 1 = 24
-3150 going back to 3110
-
-3110 False, e is not 30
-3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'v'
-<isValidChar>
-4010 result = true
-4020 False, 'v' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3120 False, result is still true
-3130 False, character is not dot
-3140 e = 24 + 1 = 25
-3150 going back to 3110
-
-3110 False, e is not 30
-3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'c'
-<isValidChar>
-4010 result = true
-4020 False, 'c' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3120 False, result is still true
-3130 False, character is not dot
-3140 e = 25 + 1 = 26
-3150 going back to 3110
-
-3110 False, e is not 30
-3120 going to subprogram isValidChar giving the value of lineFromFile[s]= '.'
-<isValidChar>
-4010 result = true
-4020 False, '.' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3120 False, result is still true
-3130 True, character is dot, hasDot = true, dotPos = 10
-3140 e = 26 + 1 = 27
-3150 going back to 3110
-
-3110 False, e is not 30
-3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'e'
-<isValidChar>
-4010 result = true
-4020 False, 'e' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3120 False, result is still true
-3130 False, character is not dot
-3140 e = 27 + 1 = 28
-3150 going back to 3110
-
-3110 False, e is not 30
-3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'd'
-<isValidChar>
-4010 result = true
-4020 False, 'd' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3120 False, result is still true
-3130 False, character is not dot
-3140 e = 28 + 1 = 29
-3150 going back to 3110
-
-3110 False, e is not 30
-3120 going to subprogram isValidChar giving the value of lineFromFile[s]= 'u'
-<isValidChar>
-4010 result = true
-4020 False, 'u' is valid character
-4030 return result = true to subprogram processLine
-<processLine>
-3120 False, result is still true
-3130 False, character is not dot
-3140 e = 29 + 1 = 30
-3150 going back to 3110
-
-3110 True, e is 30, e = 30 - 1 = 13, skipping to 3160
-3160 True, (s=0 < i= 6) AND (e=13 > i=6) AND (hasDot=true) AND (dotPos=10 > i+1= 7),anEmail = lineFromFile[0-13] = vcolber@dvc.edu
-3170 going to subprogram isDuplicate giving the value of anEmail = "vcolber@dvc.edu" 
-<isDuplicate>
-5010 duplicate = false
-5020 i = 0
-5030 going to subprogram changeCase (giving the value of anEmail =  as "s")
-<changeCase>
-6010 lc_s = s = vcolber@dvc.edu
-6020 ls_s converted to "vcolber@dvc.edu" 
-6030 returning lc_s to subprogram isDuplicate
-<isDuplicate>
-5030 anEmail = lc_s = "vcolber@dvc.edu"
-5040 True, skipping to 5080
-5080 True, nonDup = ["rburns@dvc.edu" "vcolber@dvc.edu"]
-5090 returning to subprogram processLine
-<processLine>
-3190 i = 22 + 1 = 23
-3200 go back to 3020
-3210 returning to readFile
-<readFile>
-2040 nLines = 0 + 1 = 1
-2045 going back to 2025
-2025 EOF reaches, skipping to 2050
-2050 False
-2051 i = 0
-2052 False
-2053 rburns@dvc.edu
-2054 i = 0 + 1 = 1
-2055 going back to 2052
-2052 False
-2053 vcolber@dvc.edu
-2054 i = 1 + 1 = 2
-2055 going back to 2052
-2052 True, skipping tp 2060
-2060 Number of valid email addresses is 2
-2070 returning to main program
-<main>
-999 END
--->comments: variables were updated as expected, console output as expected, succesful execution.
-
 
 Test case #2
 -->purpose: test with at least one repetead email
