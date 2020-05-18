@@ -43,10 +43,10 @@ void outputList(deque<Movie>& movie); //output the list, lining up all the years
 int main()
 {
   //Data
-  string objective = "Objective: Read data about movies from a text file and prompt user to guess what year they were filmed.\n";
+  string objective = "Objective: Read data about movies from a text file and prompt user to guess what year they were filmed and whether they want to add movies to the list.\n";
   char playAgain = 'Y'; // (char) is Y when user wants to guess another year of a movie, and N when user does not
   char anotherMovie; // (char) is Y when user wants to add another movie to the list, and N when user does not
-  int score; //(int) is the number of correct guesses made by the user
+  int score = 0; //(int) is the number of correct guesses made by the user
   deque<Movie> movie; // (collection of objects of data type Movie) list to store the movie data
   Movie aMovie; // (object of data type Movie) temporary variable to store a movie from the file before storing it in the list "movie"
   srand(time(0)); //"seeds the ramdom number generator"
@@ -57,11 +57,11 @@ int main()
   //Store the movie data into the list "movie" from the text file movieData
   inputMovies(movie, aMovie);
 
+  //Prompt the user to guess the year of a random movie
   if (movie.size() > 0) //in case of empty file
   {
     while (playAgain == 'Y')
     {
-      //Prompt the user to guess the year of a random movie
       if (askMovie(movie)) score++;
 
       //Prompt the user if they would like to play again.
@@ -90,13 +90,13 @@ int main()
       }
     }//while
 
-    //Output score:
+    //Output number of correct guesses
     cout << "You have correctly guessed the year of " << score << " movies." << endl;
 
     //Sort list of movies from oldest to newest
     sortList(movie);
 
-    //Output sorted list of movies
+    //Output sorted list of movies to console and to file movieData.txt
     outputList(movie);
   }
   else cout << "Sorry, it seems that there are no songs in the file movieData.txt" << endl;
@@ -127,9 +127,8 @@ void inputMovies(deque<Movie>& movie, Movie& aMovie)
   while (fin.good())
   {
     getline(fin, aMovie.name);
-    fin >> aMovie.year;
-    fin.ignore(1000,10);
-    movie.push_back(aMovie);
+    getline(fin, aMovie.year);
+    if (aMovie.name.length() > 0 && aMovie.year.length() > 0) movie.push_back(aMovie);
     fin.ignore(1000, 10); // skip the separator blank line
   }
   fin.close();
@@ -141,7 +140,7 @@ bool askMovie(deque<Movie>& movie)
   //Data
   bool result = false; // (boolean) is true if the user has guessed right, value returned by the function
   int random; // (integer) a random number to pick up an element of the collection movie.
-  string guess; // (integer) is the year guessed by the user.
+  string guess; // (text) is the year guessed by the user.
 
   //Ask random movie
   random = rand() % movie.size();
@@ -183,7 +182,7 @@ void sortList(deque<Movie>& movie)
   //Data
   int i;// (integer) a counter to compare each movie i with the rest, outer loop
   int j;// (integer) a counter to select a movie j to compare with the movie i, inner loop
-  Movie temp; //(objecto of data type Movie) a tempory variable used when swaping movies in the collection
+  Movie temp; //(object of data type Movie) a tempory variable used when swaping movies in the collection
 
 	//Sorting
 	for(i = 0; i < movie.size() ; i++)
@@ -204,7 +203,7 @@ void sortList(deque<Movie>& movie)
 void outputList(deque<Movie>& movie)
 {
   //Data 
-  int i;
+  int i; // (integer) counter to traverse each movie record in the list movie
 
   //Output formatted table
   cout << endl;

@@ -3,35 +3,258 @@ Luis Cermeno-Farro 1837034:
 Course and section: COMSC-110-8076
 
 1. Objective (1 sentence brief description of what this will do): 
+Read data about movies from a text file and prompt user to guess what year they were filmed and whether they want to add movies to the list
 
-2. Requirements (any and all requirements organized by input, processing, output, data):
+2. Requirements (any and all requirements org manized by input, processing, output, data):
 INPUT (any data items to be input): 
--
+-file: movieData.txt
+-aMovie name
+-aMovie year
+-guess
+-result
 
 PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
-1. data definitions
-2. user introduction
-3. 
+1. Data definitions
+2. User introduction
+3. Store the movie data into the list "movie" from the text file movieData <subprogram inputMovies>
+4. Prompt the user to guess the year of a random movie <subprogram askMovie>
+5. Prompt the user if they would like to play again <subprogram yOrN>
+6. Prompt the user if they would like to add another movie, if yes append the movie to list "movie" and to file "movieData.txt" <subprogram yOrN>
+7. Output number of correct guesses
+8. Sort list of movies from oldest to newest <subprogram sortList>
+9. Output sorted list of movies to console and to file movieData.txt <subprogram outputList>
 
 OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
 -user introduction: introduction of objective, author, user instructions/rules
--
+-prompt "Guess in what year " name of random movie  " was filmed: "
+-prompt "Would you like to play again [Y/N]?: "
+-prompt "Would you like to add another movie to the list [Y/N]?: "
+-prompt "Name of the movie: "
+-prompt "Year: "
+-user feedback "Correct! you guessed it right!"
+-user feedback "Not quite right! " name of random movie " was filmed in " year of random movie
+-output in case of empty file "Sorry, it seems that there are no songs in the file movieData.txt"
+-output in case of invalid input "Invalid input, please try again" 
+-output "Alright, please enter the following data of the movie:"
+-label "You have correctly guessed the year of " and value of score  " movies." 
+-label each name of movie and year formatted in a table
 
 DATA (list of all data items: definition, data type, formatting, or any other specifications):
--
+-playAgain // (char) is Y when user wants to guess another year of a movie, and N when user does not <main>
+-anotherMovie// (char) is Y when user wants to add another movie to the list, and N when user does not <main>
+-score //(int) is the number of correct guesses made by the user <main>
+-movie // (list of movies) list to store the movie data, it has to fields : "name"(text) and "year"(text) <main>
+-aMovie; // (text) temporary variable to store data of movie from the file before storing it in the list "movie" <main>
+
+-movie // (list of movies) list to store the movie data, it has to fields : "name"(text) and "year"(text), reference required by subprogram <inputMovies>
+-aMovie // (two fields of text) temporary variable to store data of movie from the file before storing it in the list "movie", reference required by subprogram <inputMovies>
+
+-movie // (list of movies) list to store the movie data, it has to fields : "name"(text) and "year"(text), reference required by subprogram <askMovie>
+-random // (integer) a random number to pick up an element of the collection movie. <askMovie>
+-guess // (text) is the year guessed by the user. <askMovie>
+-result // (boolean) is true if the user has guessed right, value returned by the function <askMovie>
+
+-type // (text) either "playAgain" or "anotherMovie", determines what to prompt to the user, value required by the subprogram <yOrN>
+-result // (character) either Y: yes or N: no input by the user, value returned by the function <yOrN>
+
+-movie // (list of movies) list to store the movie data, it has to fields : "name"(text) and "year"(text), reference required by subprogram <sortList>
+-i // (integer) a counter to compare each movie i with the rest, outer loop <sortList>
+-j // (integer) a counter to select a movie j to compare with the movie i, inner loop <sortList>
+-Movie// (two fields of text) a tempory variable used when swaping movies in the collection, it has to fields : "name"(text) and "year"(text) <sortList>
+
+-movie // (list of movies) list to store the movie data, it has to fields : "name"(text) and "year"(text), reference required by subprogram <outputList>
+-i // (integer) counter to traverse each movie record in the list movie <outputList>
+
 
 3. Algorithm instructions (recipe)
-***data
-10 set ...
-***introduction 
- output introduction: objective, author, instructions/rules
-***
 
+<algorithm for subprogram inputMovies>
+1010 open file movieData.txt
+1020 if file contains errors go to end of the program 999
+1030 if end of file is reached skip to 1090
+1040 set name field of aMovie to the text in the next line of the file 
+1050 set year field of aMovie to the text in the next line of the file 
+1060 if length of name and year of aMovie > 0 thenstore aMovie at the back of the list "movie"
+1070 skip one black line in the text file
+1080 go back to 30
+1090 close movieData.txt
+1100 return to main program
+
+<algorithm for subprogram askMovie>
+2010 set result = false
+2020 set random to a computer generated random number between 0 and the size of the list "movie"
+2030 prompt "Guess in what year " name of movie[random]  " was filmed: "
+2040 input guess
+2050 if guess = name of movie[random] output user feedback "Correct! you guessed it right!" and set result = true, otherwise output user feedback "Not quite right! " name of movie[random] " was filmed in " year of movie[random]
+2060 return value of result to main program
+
+<algorithm for subprogram yOrN>
+3010 set result = 'N'
+3020 if type = "playAgain" prompt "Would you like to play again [Y/N]?: "
+3030 if type = "anotherMovie" prompt "Would you like to add another movie to the list [Y/N]?: "
+3040 input result
+3050 if uppered cased result = 'Y' or 'N' skip to 70
+3060 output "Invalid input, please try again" and go back to 3020
+3070 return value of result to main program
+
+<algorithm for subprogram sortList>
+4010 set i = 0
+4015 if i >= size of movie list then skip to 4055
+4020 set j = i + 1 
+4025 if j >= size of movie list then skip to 4045
+4030 if year of movie[i] > year of movie [j] then temp = year of movie[i], year of movie[i] = year of movie[i], year of movie[i] = temp
+4035 j = j + 1
+4040 go back to 4025
+4045 i = i + 1
+4050 go back to 4015
+4055 return to main program
+
+<algorithm for subprogram outputList>
+5010 set i = 0
+5020 if i >= size of movie list skip to 5060
+5030 output left alligned name of movie[i] and right alligned year of movie[i]
+5040 i = i + 1
+5050 go back to 20
+5060 return to main program
+
+
+<algorithm for main program>
+***Data
+10 set playAgain = 'Y'
+20 set score = 0
+30 create empty list "movie" with two fields "name" (text) and "year" (text)
+40 create an empty record "aMovie" of the list "movie"
+***User introduction
+50 output introduction: objective, author, instructions/rules
+***Store the movie data into the list "movie" from the text file movieData
+60 go to subprogram inputMovies (give reference to list movie and to record aMovie)
+***Prompt the user to guess the year of a random movie
+70 if size of list movie is cero then skip to 240
+***Prompt the user if they would like to play again.
+80 if playAgain = 'N' skip to 210
+90 go to subprogram askMovie (give reference to list movie), if value returned is true set score = score + 1
+100 set playAgain to value returned by function yOrN (give the value of "playAgain" as type)
+***Prompt the user if they would like to add another movie, if yes append the movie to list "movie" and to file "movieData.txt"
+110 set anotherMovie to value returned by function yOrN (give the value of "playAgain" as type)
+120 if anotherMovie is not 'Y' skip to 210
+130 output "Alright, please enter the following data of the movie:"
+140 prompt "Name of the movie: " and input name field of aMovie
+150 prompt "Year: " and input year field of aMovie
+160 append aMovie to the back of "movie" list
+170 open movieData.txt
+180 append name of aMovie and year of aMovie in one line each leaving one blank line at the end
+190 close movieData.txt
+200 go back to 80
+***Output number of correct guesses
+210 output label "You have correctly guessed the year of " and value of score  " movies." 
+***Sort list of movies from oldest to newest
+220 go to subprogram inputMovies (give reference to list movie)
+***Output sorted list of movies to console and to file movieData.txt
+230 go to subprogram outputList (give reference to list movie)
+240 if size of list is cero output "Sorry, it seems that there are no songs in the file movieData.txt"
+999 END
 
 4. Test cases (list purpose of each test case, any input values, and expected results)
 
 Test case #1: 
--->purpose:
--->input values:
--->expected console execution:
--->execution:
+-->purpose: test the simplest test case, but not adding movies to the list
+-->input file: movieData.txt:
+Forrest Gump
+1994
+
+Brave Heart
+1995
+
+A Clockwork Orange
+1971
+
+2001 Space Odysey
+1968
+-->expected console execution with input values:
+Guess in what year Forrest Gump was filmed: 1990
+Not quite right! Forrest Gump was filmed in 1994.
+Would you like to play again [Y/N]?: y
+Would you like to add another movie to the list [Y/N]?: n
+Guess in what year A Clockwork Orange was filmed: 1971
+Correct! you guessed it right!
+Would you like to play again [Y/N]?: n
+Would you like to add another movie to the list [Y/N]?: n
+You have correctly guessed the year of 1 movies.
+2001 Space Odysey              Year : 1968
+A Clockwork Orange             Year : 1971
+Forrest Gump                   Year : 1994
+Brave Heart                    Year : 1995
+
+Test case #2: 
+-->purpose: test the case of adding movies to the list
+-->input file: movieData.txt:
+Forrest Gump
+1994
+
+Brave Heart
+1995
+
+A Clockwork Orange
+1971
+
+2001 Space Odysey
+1968
+-->expected console execution with input values:
+Guess in what year Brave Heart was filmed: 1995
+Correct! you guessed it right!
+Would you like to play again [Y/N]?: n
+Would you like to add another movie to the list [Y/N]?: y
+Alright, please enter the following data of the movie:
+Name of the movie: Thor
+Year: 2008
+You have correctly guessed the year of 1 movies.
+2001 Space Odysey              Year : 1968
+A Clockwork Orange             Year : 1971
+Forrest Gump                   Year : 1994
+Brave Heart                    Year : 1995
+Thor                           Year : 2008
+
+Test case #3: 
+-->purpose: test what happen if the file is empty
+-->input file: movieData.txt: [empty]
+-->expected console execution with input values:
+Sorry, it seems that there are no songs in the file movieData.txt
+
+Test case #4: 
+-->purpose: test what happen if the file does not exist
+-->input file: movieData.txt: [does not exist]
+-->expected console execution with input values:
+Programs ends suddenly
+
+Test case #5: 
+-->purpose: test what happen if the user enter and invalid input for the prompts
+-->input file: movieData.txt:
+Forrest Gump
+1994
+
+Brave Heart
+1995
+
+A Clockwork Orange
+1971
+
+2001 Space Odysey
+196
+
+Thor
+2008
+-->expected console execution with input values:
+Guess in what year Brave Heart was filmed: 1995
+Correct! you guessed it right!
+Would you like to play again [Y/N]?: hello
+Invalid input, please try again
+Would you like to play again [Y/N]?: n
+Would you like to add another movie to the list [Y/N]?: helloworld
+Invalid input, please try again
+Would you like to add another movie to the list [Y/N]?: n
+You have correctly guessed the year of 1 movies.
+2001 Space Odysey              Year :  196
+A Clockwork Orange             Year : 1971
+Forrest Gump                   Year : 1994
+Brave Heart                    Year : 1995
+Thor                           Year : 2008

@@ -55,17 +55,14 @@ DATA (list of all data items: definition, data filetype, formatting, or any othe
 -dFileName // (text) : is the default file name <main>
 -wait // (text) : just a variable to read the ENTER key at the end of the program. <main>
 -nonDup //(list of texts) is a list of non duplicate emails <main>
-
 -filetype // (text): is either "input" or "output" choice, value required by the subprogram "getFileName" <getFileName>
 -dFileName // (text) : is the default file name value required by the subprogram "getFileName" <getFileName>
 -valid // (boolean) : is true when the input is already processed by validation function <getFileName>
 -fileName // (text) : is the text entered by the user, value returned to main program <getFileName>
-
 -iFileName // (text): is the name of the input file, value required by the subprogram <readFile>
 -lineFromFile //(text) is a line read from the input file <readFile>
 -nLines // (integer) number of lines of the file <readFile>
 -i //(integer) counter to traverse the list of non emails <readFile>
-
 -lineFromFile // (text) is a line read from the input file, value required by the subprogram <processLine>
 -i //(integer) is a counter used to process each character of the line and find an '@' <processLine>
 -s //(integer) is the character position in lineFromFile for the start of a possible email <processLine>
@@ -73,21 +70,16 @@ DATA (list of all data items: definition, data filetype, formatting, or any othe
 -dotPos //(integer) is the character number of lineFromFile in which the dot is <processLine>
 -hasDot //(integer) is true if the possible email has a dot on their characters <processLine>
 -anEmail // (string) is an sub string of lineFromFile that stores a possible valid email <processLine>
-
 -c // (character) is a character from the possible email, value required by the subprogram <isValidChar>
 -result // (boolean) is true if a character is a valid email character, value returned to subprogram processLine <isValidChar>
-
 -anEmail // (string) is a possible valid email, value required by the subprogram <isDuplicate>
 -i // (integer) counter used to traverse the list of emails and check for duplicates <isDuplicate>
 -duplicate // (bool) is true when a duplicate has been found in the list <isDuplicate>
-
 -s // (text) is a line of text, value required by the subprogram <changeCase>
 -lc_s // (text) is a copy of s to be case lowered, value returned to subprogram isDuplicate <changeCase>
-
 -i // (integer) a counter to compare each email i with the rest, outer loop <sortList>
 -j // (integer) a counter to select an email j to compare with the email i, inner loop <sortList>
 -temp //(text) a tempory variable used when swaping email in the list <sortList>
-
 -i // (integer) a counter to traverse each email in the list <outputList>
 
 3. Algorithm instructions (recipe)
