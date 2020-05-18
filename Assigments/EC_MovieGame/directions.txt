@@ -1,0 +1,36 @@
+1. Create a file movieData.txt of your favorite movies and what year they were created: movie title on one line and year it was made on next line followed by a blank line.
+
+2. Write the following algorithm and program using any data structures we have learned:
+
+2a. myMovies-algorithm.txt
+2b. myMovies.cpp
+
+Objective: Input any number of movie titles and year each movie was created from file movieData.txt and store on a list,
+then randomly select a movie and a year from the list, output the title,
+and ask the user for what year that movie was made,
+output whether the user got the year correct, otherwise output the correct year,
+and keep score how many movie years user got correct,
+ask user whether they want to keep playing the game until the user says N,
+then ask the user if they want to add another movie title and year to the list, which needs to be appended to the file movieData.txt.
+
+subprograms:
+introduction- output objective, author, compiler, editor, filename, and user instructions
+
+inputMovies- read movie.txt input file and create a list of movies and year created
+
+askMovie- randomly pick a movie from the list and output a movie title to the user and ask user what year that movie was made,
+input user guess, determine if user got it right, otherwise output to the user what year the movie was made,
+return whether the user got the question right or wrong.
+
+yOrN- ask the user to play again or ask the user if they want to add another movie to the list,
+with input validation of Y or N, and return Y or N
+
+sortList- sort list of movies with year
+
+outputList- output the list, lining up all the years after each movie title on each line.
+
+3. Please submit the following files:
+
+myMovies-algorithm.txt
+myMovies.cpp
+

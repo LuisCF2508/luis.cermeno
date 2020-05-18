@@ -3,49 +3,75 @@ Luis Cermeno-Farro 1837034:
 Course and section: COMSC-110-8076
 
 1. Objective (1 sentence brief description of what this will do): 
-Read song names from a text file named songs.txt, randomly select one song and output its song to the user
+Read song names from a text file named songs.txt, randomly select one song that has not been played in the last five, and output its song to the user.
+
 2. Requirements (any and all requirements organized by input, processing, output, data):
 INPUT (any data items to be input): 
 -playAgain
 
 PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
-1. data definitions
-2. user introduction
-3. store the song names
-4. prompt the user if they want to play a song, select one randomly and output its name
+1. Data definitions
+2. User introduction
+3. Store the song names into the list "song"
+4. Prompt the user if they want to Play a Song, select one randomly and output its name
+5. Generate a random number to chose a random song <subprogram outputSong>
+6. Determine whether to output chosen song or to choose another one <subprogram outputSong>
+7. Traverse list of lastSongs to check for if song has been already played in the last 5 <subprogram checkLastsSongs>
 
 OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
 -user introduction: introduction of objective, author, user instructions/rules
--prompt "play a song [Y/N] ?:"
--output an element of the list song
+-prompt "Play a Song [Y/N] ?:"
+-output an element of the list "song"
 -output in case of invalid input of playAgain "Invalid input, please try again"
+-output in case of empty file "Sorry, it seems that there are no songs in the file songs.txt"
 
 DATA (list of all data items: definition, data type, formatting, or any other specifications):
 -MAX_SONGS // (integer) is the maximun song names that th list song can process<main>
--nSongs // (integer )is how many song names the list has so far<main>
+-nSongs // (integer )is how many song names the list "song" has so far<main>
 -song // (list)  is the list of song names<main>
 -lineFromFile // (text) is a line from the text file<main>
 -playAgain //(integer) 'Y' for yes or 'N' for no.<main>
--shuffle = true // (boolean) is true if the user wants another random song <main>
--random // (integer) a random number from 0-199 <outputSong>
--nSong // (integer )is how many song names the list has so far<outputSong>
--song // (list)  is the list of song names<outputSong>
+-lastSongs //(list) is the list of 5 "already played" song names
+-lastSongs //(list) is the list of 5 "already played" song names, reference required by the subprogram <outputSong>
+-song // (list) is the list of song names, reference required by the subprogram <outputSong>
+-nSongs // (integer )is how many song names the list "song" has so far, value required by the subprogram <outputSong>
+-random // (integer) a random number from 0-nSongs <outputSong>
+-aSong // (string) is a temporary variable to store a non lastly played song <outputSong>
+-lastSongs //(list) is the list of 5 "already played" song names, reference required by the subprogram <checkLastsSongs>
+-song // (string) is the name of a song, value required by the subprogram <checkLastsSongs>
+-i // (integer) counter to traverse list "lastSongs" <checkLastsSongs>
+-recentlyPlayed // (boolean) is true if a song has been recently played (within 5 last songs), value returned by the subprogram <checkLastsSongs>
+
 
 3. Algorithm instructions (recipe)
 
 <algorithm for subprogram outputSong>
-1010 set random to a computer generated random number between 0 and the value of nSong
+1010 set random to a computer generated random number between 0 and the value of nSongs
+1015 if the value returned by subprogram checkLastsSongs is true go back to 1010 (give the reference to list lastSongs, and value of song[random]) 
 1020 output the value of the song[random]
+1025 aSong = song[random]
+1026 store aSong at the back of the list "lastSongs"
+1027 if size of list "lastSongs" > 5 remove the first element at the front of "lastSongs"
 1030 return to main program
+
+<algorithm for subprogram checkLastsSongs>
+2010 set i = 0
+2020 set recentlyPlayed = false
+2030 if i >= size of list "lastSongs" skip to 2070
+2040 if song = lastSongs[i] set recentlyPlayed = true and skip to 2070
+2050 i = i + 1
+2060 go back to 2030
+2070 return the value of recentlyPlayed to subprogram outputSong
 
 <algorithm for main program>
 ***data
 10 set MAX_SONGS = 200
 20 set nSongs = 0;
-30 set shuffle = true;
+30 create list "song" with MAX_SONGS elements
+35 create list "lastSongs"
 ***introduction 
 40 output introduction: objective, author, instructions/rules
-***store the song names
+***Store the song names into the list "song"
 50 open text file "songs.txt"
 60 if the file has an error skip to 999
 70 if end of file is reached OR nSongs >= 200 skip to 130
@@ -55,11 +81,12 @@ DATA (list of all data items: definition, data type, formatting, or any other sp
 110 nSongs = nSongs + 1
 120 go back to 70
 130 close "song.txt"
-***prompt the user if they want to play a song, select one randomly and output its name
-140 prompt "play a song [Y/N] ?:"
+135 if nSongs = 0 then output "Sorry, it seems that there are no songs in the file songs.txt" and skip to 999
+***Prompt the user if they want to Play a Song, select one randomly and output its name
+140 prompt "Play a Song [Y/N] ?:"
 150 input playAgain
 160 if upper case playAgain = N then skip to 999
-170 if upper case playAgain = Y then go to subprogram outputSong , otherwise output "Invalid input, please try again" and go back to 140
+170 if upper case playAgain = Y then go to subprogram outputSong (give the reference to list lastSongs, to list song, and the value of nSongs) , otherwise output "Invalid input, please try again" and go back to 140
 180 go back to 140
 999 END
 
@@ -71,24 +98,34 @@ Test case #1:
 Hey Jude
 Imagine
 Johnny B. Goode
+Respect
+Good Vibrations
+Smells Like Teen Spirit
+Hey Jude
+-->random values generated by computer:
+random = 1
+random = 2
+random = 1
+random = 3
+-->expected result: the program should be able to recognize the song number 1 was already played and generate another random number
 -->expected console execution:
-play a song [Y/N] ?:y
-Johnny B. Goode (random = 3)
-play a song [Y/N] ?:y
-Hey Jude random = 1
-play a song [Y/N] ?:y
-Imagine random = 2
-play a song [Y/N] ?:y
-Imagine random = 2
-play a song [Y/N] ?:n
+-->expected console execution:
+Play a Song [Y/N]?: y
+Hey Jude
+Play a Song [Y/N]?: y
+Imagine
+Play a Song [Y/N]?: y
+Johnny B. Goode
+Play a Song [Y/N]?: n
 -->execution:
 ***data
 10 MAX_SONGS = 200
 20 nSongs = 0;
-30 shuffle = true;
+30 list "song" with MAX_SONGS elements created
+35 list "lastSongs" created
 ***introduction 
 40 output introduction: objective, author, instructions/rules
-***store the song names
+***Store the song names into the list "song"
 50 "songs.txt" opened
 60 False, no error
 70 False
@@ -106,56 +143,111 @@ play a song [Y/N] ?:n
 70 False
 80 lineFromFile = Johnny B. Goode
 90 False
-100 song[0] = Johnny B. Goode
+100 song[2] = Johnny B. Goode
 110 nSongs = 2 + 1 = 3
 120 going back to 70
-70 end of file is reached skipping to 130=
+80 lineFromFile = Respect
+90 False
+100 song[3] = Respect
+110 nSongs = 3 + 1 = 4
+120 going back to 70
+80 lineFromFile = Good Vibrations
+90 False
+100 song[4] = Good Vibrations
+110 nSongs = 4 + 1 = 5 
+120 going back to 70
+80 lineFromFile = Smells Like Teen Spirit
+90 False
+100 song[5] = JSmells Like Teen Spirit
+110 nSongs = 5 + 1 = 6
+120 going back to 70
+70 end of file is reached skipping to 130
 130 close "song.txt"
-***prompt the user if they want to play a song, select one randomly and output its name
-140 play a song [Y/N] ?"
-150 y
-160 False
-170 True, going to subprogram outputSong
-<outputSong>
-1010 3 generated
-1020 Johnny B. Goode
-1030 returning to main program
-<main>
-180 going back to 140
-140 play a song [Y/N] ?"
-150 y
+135 False, nSongs is not 0
+***prompt the user if they want to Play a Song, select one randomly and output its name
+140 Play a Song [Y/N] ?"
+150 playAgain = y
 160 False
 170 True, going to subprogram outputSong
 <outputSong>
 1010 1 generated
+<checkLastsSongs>
+2010 i = 0
+2020 recentlyPlayed = false
+2030 True
+2070 returning false to outputSong subprogram
+<outputSong>
+1015 False
 1020 Hey Jude
+1025 aSong = Hey Jude
+1026 "Hey Jude" stored at the back of list "lastSongs"
+1027 False
 1030 returning to main program
 <main>
-180 going back to 14
-140 play a song [Y/N] ?"
-150 y
+140 Play a Song [Y/N] ?"
+150 playAgain = y
 160 False
 170 True, going to subprogram outputSong
 <outputSong>
 1010 2 generated
+<checkLastsSongs>
+2010 i = 0
+2020 recentlyPlayed = false
+2030 False
+2040 False, song = "Imagine" is not equal to lastSongs[1] = "Hey Jude"
+2050 i = 0 + 1 = 1
+2060 going back to 2030
+2030 True, skipping to 2070
+2070 returning false to outputSong subprogram
+<outputSong>
+1015 False
 1020 Imagine
+1025 aSong = Imagine
+1026 "Imagine" stored at the back of list "lastSongs"
+1027 False
 1030 returning to main program
 <main>
-180 going back to 140
-140 play a song [Y/N] ?"
-150 y
+140 Play a Song [Y/N] ?"
+150 playAgain = y
 160 False
 170 True, going to subprogram outputSong
 <outputSong>
-1010 2 generated
-1020 Imagine
+1010 1 generated
+<checkLastsSongs>
+2010 i = 0
+2020 recentlyPlayed = false
+2030 False
+2040 True, song = "Hey Jude" is equal to lastSongs[1] = "Hey Jude", recentlyPlayed = true, skipping to 2070
+2070 returning true to outputSong subprogram
+<outputSong>
+1015 True, going back to 1010
+1010 3 generated
+<checkLastsSongs>
+2010 i = 0
+2020 recentlyPlayed = false
+2030 False
+2040 False, song = "Johnny B. Goode" is not equal to lastSongs[1] = "Hey Jude"
+2050 i = 0 + 1 = 1
+2060 going back to 2030
+2030 False
+2040 False, song = "Johnny B. Goode" is not equal to lastSongs[1] = "Imagine"
+2050 i = 1 + 1 = 2
+2060 going back to 2030
+2030 True, skipping to 2070
+2070 returning false to outputSong subprogram
+<outputSong>
+1015 False
+1020 Johnny B. Goode
+1025 aSong = Johnny B. Goode
+1026 "Johnny B. Goode" stored at the back of list "lastSongs"
+1027 False
 1030 returning to main program
 <main>
-180 going back to 140
-140 play a song [Y/N] ?"
-150 n
-160 True, skipping to 999
+140 Play a Song [Y/N] ?"
+150 playAgain =  n
 999 END
+-->comments: successful execution, results as expected.
+
 
 Test case #2: 
 -->purpose: what if the text file has blank spaces
@@ -165,35 +257,27 @@ Hey Jude
 Imagine
 Johnny B. Goode
 -->expected console execution:
-play a song [Y/N] ?:y
-Johnny B. Goode (random = 3)
-play a song [Y/N] ?:y
+Play a Song [Y/N] ?:y
+Johnny B. Goode
+Play a Song [Y/N] ?:y
 Hey Jude random = 1
-play a song [Y/N] ?:y
-Imagine random = 2
-play a song [Y/N] ?:y
-Imagine random = 2
-play a song [Y/N] ?:n
---> comments: to pass the test the list song has to have all his elements filled, no one  blank.
+Play a Song [Y/N] ?:y
+Imagine
+Play a Song [Y/N] ?:y
+Imagine
+Play a Song [Y/N] ?:n
+--> comments: to pass the test the list "song" has to end up having all his elements filled with text, no blanks.
+
 
 Test case #3: 
 -->purpose: what if the text file is empty
 -->input values: songs.txt [empty]
 -->expected console execution:
-play a song [Y/N] ?:y
+Sorry, it seems that there are no songs in the file songs.txt
 
-play a song [Y/N] ?:y
-
-play a song [Y/N] ?:y
-
-play a song [Y/N] ?:y
-
-play a song [Y/N] ?:n
---> comments: THIS VALIDATION WAS NOT REQUIRED BY THE GUIDELINES.. BUT for future versions the program should identidy this issue and let the user know.
 
 Test case #4: 
 -->purpose: what if the text file does not exist
 -->input values: songs.txt [does not exist in local directory]
 -->expected console execution:
-PROGRAM DOES NOT RUN
---> comments: THIS VALIDATION WAS NOT SPCIFIED BY THE GUIDELINES.. BUT for future version the program should output an alert before ending.
+Sudden termination of the program

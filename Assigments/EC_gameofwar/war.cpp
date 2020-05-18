@@ -200,24 +200,3 @@ void output_kind(int kind)
       cout << " Clubs";
   }
 }//function: output kind
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
