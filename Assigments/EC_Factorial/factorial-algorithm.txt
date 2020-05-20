@@ -1,0 +1,106 @@
+@copyrighted 1999 Valerie Colber
+Luis Cermeno-Farro 1837034:  
+Course and section: COMSC-110-8076
+
+1. Objective (1 sentence brief description of what this will do): 
+-Calculate the factorial of an integer
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-n
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. Data definitions
+2. User introduction
+3. Prompt user for a number
+4. Calculate and output factorial
+
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-user introduction: introduction of objective, author, user instructions/rules
+-prompt "Enter a number [only non negative integers, decimals will be truncated to nearest integer]: "
+-output f
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-n //(integer) the number to calculate the factorial of, is also the value required by subprogram factorial <main>
+-i // (integer) counter to calculate the factorial <factorial>
+-f // (integer) is the factorial of the number n, value returned by subprogram <factorial>
+
+3. Algorithm instructions (recipe)
+<algorithm for subprogram factorial>
+1010 set f = 1
+1020 set i = n
+1030 if i = 1 then skip to 1070
+1040 f = f * i
+1050 i = i - 1
+1060 go back to 1030
+1070 return value of f to main program
+
+<algorithm for main program>
+***Data
+***User Introduction 
+20 output introduction: objective, author, instructions/rules
+***Prompt user for a number
+30 output prompt "Enter a number [only non negative integers, decimals will be truncated to nearest integer]: "
+40 input n
+45 if n < 1 go back to 30
+***Calculate and output factorial
+50 go to subprogram factorial and output value returned
+999 END
+
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: 
+-->purpose: test simplest test case
+-->input values: n = 4
+-->expected console execution:
+Enter a number [only non negative integers, decimals will be truncated to nearest integer]: 4
+24
+-->execution:
+<main>
+20 introduction here..
+***Prompt user for a number
+30 "Enter a number [only non negative integers, decimals will be truncated to nearest integer]: "
+40 n = 4
+45 False
+***Calculate and output factorial
+50 go to subprogram factorial and output value returned
+<factoria>
+1010 f = 1
+1020 i = 4
+1030 False
+1040 f = 1 * 4 = 4
+1050 i = 4 - 1 = 3
+1060 going back to 1030
+1030 False
+1040 f = 4 * 3 = 12
+1050 i = 3 - 1 = 2
+1060 going back to 1030
+1030 False
+1040 f = 12 * 2 = 24
+1050 i = 2 - 1 = 1
+1060 going back to 1030
+1030 True, skipping to 1070
+1070 returning f = 24 to main program
+<main>
+50 24
+999 END
+--> successful execution
+
+
+Test case #2: 
+-->purpose: test what happens if user enters a negative number
+-->input values: n = -1, 1
+-->expected console execution:
+Enter a number [only non negative integers, decimals will be truncated to nearest integer]: -1
+Invalid input, please try again...
+Enter a number [only non negative integers, decimals will be truncated to nearest integer]: 1
+1
+
+Test case #3: 
+-->purpose: test what happens if user enters a decimal
+-->input values: n = 2.5
+-->expected console execution:
+Enter a number [only non negative integers, decimals will be truncated to nearest integer]: 2.5
+2

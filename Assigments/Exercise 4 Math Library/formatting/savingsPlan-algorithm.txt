@@ -1,0 +1,62 @@
+Name: Teacher
+Course: COMSC-110-1021
+
+1. Objective: calculate the accumulated money from depositing $ monthly, earning % interest, over years.
+
+2. Requirements
+INPUT:
+-D
+-interestRate
+-years
+
+PROCESSING:
+1.data definition
+2. introduction
+3. input D, p, years
+4. Calculations:
+calculate p= (interest/100)/12
+calculate T= years * 12
+s = D * (((1+p)^T)-1)/p
+5. output the results with appropriate labeling
+
+OUTPUT:
+-introduction: objective, and author, etc.
+-label "In " + years + " years, $" + D + " deposited per month will grow to $" + s + " earning " + interestRate + "% interest"
+
+DATA:
+interestRate = annual 
+s = the sum at the end of the number years (decimal)
+D = monthly deposit (decimal)
+p = monthly interest (decimal)
+T = number of months (integer)
+years = number of years (integer)
+
+3. Instructions
+10 output objective
+20 output author
+****input D, p, years ***
+30 set D = $100
+40 set interestRate = 7.5%
+50 set years = 10
+****calculate p****
+60 set p = (interestRate/100)/12
+****calculate T****
+70 set T = (years * 12)
+****sum of $ at the end of years***
+80 set s = D * (((1+p)^T)-1)/p
+****output results****
+90 output "In " + years + " years, $" + D + " deposited per month will grow to $" + s + " earning " + interestRate + "% interest"
+100 END
+
+4. Test Cases
+Test Case#1: deposit=$100, interest=7.5%, years=10 and  expected result is $17,793.03
+10 Objective: calculate the accumulated money from depositing $ monthly, earning % interest, over years.
+20 Author: Teacher
+30 D =100.0
+40 interestRate = 7.5
+50 years = 10
+60 p = (7.5 / 100) / 12 = 0.00625
+70 T = 10 * 12 = 120
+80 s = 100.0 * (((1 + 0.00625)^120)-1)/0.00625 = 17793.03
+90 In 10 years, $100.0 deposited per month will grow to $17793.03 earning 7.5% interest
+100 DONE
