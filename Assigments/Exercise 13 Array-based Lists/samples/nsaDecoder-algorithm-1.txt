@@ -1,0 +1,73 @@
+@copyrighted 1999 Prof. Colber
+Name and ID:  Teacher
+Course and section: COMSC-110-8215
+
+1. Objective (1 sentence brief description of what this will do): decode each line of user selected input file
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-line
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. read secret.txt and decrypt
+4. output results to console 
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-introduction of objective, author, user instructions/rules
+-line
+-label "line = "
+-each decrypted line from user selected input file
+
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-line = each line read from input file (text) 
+-i  = loop index (integer)
+-lineNumber = which line is being read (integer)
+-emptyFile = is a flag that is true if the inputFileName is empty (Boolean)
+
+3. Algorithm instructions (recipe)
+*** data definitions
+1 set i =0
+2 set lineNumber = 0
+3 set emptyFile to false
+***introduction 
+10 output introduction: objective, author, instructions/rules
+
+*** read the input file and encrypt to console and output file secret.txt
+
+115 open input file secret.txt
+120 if secret.txt is not accessible, then skip to 999
+130 input line from secret.txt
+133 set lineNumber = lineNumber + 1
+135 if line = EOF marker and lineNumber =1 then set emptyFile = true
+140 if line = EOF marker then skip to instruction 170
+145 output label "line = " and line
+*** decrypt line
+150 set line[i] = line[i-1]
+160 if line[i] < length of line then skip to instruction 150
+***output results
+170 if emptyFile then skip to instruction 200
+175 output line to console
+190 skip to instruction 130
+200 if lineNumber = 1 then output inputFileName and " was empty"
+210 close inputFileName
+220 close secret.txt
+999 END
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: secret.txt has line1 with "ifmmp" and expected results "hello" is output to console 
+10
+
+
+999 END
+
+Test case #2: secret.txt doesn't exist where program is and expected results system error message
+
+
+Test case #3: secret.txt is empty and expected results are output "secret.txt was empty."
+
+
+Test case #4: 

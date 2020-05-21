@@ -85,8 +85,6 @@ int main()
 
 }//main
 
-
-
 //introduction function
 void introduction(string obj)//user introduction
 {

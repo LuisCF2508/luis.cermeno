@@ -37,8 +37,6 @@ int main()
   //infinite loop
   for(x = 0; x != 2; x += 0.02) //it never stops cause x is never exactly 2
     cout << x << endl; // the steps are not exactly 0.02, this can be shown in the console output
-
-
 }//main
 
 

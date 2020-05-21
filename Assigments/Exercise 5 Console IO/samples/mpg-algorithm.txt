@@ -1,0 +1,100 @@
+Name: Teacher
+Course: COMSC-110-8269
+
+1. Objective: calculate the miles/gallon depending on user input of fuel tank capacity, miles driven, and gallons of fuel used.
+
+2. Requirements
+INPUT:
+-fuelTankCapacity
+-milesDriven
+-gallonsUsed
+
+
+PROCESSING:
+1. input from user fuelTankCapacity, milesDriven, gallonsUsed
+2. calculate mpg = milesDriven / gallonsUsed
+3. calculate fuelRemaining = fuelTankCapacity - gallonsUsed
+4. calculate range = fuelRemaining * mpg
+5. output mpg, fuelRemaining, range with labels
+
+OUTPUT:
+-objective
+-author
+-date/time
+-prompt "How many gallons fuel does your vehicle tank hold? "
+-prompt "How many miles did you drive your vehicle? "
+-prompt "How many gallons used on this trip? "
+-label "Your fuel tank capacity is " and fuelTankCapacity
+-label "Miles driven: " and milesDriven
+-label "Gallons used on this trip: " and gallonsUsed
+-label "MPG: " and mpg
+-label "Fuel remaining in fuel tank: " and fuelRemaining and " gallons"
+-label "Range of vehicle with fuel remaining: " and range
+
+DATA:
+-fuelTankCapacity = how many gallons fuel tank holds (integer)
+-milesDriven = how many miles did the user drive (decimal)
+-gallonsUsed = how many gallons of fuel used on trip (decimal)
+-mpg = miles per gallon vehicle performance on trip (decimal)
+-range = miles you can drive based on fuel remaining in tank (decimal)
+-fuelRemaining = gallons of fuel left in the tank after trip (decimal)
+
+3. Instructions
+***introduction***
+10 output objective
+20 output author
+30 output date/time
+***input***
+40 output prompt "How many gallons fuel does your vehicle tank hold? "
+50 input fuelTankCapacity
+60 output prompt "How many miles did you drive your vehicle? "
+70 input milesDriven
+80 output prompt "How many gallons used on this trip? "
+90 input gallonsUsed
+***calculations***
+100 calculate mpg = milesDriven / gallonsUsed
+110 calculate fuelRemaining = fuelTankCapacity - gallonsUsed
+120 calculate range = fuelRemaining * mpg
+***output***
+130 output label "Your fuel tank capacity is " and fuelTankCapacity
+140 output label "Miles driven: " and milesDriven
+150 output label "Gallons used on this trip: " and gallonsUsed
+160 output label "MPG: " and mpg
+170 output label "Fuel remaining in fuel tank: " and fuelRemaining
+180 output label "Range of vehicle with fuel remaining: " and range
+190 End
+
+
+4. Test Cases
+Test Case#1: input: fuelTankCapacity=23, milesDriven = 250, gallonsUsed=21   Expected results:
+mpg= 11.9
+fuelRemaining = 2
+range = 23.8
+10 Objective: calculate the miles/gallon depending on user input of fuel tank capacity, miles driven, and gallons of fuel used.
+20 Author: Teacher
+30 February 22, 2016  9:20 PM
+40 How many gallons fuel does your vehicle tank hold? 
+50 fuelTankCapacity = 23
+60 How many miles did you drive your vehicle? 
+70 milesDriven = 250
+80 How many gallons used on this trip? 
+90 gallonsUsed=21
+100 mpg = milesDriven / gallonsUsed = 250 / 21 = 11.9
+110 fuelRemaining = fuelTankCapacity - gallonsUsed = 23 - 21 = 2
+120 range = fuelRemaining * mpg = 2 * 11.9 = 23.8
+130 Your fuel tank capacity is 23
+140 Miles driven: 250
+150 Gallons used on this trip: 21
+160 MPG: 11.9
+170 Fuel remaining in fuel tank: 2 gallons
+180 Range of vehicle with fuel remaining: 23.8
+
+Test Case #2: What if we run out of fuel?
+
+
+
+Test Case #3: No fuel remaining
+
+
+
+Test Case #4: 

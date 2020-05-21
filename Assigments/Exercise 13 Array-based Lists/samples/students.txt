@@ -1,0 +1,72 @@
+George Washington
+17890
+3.25
+----------
+John Adams
+17970
+4.0
+----------
+Thomas Jefferson
+18010
+3.89
+----------
+James Madison
+18090
+3.4
+----------
+James Monroe
+18170
+3.53
+----------
+John Quincy Adams
+18250
+4.00
+----------
+Andrew Jackson
+18290
+3.27
+----------
+Martin Van Buren
+18370
+3.10
+----------
+William Harrison
+18410
+3.67
+----------
+John Tyler
+18411
+3.39
+----------
+James Polk
+18450
+3.91
+----------
+Zachary Taylor
+18490
+3.95
+----------
+Millard Fillmore
+18500
+3.7
+----------
+Franklin Pierce
+18530
+3.77
+----------
+James Buchanan
+18570
+3.42
+----------
+Abraham Lincoln
+18610
+3.78
+----------
+Andrew Johnson
+18650
+3.13
+----------
+Ulysses Grant
+18690
+3.40
+----------

@@ -1,0 +1,90 @@
+@copyrighted 1999 Prof. Colber
+Name and ID:  Teacher
+Course and section: COMSC-110-8215
+
+1. Objective (1 sentence brief description of what this will do): encode each line of user selected input file
+
+2. Requirements (any and all requirements organized by input, processing, output, data):
+INPUT (any data items to be input): 
+-inputFileName
+-line
+
+PROCESSING (list of significant parts of the objective that will become the list of code blocks in program):
+1. data definitions
+2. user introduction
+3. input user selected input filename
+4. read the input file and encrypt
+5. output results to console and to output file secret.txt
+
+OUTPUT (list of anything output: introduction, data items, labels, prompts) : 
+-introduction of objective, author, user instructions/rules
+-prompt "Enter input file name [i.e.: x.txt]: "
+-line
+-label "line = "
+-each encrypted line from user selected input file
+
+
+DATA (list of all data items: definition, data type, formatting, or any other specifications):
+-inputFileName = user selected input filename (text) 
+-line = each line read from input file (text) 
+-i  = loop index (integer)
+-fileExtension = user selected inputFileName file extension (text)
+-lineNumber = which line is being read (integer)
+-emptyFile = is a flag that is true if the inputFileName is empty (Boolean)
+
+3. Algorithm instructions (recipe)
+*** data definitions
+1 set i =0
+2 set lineNumber = 0
+3 set emptyFile to false
+***introduction 
+10 output introduction: objective, author, instructions/rules
+*** input user selected inputFileName
+20 output prompt ""Enter input file name [i.e.: x.txt]: "
+30 input inputFileName
+***input validation on user selected inputFileName
+*** check that inputFileName ends with ".txt" and inputFileName length is at least 5 characters
+40 if length of inputFileName >= 5 then skip to instruction 70
+50 output "invalid filename"
+60 skip to instruction 20
+70 set fileExtension = last 4 characters in inputFileName
+80 if fileExtension = ".txt" then skip to instruction 110
+90 output "invalid filename extension"
+100 skip to instruction 20
+*** read the input file and encrypt to console and output file secret.txt
+110 open inputFileName
+115 open output file secret.txt
+120 if inputFileName is not accessible, then skip to 999
+130 input line from inputFileName
+133 set lineNumber = lineNumber + 1
+135 if line = EOF marker and lineNumber =1 then set emptyFile = true
+140 if line = EOF marker then skip to instruction 170
+145 output label "line = " and line
+*** encrypt line
+150 set line[i] = line[i+1]
+160 if line[i] < length of line then skip to instruction 150
+***output results
+170 if emptyFile then skip to instruction 200
+175 output line to console
+180 output line to file named secret.txt 
+190 skip to instruction 130
+200 if lineNumber = 1 then output inputFileName and " was empty"
+210 close inputFileName
+220 close secret.txt
+999 END
+
+4. Test cases (list purpose of each test case, any input values, and expected results)
+
+Test case #1: inputFileName has line1 with "hello" and expected results "ifmmp" is output to console and to file secret.txt
+10
+
+
+999 END
+
+Test case #2: inputFileName doesn't exist where program is and expected results system error message
+
+
+Test case #3: inputFileName is empty and expected results are output inputFileName and " was empty."
+
+
+Test case #4: 

@@ -1,0 +1,149 @@
+COMSC-110
+Teacher
+
+1. Objective: Input scores [0-100] from the user until the sentinnel value of -999 is input and then calculate the average, minimum, maximum of those numbers.
+
+2. Requirements
+INPUT: 
+-score [0-100] from the user from the keyboard.
+
+PROCESSING:
+-keep inputing scores [0-100] until -999 is input by the user from the keyboard
+-count each input score
+-sum each input score
+-update minimum if input number is less than current minimum
+-update maximum if input number is more than current maximum
+-average = sum / count
+
+OUTPUT:
+-objective 
+-author
+-prompt "Please enter a score between 0 and 100 or -999 to exit 
+-count and input number (not for sentinnel value)
+-output label for average and the calculated average
+-output label for minimum and the calculated minimum
+-output label for maximum and the calculated maximum
+
+DATA:
+-decimal n = input number
+-decimal average = (initally 0)  calculated average
+-decimal min = (initially first number input) smallest number of the input numbers
+-decimal max = (initally first number input) largest number of the input numbers
+-integer count = (initially 0) number of numbers
+-decimal sum = (initally 0) sum of numbers
+
+3. Algorithm instructions
+10 call introduction
+***initialize values***
+40 average = 0
+70 count = 0
+80 sum = 0
+***input number***
+90 call getScore
+***check for sentinnel value***
+120 if n = -999, skip to instruction 200
+***count, sum, update max and min***
+121 if count = 0 then max = n
+123 if count = 0 then min = n
+130 count = count + 1
+140 sum = sum + n
+150 if min > n then min = n
+160 if max < n then max = n
+***output label and input number***
+170 output "number ", count, " = ", n
+180 skip to instruction 90
+***calculate average***
+200 if count > 0 then average = sum / count
+***output average, min, max with labels***
+210 output "average = ", average
+220 output "minimum = ", min
+230 output "maximum = ", max
+999 END
+
+***introduction
+10 output "objective: input scores [0-100] from the user until the sentinnel value of -999 is input and then calculate the average, minimum, maximum of those numbers."
+20 output "author: Teacher"
+30 output "instructions: please enter numbers until you enter -999 to stop entering numbers."
+40 return
+
+***getScore
+10 output prompt "Please enter a score between 0 and 100, or -999 to quit: "
+20 input n
+30 if n = -999 then return n
+40 if n < 0 or n > 100 then skip to instruction 10
+50 return n
+
+4. Test Cases
+Test Case #1: input 3 numbers: 99, 88, 77, then -999
+10 skip to introduction
+introduction10 objective: input scores [0-100] from the user until the sentinnel value of -999 is input and then calculate the average, minimum, maximum of those numbers.
+introduction20 author: Teacher
+introduction
+30 instructions: please enter scores between 0 and 100 until you enter -999 to stop entering numbers.
+40 average = 0
+70 count = 0
+80 sum = 0
+90 skip to getScore
+getScore10: Please enter a score between 0 and 100, or -999 to quit: 
+getScore20: 99
+getScore30: False
+getScore40: False
+getScore50: n=99
+120 False
+121 min = 99
+123 max = 99
+130 count = 0 + 1 = 1
+140 sum = 0 + 99 = 99
+150 False
+160 False
+170 number 1 = 99
+180 skip to instruction 90
+90 skip to getScore
+getScore10: Please enter a score between 0 and 100, or -999 to quit: 
+getScore20: 88
+getScore30: False
+getScore40: False
+getScore50: n=88
+120 False
+121 False
+123 False
+130 count = 1 + 1 = 2
+140 sum = 99 + 88 = 187
+150 True min = 88
+160 False
+170 number 2 = 88
+180 skip to instruction 90
+90 skip to getScore
+getScore10: Please enter a score between 0 and 100, or -999 to quit: 
+getScore20: 77
+getScore30: False
+getScore40: False
+getScore50: n=77
+120 False
+121 False
+123 False
+130 count = 2 + 1 = 3
+140 sum = 187 + 77 = 264
+150 True n = 77
+160 False
+170 number 3 = 77
+180 skip to instruction 90
+90 skip to getScore
+getScore10: Please enter a score between 0 and 100, or -999 to quit: 
+getScore20: -999
+getScore30: True return -999
+120 True skip to 200
+200 True average = 264 / 3 = 88
+210 average = 88.00
+220 minimum = 77.00
+230 maximum = 99.00
+999 End
+
+Test Case #2: input -999 only
+
+
+Test Case #3: input 99 then -999
+
+
+Test Case #4: input -1, then -999
+

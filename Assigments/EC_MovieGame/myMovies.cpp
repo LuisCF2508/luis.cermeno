@@ -43,13 +43,13 @@ void outputList(deque<Movie>& movie); //output the list, lining up all the years
 int main()
 {
   //Data
+  srand(time(0)); //"seeds the ramdom number generator, always as first statement in main"
   string objective = "Objective: Read data about movies from a text file and prompt user to guess what year they were filmed and whether they want to add movies to the list.\n";
   char playAgain = 'Y'; // (char) is Y when user wants to guess another year of a movie, and N when user does not
   char anotherMovie; // (char) is Y when user wants to add another movie to the list, and N when user does not
   int score = 0; //(int) is the number of correct guesses made by the user
   deque<Movie> movie; // (collection of objects of data type Movie) list to store the movie data
   Movie aMovie; // (object of data type Movie) temporary variable to store a movie from the file before storing it in the list "movie"
-  srand(time(0)); //"seeds the ramdom number generator"
 
   //User introduction
   introduction(objective);

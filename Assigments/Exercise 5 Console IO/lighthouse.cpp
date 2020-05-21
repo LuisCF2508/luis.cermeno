@@ -54,5 +54,4 @@ int main()
   cout << setprecision(0); //setting no decimals
   cout << distance << " miles away.";
   cout << endl;
-
 }//main

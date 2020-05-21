@@ -1,0 +1,86 @@
+Name and ID:  Teacher
+Course and section: COMSC-110-8269
+
+1. Objective: count down from a user selected number > 0
+
+2. Requirements:
+INPUT: 
+- n
+
+PROCESSING:
+1. data definition
+2. introduction
+3. input user selected number
+ input validation: if number is <= 0 then output error message
+4. beginning at the number, output the number and return to beginning of the line 
+count down by 1 and pause for one second
+5. when reach zero output "****BLAST OFF!***"
+
+OUTPUT: 
+-introduction of objective, author
+-prompt " Enter a number > 0: "
+-i (pause for 1 second and return to the beginning of the line before outputting next i)
+-"****BLAST OFF!****"
+
+
+DATA:
+-n =user selected number > 0 (integer)
+-i =loop index (integer)
+
+3. Algorithm instructions 
+***introduction 
+10 output introduction: objective, author
+***input
+20 output prompt " Enter a number > 0: "
+30 input n
+***input validation
+32 if n > 0 then skip to instruction 40
+34 output "invalid input!"
+36 skip to instruction 20
+***countdown
+40 set i = n
+50 if i < 1 then skip to 110
+60 output i
+70 pause for one second
+80 return to the beginning of the line
+90 set i = i - 1
+100 skip to instruction 50
+***blast off***
+110 output "***BLAST OFF!!!***"
+999 END
+
+4. Test cases
+
+Test case #1: 
+purpose: simplest test case to demonstrate functionality
+input: n=3  
+expected results: 3 2 1 **BLAST OFF!***
+10 Objective: count down from a user selected number > 0
+Author: Teacher
+20 Enter a number > 0: 
+30 n=3
+40 i=3
+50 false
+60 3
+70 wait for one second
+80 place cursor at beginning of line
+90 i = 3-1=2
+100 skip to instruction 50
+50 false
+60 2
+70 wait for one second
+80 place cursor at beginning of line
+90 i = 1-1=0
+100 skip to instruction 50
+50 true
+110 ***BLAST OFF!!!***
+999 END
+
+Test case #2: 
+purpose: invalid input
+input: n =0 
+expect results:  invalid input! and reenter user selected number
+
+
+
+
